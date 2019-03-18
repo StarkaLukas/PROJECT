@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../style/login.css"/>
+    <link rel="icon" href="../images/favicon.png" type="image/gif" sizes="16x16">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</head>
+<body onload="start()">
+    <div id="form">
+    <form action="" method="post">
+        <p id="firstNameText">First name:*</p>
+        <input type="text" name="firstName" id="firstName">
+        <p class="faults" id="faultfirstName"></p>
+        <p id="lastNameText">Last name:*</p>
+        <input type="text" name="lastName" id="lastName">
+        <p class="faults" id="faultlastName"></p>
+        <p id="emailText">Email Adress:*</p>
+        <input type="text" name="email" id="email">
+        <p class="faults" id="faultemail"></p>
+        <p id="email2Text">Confirm your Email Adress:*</p>
+        <input type="text" name="email2" id="email2">
+        <p class="faults" id="faultemail2"></p>
+        <p id="numberText">Phone:*</p>
+        <input type="text" name="number" id="number">
+        <p class="faults" id="faultnumber"></p>
+        <p>Date of Birth:*</p>
+        <select name="birthDay" id="birthDay">
+            <option value="">Day</option>
+        </select>
+        <select name="birthMonth" id="birthMonth">
+            <option value="">Month</option>
+        </select>
+        <select name="birthYear" id="birthYear">
+            <option value="">Year</option>
+        </select>
+        <p class="faults" id="faultbirthday"></p>
+        <p class="faults" id="faultbirthmonth"></p>
+        <p class="faults" id="faultbirthyear"></p>
+        <div id="sex">
+            <input type="radio" name="gender" class="gender" id="male"><p class="inline" id="maleText">Male</p><br>
+            <input type="radio" name="gender" class="gender" id="female"><p class="inline" id="femaleText">Female</p><br>
+            <input type="radio" name="gender" class="gender" id="other"><p class="inline" id="otherText">Other</p><br>
+            <p class="faults" id="faultgender"></p>
+        </div>
+        <p id="show-textText">Show-Text:*</p>
+        <textarea name="textarea" id="show-text" cols="30" rows="10"></textarea>
+        <p class="faults" id="faultshowtext"></p>
+        <p id="passwordText">Password:*</p>
+        <input type="password" name="password" id="password">
+        <p class="faults" id="faultpassword"></p>
+        <p id="password2Text">Confirm your Password:*</p>
+        <input type="password" name="password2" id="password2">
+        <p class="faults" id="faultpassword2"></p>
+        <input type="checkbox" name="check" id="check">
+        <p class="inline" id="termsText">I agree to the Terms of Use</p><br>
+        <p class="faults" id="faultcheck"></p>
+        <input type="checkbox" name="mailCheck" id="mailCheck">
+        <p class="inline" id="mailText">Please subscribe me to your newsletter</p>
+    </form>
+    <button id="button">Commit</button>
+    </div>
+    <script src="../script/form.js"></script>
+</body>
+</html>
