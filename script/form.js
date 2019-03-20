@@ -8,15 +8,6 @@ let countOther = 0;
 function start(){
 
     button.addEventListener('click', check);
-    document.getElementById('male').addEventListener('click', () =>{
-        switchRadio(document.getElementById('male'), 'Male', document.getElementById('maleText'));
-    });
-    document.getElementById('female').addEventListener('click', ()=>{
-        switchRadio(document.getElementById('female'), 'Female', document.getElementById('femaleText'));
-    });
-    document.getElementById('other').addEventListener('click', ()=>{
-        switchRadio(document.getElementById('other'), 'Other', document.getElementById('otherText'));
-    });
     innerDay(document.getElementById('birthDay'));
     innerMonth(document.getElementById('birthMonth'));
     innerYear(document.getElementById('birthYear'));
@@ -26,13 +17,6 @@ function start(){
     });
     document.getElementById('firstName').addEventListener('blur', ()=>{
         blurMethod(document.getElementById('firstNameText'), document.getElementById('firstName'));
-    });
-
-    document.getElementById('lastName').addEventListener('focus', ()=>{
-        focusMethod(document.getElementById('lastNameText'));
-    });
-    document.getElementById('lastName').addEventListener('blur', ()=>{
-        blurMethod(document.getElementById('lastNameText'), document.getElementById('lastName'));
     });
 
     document.getElementById('email').addEventListener('focus', ()=>{
@@ -48,21 +32,6 @@ function start(){
     document.getElementById('email2').addEventListener('blur', ()=>{
         blurMethod(document.getElementById('email2Text'), document.getElementById('email2'));
     });
-
-    document.getElementById('number').addEventListener('focus', ()=>{
-        focusMethod(document.getElementById('numberText'));
-    });
-    document.getElementById('number').addEventListener('blur', ()=>{
-        blurMethod(document.getElementById('numberText'), document.getElementById('number'));
-    });
-
-    document.getElementById('show-text').addEventListener('focus', ()=>{
-        focusMethod(document.getElementById('show-textText'));
-    });
-    document.getElementById('show-text').addEventListener('blur', ()=>{
-        blurMethod(document.getElementById('show-textText'), document.getElementById('show-text'));
-    });
-
     document.getElementById('password').addEventListener('focus', ()=>{
         focusMethod(document.getElementById('passwordText'));
     });
@@ -90,10 +59,8 @@ function check(){
     checkMethod(checkName, document.getElementById('lastName').value, 'Last name');
     checkMethod(checkEmail, document.getElementById('email').value, 'Email');
     checkMethod(checkEmail2, document.getElementById('email2').value, 'Email confirmation');
-    checkMethod(checkNumber, document.getElementById('number').value, 'Telephone number');
     checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
     checkSex();
-    checkMethod(checkShowText, document.getElementById('show-text').value, 'Show-Text');
     checkMethod(checkPassword, document.getElementById('password').value, 'Password');
     checkMethod(checkPassword2, document.getElementById('password2').value, 'Password confirmation');
     checkTermsOfUse(document.getElementById('check'), 'Terms of Use');
@@ -108,10 +75,6 @@ function checkMethod(methodNeeded, field, fieldString){
             document.getElementById('faultfirstName').innerHTML = fieldString + " can't be blank";
             document.getElementById('firstName').style.borderBottomColor = 'red';
             break;
-          case 'Last name':
-            document.getElementById('faultlastName').innerHTML = fieldString + " can't be blank";
-            document.getElementById('lastName').style.borderBottomColor = 'red';
-            break;
           case 'Email':
             document.getElementById('faultemail').innerHTML = fieldString + " can't be blank";
             document.getElementById('email').style.borderBottomColor = 'red';
@@ -119,14 +82,6 @@ function checkMethod(methodNeeded, field, fieldString){
           case 'Email confirmation':
             document.getElementById('faultemail2').innerHTML = fieldString + " can't be blank";
             document.getElementById('email2').style.borderBottomColor = 'red';
-            break;
-          case 'Telephone number':
-            document.getElementById('faultnumber').innerHTML = fieldString + " can't be blank";
-            document.getElementById('number').style.borderBottomColor = 'red';
-            break;
-          case 'Show-Text':
-            document.getElementById('faultshowtext').innerHTML = fieldString + " can't be blank";
-            document.getElementById('show-text').style.borderColor = 'red';
             break;
           case 'Password':
             document.getElementById('faultpassword').innerHTML = fieldString + " can't be blank";
@@ -214,17 +169,6 @@ function checkPassword2(password, word){
         document.getElementById('password2').style.borderBottomColor = 'red';
     }
 }
-function checkNumber(number, word){
-    let patt = /[^0-9_\/\-+\(\)\[\]\,\' ]/gm;
-
-    let result = patt.test(number);
-
-    if(result){
-        faults += word + ' is invalid!\n';
-        document.getElementById('faultnumber').innerHTML = word + ' is invalid';
-        document.getElementById('number').style.borderBottomColor = 'red';
-    }
-}
 function switchRadio(sex, count, element){
     let counter;
     
@@ -259,19 +203,6 @@ function switchRadio(sex, count, element){
 
 
 }
-function checkSex(){
-    let selected = false;
-    
-    for(let option of document.getElementsByClassName('gender')){
-        if(option.checked){
-            selected = true;
-        }
-    }
-    if(!selected){
-        document.getElementById('faultgender').innerHTML = 'A gender needs to be selected';
-        faults += 'A gender needs to be selected!\n';
-    }
-}
 function checkBox(element){
     if(element.style.color == 'white'){
         element.style.color = 'lightslategray';
@@ -285,17 +216,6 @@ function checkTermsOfUse(checkBox, word){
         faults += word + ' need to be agreed!\n';
         document.getElementById('faultcheck').innerHTML = word + ' need to be agreed';
         document.getElementById('termsText').style.color = 'red';
-    }
-}
-function checkShowText(text, word){
-    let patt = /.{2,}/gm;
-
-    let result = patt.test(text);
-
-    if(!result){
-        faults += word + ' is too short!\n';
-        document.getElementById('faultshowtext').innerHTML = word + ' is too short';
-        document.getElementById('show-text').style.borderColor = 'red';
     }
 }
 function innerDay(select){
