@@ -49,18 +49,17 @@ function start(){
     document.getElementById('check').addEventListener('click', ()=>{
         checkBox(document.getElementById('termsText'));
     });
-    document.getElementById('mailCheck').addEventListener('click', ()=>{
-        checkBox(document.getElementById('mailText'));
-    });
+
+    document.getElementById('firstName').addEventListener('keyup', ()=>{
+        checkMethod(checkName, document.getElementById('firstName').value, 'First name');
+    })
 }
 function check(){
     faults = '';
     checkMethod(checkName, document.getElementById('firstName').value, 'First name');
-    checkMethod(checkName, document.getElementById('lastName').value, 'Last name');
     checkMethod(checkEmail, document.getElementById('email').value, 'Email');
     checkMethod(checkEmail2, document.getElementById('email2').value, 'Email confirmation');
     checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
-    checkSex();
     checkMethod(checkPassword, document.getElementById('password').value, 'Password');
     checkMethod(checkPassword2, document.getElementById('password2').value, 'Password confirmation');
     checkTermsOfUse(document.getElementById('check'), 'Terms of Use');
@@ -169,40 +168,6 @@ function checkPassword2(password, word){
         document.getElementById('password2').style.borderBottomColor = 'red';
     }
 }
-function switchRadio(sex, count, element){
-    let counter;
-    
-    switch(count){
-        case 'Male':
-            countMale++;
-            counter = countMale;
-            document.getElementById('femaleText').style.color = 'lightslategray';
-            document.getElementById('otherText').style.color = 'lightslategray';
-            break;
-        case 'Female':
-            countFemale++;
-            counter = countFemale;
-            document.getElementById('maleText').style.color = 'lightslategray';
-            document.getElementById('otherText').style.color = 'lightslategray';
-            break;
-        case 'Other': 
-            countOther++;
-            counter = countOther;
-            document.getElementById('maleText').style.color = 'lightslategray';
-            document.getElementById('femaleText').style.color = 'lightslategray';
-            break;
-    }
-    
-    if(counter % 2 == 0){
-        sex.checked = false;
-        element.style.color = 'lightslategray';
-    }
-    else{
-        element.style.color = 'white';
-    }
-
-
-}
 function checkBox(element){
     if(element.style.color == 'white'){
         element.style.color = 'lightslategray';
@@ -237,7 +202,7 @@ function innerMonth(select){
 
 }
 function innerYear(select){
-    for (let i = 1965; i <= 2002; i++) {
+    for (let i = 1965; i <= 2010; i++) {
         let option = document.createElement('option');
         option.text = i;
         select.add(option);  
@@ -245,16 +210,16 @@ function innerYear(select){
 }
 function checkDateOfBirth(day, month, year){
     if(day.selectedIndex == 0){
-        faults += "Birthday can't be blank!\n";
-        document.getElementById('faultbirthday').innerHTML = "Birthday can't be blank";
+        faults += "Day can't be blank!\n";
+        document.getElementById('faultbirthday').innerHTML = "Day can't be blank";
     }
     if(month.selectedIndex == 0){
-        faults += "Birth month can't be blank!\n";
-        document.getElementById('faultbirthmonth').innerHTML = "Birth month can't be blank!";
+        faults += "Birth can't be blank!\n";
+        document.getElementById('faultbirthmonth').innerHTML = "Month can't be blank!";
     }
     if(year.selectedIndex == 0){
-        faults += "Year of birth can't be blank!\n";
-        document.getElementById('faultbirthyear').innerHTML = "Year of birth can't be blank!";
+        faults += "Year can't be blank!\n";
+        document.getElementById('faultbirthyear').innerHTML = "Year can't be blank!";
     }
 
     switch(month.selectedIndex){
@@ -299,15 +264,9 @@ function focusMethod(element){
 }
 function blurMethod(element, otherElement){
     element.style.color = 'lightslategray';
-    if(otherElement === document.getElementById('show-text')){
-        otherElement.style.borderColor = 'yellow';
-    }
-    else{
-        otherElement.style.borderBottomColor = 'yellow';
-    }
 }
 function checkFaults(){
     if(faults == ''){
-        window.open('submit.html', '_self');
+        //still more code that needs to be computed here
     }
 }
