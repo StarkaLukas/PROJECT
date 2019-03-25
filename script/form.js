@@ -6,8 +6,8 @@ let countFemale = 0;
 let countOther = 0;
 
 function start(){
+    document.getElementById('button').addEventListener('click', check);
 
-    button.addEventListener('click', check);
     innerDay(document.getElementById('birthDay'));
     innerMonth(document.getElementById('birthMonth'));
     innerYear(document.getElementById('birthYear'));
@@ -47,24 +47,46 @@ function start(){
     });
 
     document.getElementById('check').addEventListener('click', ()=>{
-        checkBox(document.getElementById('termsText'));
+        checkBox(document.getElementById('termsText'), document.getElementById('check'));
     });
 
     document.getElementById('firstName').addEventListener('keyup', ()=>{
         checkMethod(checkName, document.getElementById('firstName').value, 'First name');
+    });
+    document.getElementById('email').addEventListener('keyup', ()=>{
+        checkMethod(checkEmail, document.getElementById('email').value, 'Email');
+    });
+    document.getElementById('email2').addEventListener('keyup', ()=>{
+        checkMethod(checkEmail2, document.getElementById('email2').value, 'Email confirmation');
+    });
+    document.getElementById('password').addEventListener('keyup', ()=>{
+        checkMethod(checkPassword, document.getElementById('password').value, 'Password');
+    });
+    document.getElementById('password2').addEventListener('keyup', ()=>{
+        checkMethod(checkPassword2, document.getElementById('password2').value, 'Password confirmation');
+    });
+    document.getElementById('birthDay').addEventListener('change', ()=>{
+        checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
+    })
+    document.getElementById('birthMonth').addEventListener('change', ()=>{
+        checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
+    })
+    document.getElementById('birthYear').addEventListener('change', ()=>{
+        checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
     })
 }
 function check(){
     faults = '';
-    checkMethod(checkName, document.getElementById('firstName').value, 'First name');
+    checkFaults();
+    /*checkMethod(checkName, document.getElementById('firstName').value, 'First name');
     checkMethod(checkEmail, document.getElementById('email').value, 'Email');
     checkMethod(checkEmail2, document.getElementById('email2').value, 'Email confirmation');
     checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
     checkMethod(checkPassword, document.getElementById('password').value, 'Password');
     checkMethod(checkPassword2, document.getElementById('password2').value, 'Password confirmation');
-    checkTermsOfUse(document.getElementById('check'), 'Terms of Use');
     
-    checkFaults();
+    */checkTermsOfUse(document.getElementById('check'), 'Terms of Use');
+
 }
 function checkMethod(methodNeeded, field, fieldString){
     if(!isBlank(field)){
@@ -108,17 +130,18 @@ function checkName(name, word, field){
     let result1 = patt1.test(name);
     let result2 = patt2.test(name);
 
-    if(!result1 || result2){
-        faults += word + ' is invalid!\n';
-        if(word === 'First name'){
-            document.getElementById('faultfirstName').innerHTML = word + ' is invalid';
+    if(!result1){
+        faults += word + ' is too short!\n';
+            document.getElementById('faultfirstName').innerHTML = word + ' is too short!';
             document.getElementById('firstName').style.borderBottomColor = 'red';
-        }
-        else{
-            document.getElementById('faultlastName').innerHTML = word + ' is invalid';
-            document.getElementById('lastName').style.borderBottomColor = 'red';
-        }
-        
+    }
+    else if(result2){
+        document.getElementById('faultfirstName').innerHTML = word + ' contains invalid characters!';
+        document.getElementById('firstName').style.borderBottomColor = 'red';
+    }
+    else{
+        document.getElementById('faultfirstName').innerHTML = '';
+        document.getElementById('firstName').style.borderBottomColor = 'yellow';
     }
 }
 function checkEmail(email, word){
@@ -128,10 +151,19 @@ function checkEmail(email, word){
     let result1 = patt1.test(email);
     let result2 = patt2.test(email);
 
-    if(!result1 || !result2){
-        faults += word + ' is invalid!\n';
-        document.getElementById('faultemail').innerHTML = word + ' is invalid';
+    if(!result1){
+        faults += word + ' is too short!\n';
+        document.getElementById('faultemail').innerHTML = word + ' is too short!';
         document.getElementById('email').style.borderBottomColor = 'red';
+    }
+    else if(!result2){
+        faults += word + ' is invalid!\n';
+        document.getElementById('faultemail').innerHTML = word + ' is invalid!';
+        document.getElementById('email').style.borderBottomColor = 'red';
+    }
+    else{
+        document.getElementById('faultemail').innerHTML = '';
+        document.getElementById('email').style.borderBottomColor = 'yellow';
     }
 }
 function checkEmail2(email, word){
@@ -139,6 +171,10 @@ function checkEmail2(email, word){
         faults += word + ' is not equal to the first E-Mail!\n';
         document.getElementById('faultemail2').innerHTML = word + ' is not equal to the first E-Mail';
         document.getElementById('email2').style.borderBottomColor = 'red';
+    }
+    else{
+        document.getElementById('faultemail2').innerHTML = '';
+        document.getElementById('email2').style.borderBottomColor = 'yellow';
     }
 }
 function checkPassword(password, word){
@@ -155,32 +191,65 @@ function checkPassword(password, word){
     let result5 = patt5.test(password);
 
 
-    if(!result1 || result2 || (!result3 || !result4 || !result5)){
-        faults += word + ' is invalid!\n';
-        document.getElementById('faultpassword').innerHTML = word + ' is invalid';
+    if(!result1){
+        faults += word + ' is too short!\n';
+        document.getElementById('faultpassword').innerHTML = word + ' is too short!';
         document.getElementById('password').style.borderBottomColor = 'red';
+    }
+    else if(result2){
+        faults += word + ' contains invalid characters!\n';
+        document.getElementById('faultpassword').innerHTML = word + ' contains invalid characters!';
+        document.getElementById('password').style.borderBottomColor = 'red';
+    }
+    else if(!result3){
+        faults += word + ' must contain at least one uppercase letter!\n';
+        document.getElementById('faultpassword').innerHTML = word + ' must contain at least one uppercase letter!';
+        document.getElementById('password').style.borderBottomColor = 'red';
+    }
+    else if(!result4){
+        faults += word + ' must contain at least one lowercase letter!\n';
+        document.getElementById('faultpassword').innerHTML = word + ' must contain at least one lowercase letter!';
+        document.getElementById('password').style.borderBottomColor = 'red';
+    }
+    else if(!result5){
+        faults += word + ' must contain at least one special character!\n';
+        document.getElementById('faultpassword').innerHTML = word + ' must contain at least one special character! (0-9)';
+        document.getElementById('password').style.borderBottomColor = 'red';
+    }
+    else{
+        document.getElementById('faultpassword').innerHTML = '';
+        document.getElementById('password').style.borderBottomColor = 'yellow';
     }
 }
 function checkPassword2(password, word){
     if(document.getElementById('password').value != password){
-        document.getElementById('faultpassword2').innerHTML = word + ' is not equal to the first Password';
         faults += word + ' is not equal to the first Password!\n';
+        document.getElementById('faultpassword2').innerHTML = word + ' is not equal to the first Password';
         document.getElementById('password2').style.borderBottomColor = 'red';
     }
+    else{
+        document.getElementById('faultpassword2').innerHTML = '';
+        document.getElementById('password2').style.borderBottomColor = 'yellow';
+    }
 }
-function checkBox(element){
+function checkBox(element, checkBox){
     if(element.style.color == 'white'){
         element.style.color = 'lightslategray';
     }
     else{
         element.style.color = 'white';
     }
+    if(!checkBox.checked){
+        document.getElementById('faultcheck').innerHTML = 'Terms of Use need to be agreed';
+    }
+    else{
+        document.getElementById('faultcheck').innerHTML = '';
+    }
+    
 }
 function checkTermsOfUse(checkBox, word){
     if(!checkBox.checked){
         faults += word + ' need to be agreed!\n';
-        document.getElementById('faultcheck').innerHTML = word + ' need to be agreed';
-        document.getElementById('termsText').style.color = 'red';
     }
 }
 function innerDay(select){
@@ -213,13 +282,22 @@ function checkDateOfBirth(day, month, year){
         faults += "Day can't be blank!\n";
         document.getElementById('faultbirthday').innerHTML = "Day can't be blank";
     }
+    else{
+        document.getElementById('faultbirthday').innerHTML = '';
+    }
     if(month.selectedIndex == 0){
         faults += "Birth can't be blank!\n";
         document.getElementById('faultbirthmonth').innerHTML = "Month can't be blank!";
     }
+    else{
+        document.getElementById('faultbirthmonth').innerHTML = '';
+    }
     if(year.selectedIndex == 0){
         faults += "Year can't be blank!\n";
         document.getElementById('faultbirthyear').innerHTML = "Year can't be blank!";
+    }
+    else{
+        document.getElementById('faultbirthyear').innerHTML = '';
     }
 
     switch(month.selectedIndex){
@@ -231,6 +309,9 @@ function checkDateOfBirth(day, month, year){
                 document.getElementById('faultbirthday').innerHTML = "This day is invalid";
                 faults += 'This day is invalid!\n';
             }
+            else{
+                document.getElementById('faultbirthday').innerHTML = '';
+            }
             break;
         case 2:
             if(year.value % 4 == 0){
@@ -240,11 +321,17 @@ function checkDateOfBirth(day, month, year){
                             document.getElementById('faultbirthday').innerHTML = "This day is invalid";
                             faults += 'This day is invalid!\n';
                         }
+                        else{
+                            document.getElementById('faultbirthday').innerHTML = '';
+                        }
                     }
                     else{
                         if(day.selectedIndex > 28){
                             document.getElementById('faultbirthday').innerHTML = "This day is invalid";
                             faults += 'This day is invalid!\n';
+                        }
+                        else{
+                            document.getElementById('faultbirthday').innerHTML = '';
                         }
                     }   
                 }
@@ -254,6 +341,9 @@ function checkDateOfBirth(day, month, year){
                 if(day.selectedIndex > 28){
                     document.getElementById('faultbirthday').innerHTML = "This day is invalid";
                     faults += 'This day is invalid!\n';
+                }
+                else{
+                    document.getElementById('faultbirthday').innerHTML = '';
                 }
             }
             break;
