@@ -4,6 +4,21 @@ let button = document.getElementById('button');
 let countMale = 0;
 let countFemale = 0;
 let countOther = 0;
+let defaultColor = 'yellow';
+let errorColor = 'red';
+let users = [];
+let usersStored = [];
+
+class User{
+    constructor(username, email, password, days, months, years){
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.days = days;
+        this.months = months;
+        this.years = years;
+    }
+}
 
 function start(){
     document.getElementById('button').addEventListener('click', check);
@@ -67,13 +82,13 @@ function start(){
     });
     document.getElementById('birthDay').addEventListener('change', ()=>{
         checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
-    })
+    });
     document.getElementById('birthMonth').addEventListener('change', ()=>{
         checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
-    })
+    });
     document.getElementById('birthYear').addEventListener('change', ()=>{
         checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
-    })
+    });
 }
 function check(){
     faults = '';
@@ -94,23 +109,23 @@ function checkMethod(methodNeeded, field, fieldString){
       switch(fieldString){
           case 'First name':
             document.getElementById('faultfirstName').innerHTML = fieldString + " can't be blank";
-            document.getElementById('firstName').style.borderBottomColor = 'red';
+            document.getElementById('firstName').style.borderBottomColor = errorColor;
             break;
           case 'Email':
             document.getElementById('faultemail').innerHTML = fieldString + " can't be blank";
-            document.getElementById('email').style.borderBottomColor = 'red';
+            document.getElementById('email').style.borderBottomColor = errorColor;
             break;
           case 'Email confirmation':
             document.getElementById('faultemail2').innerHTML = fieldString + " can't be blank";
-            document.getElementById('email2').style.borderBottomColor = 'red';
+            document.getElementById('email2').style.borderBottomColor = errorColor;
             break;
           case 'Password':
             document.getElementById('faultpassword').innerHTML = fieldString + " can't be blank";
-            document.getElementById('password').style.borderBottomColor = 'red';
+            document.getElementById('password').style.borderBottomColor = errorColor;
             break;
           case 'Password confirmation':
             document.getElementById('faultpassword2').innerHTML = fieldString + " can't be blank";
-            document.getElementById('password2').style.borderBottomColor = 'red';
+            document.getElementById('password2').style.borderBottomColor = errorColor;
             break;
       }
     }
@@ -126,55 +141,66 @@ function isBlank(field){
 }
 function checkName(name, word, field){
     let patt1 = /.{2,}/gm
-    let patt2 = /[^A-z]/gm;
+    let patt2 = /[^A-z0-9\_\.]/gm;
     let result1 = patt1.test(name);
     let result2 = patt2.test(name);
 
     if(!result1){
         faults += word + ' is too short!\n';
             document.getElementById('faultfirstName').innerHTML = word + ' is too short!';
-            document.getElementById('firstName').style.borderBottomColor = 'red';
+            document.getElementById('firstName').style.borderBottomColor = errorColor;
     }
     else if(result2){
         document.getElementById('faultfirstName').innerHTML = word + ' contains invalid characters!';
-        document.getElementById('firstName').style.borderBottomColor = 'red';
+        document.getElementById('firstName').style.borderBottomColor = errorColor;
     }
     else{
         document.getElementById('faultfirstName').innerHTML = '';
-        document.getElementById('firstName').style.borderBottomColor = 'yellow';
+        document.getElementById('firstName').style.borderBottomColor = defaultColor;
     }
 }
 function checkEmail(email, word){
     let patt1 = /.{7,}/gm;
-    let patt2 = /^[a-z0-9_]+@[a-z]+\.[a-z]{2,}/g;
+    let patt2 = /^[a-z0-9_\.]+@[a-z]+\.[a-z]{2,}/g;
+    let exists = false;
 
     let result1 = patt1.test(email);
     let result2 = patt2.test(email);
 
-    if(!result1){
-        faults += word + ' is too short!\n';
-        document.getElementById('faultemail').innerHTML = word + ' is too short!';
-        document.getElementById('email').style.borderBottomColor = 'red';
+    for(let user of usersStored){
+        if(user.email === email){
+            faults += 'This email already exists!';
+            document.getElementById('faultemail').innerHTML = 'This email already exists!';
+            document.getElementById('email').style.borderBottomColor = errorColor;
+            exists = true;
+        }
     }
-    else if(!result2){
-        faults += word + ' is invalid!\n';
-        document.getElementById('faultemail').innerHTML = word + ' is invalid!';
-        document.getElementById('email').style.borderBottomColor = 'red';
-    }
-    else{
-        document.getElementById('faultemail').innerHTML = '';
-        document.getElementById('email').style.borderBottomColor = 'yellow';
+    if(!exists){
+        if(!result1){
+            faults += word + ' is too short!\n';
+            document.getElementById('faultemail').innerHTML = word + ' is too short!';
+            document.getElementById('email').style.borderBottomColor = errorColor;
+        }
+        else if(!result2){
+            faults += word + ' is invalid!\n';
+            document.getElementById('faultemail').innerHTML = word + ' is invalid!';
+            document.getElementById('email').style.borderBottomColor = errorColor;
+        }
+        else{
+            document.getElementById('faultemail').innerHTML = '';
+            document.getElementById('email').style.borderBottomColor = defaultColor;
+        }
     }
 }
 function checkEmail2(email, word){
     if(document.getElementById('email').value != email){
         faults += word + ' is not equal to the first E-Mail!\n';
         document.getElementById('faultemail2').innerHTML = word + ' is not equal to the first E-Mail';
-        document.getElementById('email2').style.borderBottomColor = 'red';
+        document.getElementById('email2').style.borderBottomColor = errorColor;
     }
     else{
         document.getElementById('faultemail2').innerHTML = '';
-        document.getElementById('email2').style.borderBottomColor = 'yellow';
+        document.getElementById('email2').style.borderBottomColor = defaultColor;
     }
 }
 function checkPassword(password, word){
@@ -190,46 +216,45 @@ function checkPassword(password, word){
     let result4 = patt4.test(password);
     let result5 = patt5.test(password);
 
-
     if(!result1){
         faults += word + ' is too short!\n';
         document.getElementById('faultpassword').innerHTML = word + ' is too short!';
-        document.getElementById('password').style.borderBottomColor = 'red';
+        document.getElementById('password').style.borderBottomColor = errorColor;
     }
     else if(result2){
         faults += word + ' contains invalid characters!\n';
         document.getElementById('faultpassword').innerHTML = word + ' contains invalid characters!';
-        document.getElementById('password').style.borderBottomColor = 'red';
+        document.getElementById('password').style.borderBottomColor = errorColor;
     }
     else if(!result3){
         faults += word + ' must contain at least one uppercase letter!\n';
         document.getElementById('faultpassword').innerHTML = word + ' must contain at least one uppercase letter!';
-        document.getElementById('password').style.borderBottomColor = 'red';
+        document.getElementById('password').style.borderBottomColor = errorColor;
     }
     else if(!result4){
         faults += word + ' must contain at least one lowercase letter!\n';
         document.getElementById('faultpassword').innerHTML = word + ' must contain at least one lowercase letter!';
-        document.getElementById('password').style.borderBottomColor = 'red';
+        document.getElementById('password').style.borderBottomColor = errorColor;
     }
     else if(!result5){
         faults += word + ' must contain at least one special character!\n';
         document.getElementById('faultpassword').innerHTML = word + ' must contain at least one special character! (0-9)';
-        document.getElementById('password').style.borderBottomColor = 'red';
+        document.getElementById('password').style.borderBottomColor = errorColor;
     }
     else{
         document.getElementById('faultpassword').innerHTML = '';
-        document.getElementById('password').style.borderBottomColor = 'yellow';
+        document.getElementById('password').style.borderBottomColor = defaultColor;
     }
 }
 function checkPassword2(password, word){
     if(document.getElementById('password').value != password){
         faults += word + ' is not equal to the first Password!\n';
         document.getElementById('faultpassword2').innerHTML = word + ' is not equal to the first Password';
-        document.getElementById('password2').style.borderBottomColor = 'red';
+        document.getElementById('password2').style.borderBottomColor = errorColor;
     }
     else{
         document.getElementById('faultpassword2').innerHTML = '';
-        document.getElementById('password2').style.borderBottomColor = 'yellow';
+        document.getElementById('password2').style.borderBottomColor = defaultColor;
     }
 }
 function checkBox(element, checkBox){
@@ -356,7 +381,11 @@ function blurMethod(element, otherElement){
     element.style.color = 'lightslategray';
 }
 function checkFaults(){
-    if(faults == ''){
-        //still more code that needs to be computed here
+    if(faults === ''){
+        if(typeof(Storage) !== 'undefined'){
+        users.push(new User(document.getElementById('firstName').value, document.getElementById('email').value, document.getElementById('password').value, document.getElementById('birthDay').value, document.getElementById('birthMonth').value, document.getElementById('birthYear').value))
+        localStorage.setItem('user', JSON.stringify(users));
+        usersStored = JSON.parse(localStorage.getItem('user'));
+        }
     }
 }
