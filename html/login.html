@@ -3,48 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Log in</title>
+    <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../style/login.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="../style/login.css" />
 </head>
-<body onload="start()">
+<body onload="check()">
     <div id="form">
-    <form action="" method="post">
-        <p id="firstNameText">Username:</p>
-        <input type="text" name="firstName" id="firstName">
-        <p class="faults" id="faultfirstName"></p>
-        <p id="emailText">Email  Adress:</p>
-        <input type="text" name="email" id="email">
-        <p class="faults" id="faultemail"></p>
-        <p id="email2Text">Confirm your Email Adress:</p>
-        <input type="text" name="email2" id="email2">
-        <p class="faults" id="faultemail2"></p>
-        <p>Playing darts since:</p>
-        <select name="birthDay" id="birthDay">
-            <option value="">Day</option>
-        </select>
-        <select name="birthMonth" id="birthMonth">
-            <option value="">Month</option>
-        </select>
-        <select name="birthYear" id="birthYear">
-            <option value="">Year</option>
-        </select>
-        <p class="faults" id="faultbirthday"></p>
-        <p class="faults" id="faultbirthmonth"></p>
-        <p class="faults" id="faultbirthyear"></p>
-        <p id="passwordText">Password:</p>
-        <input type="password" name="password" id="password">
-        <p class="faults" id="faultpassword"></p>
-        <p id="password2Text">Confirm your Password:</p>
-        <input type="password" name="password2" id="password2">
-        <p class="faults" id="faultpassword2"></p>
-        <input type="checkbox" name="check" id="check">
-        <p class="inline" id="termsText">I agree to the Terms of Use</p><br>
-        <p class="faults" id="faultcheck"></p>
-    </form>
-    <button id="button">Commit</button>
+        <form action="" method="POST">
+            <p>Email</p>
+            <input type="text" name="email" id="email">
+            <p id="faultemail"></p>
+            <p>Password</p>
+            <input type="text" name="password" id="password">
+            <p id="faultpassword"></p>
+            <button id="button">Login</button>
+        </form>
     </div>
-    <script src="../script/form.js"></script>
+    
+    <script src="../script/login.js"></script>
 </body>
 </html>
