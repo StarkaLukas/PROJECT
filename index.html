@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>TITLE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="./style/index.css" />
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="./script/jquery.fullpage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script>
 </head>
+
 <body>
-    <button><a href="./html/register.html">Register</a></button>
-    <button><a href="./html/login.html">Login</Ins></a></button>
+    <div id="fullpage">
+        <section>
+            <nav>
+                <ul>
+                    <li><a href="./html/login.html">Login</a></li>
+                    <li><a href="./html/register.html">Register</a></li>
+                </ul>
+            </nav>
+        </section>
+        <section>
+
+        </section>
+        <section>
+
+        </section>
+        <section>
+
+        </section>
+        <section>
+
+        </section>
+    </div>
+    <script>
+        FastClick.attach(document.body);
+        $('#fullpage').fullpage();
+    </script>
 </body>
+
 </html>
