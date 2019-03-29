@@ -555,10 +555,15 @@ function blurMethod(element, otherElement){
 }
 function checkFaults(){
     if((faultUsername === '') && (faultPassword === '') && (faultpassword2 === '') && (faultEmail === '') && (faultEmail2 === '') && (faultDay === '') && (faultMonth === '') && (faultYear === '') && (faultTOU === '')){
-        if(typeof(Storage) !== 'undefined'){
-        users.push(new User(document.getElementById('firstName').value, document.getElementById('email').value, document.getElementById('password').value, document.getElementById('birthDay').value, document.getElementById('birthMonth').value, document.getElementById('birthYear').value))
+        if(typeof(Storage) !== undefined){
+
+        let activeUser = new User(new User(document.getElementById('firstName').value, document.getElementById('email').value, document.getElementById('password').value, document.getElementById('birthDay').value, document.getElementById('birthMonth').value, document.getElementById('birthYear').value))
+
+        users.push(activeUser)
         localStorage.setItem('user', JSON.stringify(users));
+        localStorage.setItem('activeUser', JSON.stringify(activeUser));
         usersStored = JSON.parse(localStorage.getItem('user'));
+        window.open('../html/home.html', '_self');
         }
     }
 }
