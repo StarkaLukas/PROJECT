@@ -581,58 +581,73 @@ function checkFaults() {
         //     usersStored = JSON.parse(localStorage.getItem('user'));
         //     window.open('../html/home.html', '_self');
         // }
+        createUser(document.getElementById('email').value, document.getElementById('password').value);
+        signInUser(document.getElementById('email').value, document.getElementById('password').value);
         saveUser(document.getElementById('firstName').value, document.getElementById('email').value, document.getElementById('birthDay').value, document.getElementById('birthMonth').value, document.getElementById('birthYear').value, document.getElementById('password').value);
     }
 }
 
-function saveUser(username, email, day, month, year, password){
-    firebase.database().ref('users/' + username).set({
+function saveUser(username, email, day, month, year, password) {
+    firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
         username: username,
         email: email,
         day: day,
         month: month,
         year: year,
         password: password
-    }, (error) => {  
-        if(error){
+    }, (error) => {
+        if (error) {
             console.log('%c Error!', 'color: #FF0000');
         }
-        else{
+        else {
             console.log('%c Success!', 'color: #008000');
         }
     });
 }
+function createUser(email, password) {
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        let errorCode = error.code;
+        let errorMessage = error.message;
 
-function checkIfDayHasAlreadyBeen(day, month, year){
+        document.getElementById('faultcheck').innerHTML = errorMessage;
+    });
+}
+function signInUser(email, password) {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+      });
+}
+function checkIfDayHasAlreadyBeen(day, month, year) {
     let date = new Date();
 
-    if(year.value === '2019'){
-        if(month.selectedIndex !== 0){
-            if(month.selectedIndex > (date.getMonth() + 1)){
+    if (year.value === '2019') {
+        if (month.selectedIndex !== 0) {
+            if (month.selectedIndex > (date.getMonth() + 1)) {
                 faultMonth = 'You have to pick a date from the past!';
                 document.getElementById('faultbirthmonth').innerHTML = 'You have to pick a date from the past!';
             }
-            else if(month.selectedIndex === (date.getMonth() + 1)){
-                if(day.selectedIndex !== 0){
-                    if(day.selectedIndex > (date.getDay() + 1)){
+            else if (month.selectedIndex === (date.getMonth() + 1)) {
+                if (day.selectedIndex !== 0) {
+                    if (day.selectedIndex > (date.getDay())) {
                         faultDay = 'You have to choose either today or a day of the past!';
                         document.getElementById('faultbirthday').innerHTML = 'You have to choose either today or a day of the past!';
                     }
-                    else{
+                    else {
                         faultDay = '';
                         document.getElementById('faultbirthday').innerHTML = '';
                     }
                 }
-                else{
+                else {
                     faultDay = "Day can't be blank!\n";
                     document.getElementById('faultbirthday').innerHTML = "Day can't be blank";
                 }
             }
-            else{
+            else {
                 faultMonth = '';
                 document.getElementById('faultbirthmonth').innerHTML = '';
             }
         }
-        
+
     }
 }
