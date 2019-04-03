@@ -1,6 +1,5 @@
 'use strict'
 
-// Initialize Firebase
 let config = {
     apiKey: "AIzaSyAWkinQIM4C_2YHjUq1RYr2wk4q_pIX5HY",
     authDomain: "project-c21db.firebaseapp.com",
@@ -32,6 +31,7 @@ let faultYear = '';
 let faultPassword = '';
 let faultpassword2 = '';
 let faultTOU = '';
+let faultVerification = '';
 
 class User {
     constructor(username, email, password, days, months, years) {
@@ -132,6 +132,8 @@ function check() {
     faultPassword = '';
     faultpassword2 = '';
     faultTOU = '';
+    faultVerification = '';
+    document.getElementById('faultRegister').innerHTML = '';
 
 }
 function checkMethod(methodNeeded, field, fieldString) {
@@ -570,7 +572,7 @@ function blurMethod(element, otherElement) {
     element.style.color = 'lightslategray';
 }
 function checkFaults() {
-    if ((faultUsername === '') && (faultPassword === '') && (faultpassword2 === '') && (faultEmail === '') && (faultEmail2 === '') && (faultDay === '') && (faultMonth === '') && (faultYear === '') && (faultTOU === '')) {
+    if ((faultVerification === '') && (faultUsername === '') && (faultPassword === '') && (faultpassword2 === '') && (faultEmail === '') && (faultEmail2 === '') && (faultDay === '') && (faultMonth === '') && (faultYear === '') && (faultTOU === '')) {
         // if (typeof (Storage) !== undefined) {
 
         //     let activeUser = new User(new User(document.getElementById('firstName').value, document.getElementById('email').value, document.getElementById('password').value, document.getElementById('birthDay').value, document.getElementById('birthMonth').value, document.getElementById('birthYear').value))
@@ -608,8 +610,8 @@ function createUser(email, password) {
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
         let errorCode = error.code;
         let errorMessage = error.message;
-
-        document.getElementById('faultcheck').innerHTML = errorMessage;
+        faultVerification = errorMessage;
+        document.getElementById('faultRegister').innerHTML = errorMessage;
     });
 }
 function signInUser(email, password) {
