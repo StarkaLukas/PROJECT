@@ -422,15 +422,18 @@ function checkDateOfBirth(day, month, year) {
     if (day.selectedIndex == 0) {
         if (faultDay !== '') {
             faultDay += "Day can't be blank!\n";
+            
         }
         else {
             faultDay = "Day can't be blank!\n";
         }
+        document.getElementById('birthDay').style.borderColor = errorColor;
         document.getElementById('faultbirthday').innerHTML = "Day can't be blank";
     }
     else {
         faultDay = '';
         document.getElementById('faultbirthday').innerHTML = '';
+        document.getElementById('birthDay').style.borderColor = defaultColor;
     }
     if (month.selectedIndex == 0) {
         if (faultMonth !== '') {
@@ -439,11 +442,13 @@ function checkDateOfBirth(day, month, year) {
         else {
             faultMonth = "Month can't be blank!\n";
         }
+        document.getElementById('birthMonth').style.borderColor = errorColor;
         document.getElementById('faultbirthmonth').innerHTML = "Month can't be blank!";
     }
     else {
         faultMonth = '';
         document.getElementById('faultbirthmonth').innerHTML = '';
+        document.getElementById('birthMonth').style.borderColor = defaultColor;
     }
     if (year.selectedIndex == 0) {
         if (faultYear !== '') {
@@ -452,85 +457,98 @@ function checkDateOfBirth(day, month, year) {
         else {
             faultYear = "Year can't be blank!\n";
         }
+        document.getElementById('birthYear').style.borderColor = errorColor;
         document.getElementById('faultbirthyear').innerHTML = "Year can't be blank!";
     }
     else {
         faultYear = '';
+        document.getElementById('birthYear').style.borderColor = defaultColor;
         document.getElementById('faultbirthyear').innerHTML = '';
     }
 
-    switch (month.selectedIndex) {
-        case 4:
-        case 6:
-        case 9:
-        case 11:
-            if (day.selectedIndex > 30) {
-                document.getElementById('faultbirthday').innerHTML = "This day is invalid";
-                if (faultDay !== '') {
-                    faultDay += 'This day is invalid!\n';
-                }
-                else {
-                    faultDay += 'This day is invalid!\n';
-                }
-
-            }
-            else {
-                faultDay = '';
-                document.getElementById('faultbirthday').innerHTML = '';
-            }
-            break;
-        case 2:
-            if (year.value % 4 == 0) {
-                if (year.value % 100 == 0) {
-                    if (year.value % 400 == 0) {
-                        if (day.selectedIndex > 29) {
-                            document.getElementById('faultbirthday').innerHTML = "This day is invalid";
-                            if (faultDay !== '') {
-                                faultDay += 'This day is invalid!\n';
-                            }
-                            else {
-                                faultDay = 'This day is invalid!\n';
-                            }
-                        }
-                        else {
-                            faultDay = '';
-                            document.getElementById('faultbirthday').innerHTML = '';
-                        }
-                    }
-                    else {
-                        if (day.selectedIndex > 28) {
-                            document.getElementById('faultbirthday').innerHTML = "This day is invalid";
-                            if (faultDay !== '') {
-                                faultDay += 'This day is invalid!\n';
-                            }
-                            else {
-                                faultDay = 'This day is invalid!\n';
-                            }
-                        }
-                        else {
-                            faultDay = '';
-                            document.getElementById('faultbirthday').innerHTML = '';
-                        }
-                    }
-                }
-
-            }
-            else {
-                if (day.selectedIndex > 28) {
+    if(day.selectedIndex !== 0){
+        switch (month.selectedIndex) {
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                if (day.selectedIndex > 30) {
+                    document.getElementById('birthDay').style.borderColor = errorColor;
                     document.getElementById('faultbirthday').innerHTML = "This day is invalid";
                     if (faultDay !== '') {
                         faultDay += 'This day is invalid!\n';
                     }
                     else {
-                        faultDay = 'This day is invalid!\n';
+                        faultDay += 'This day is invalid!\n';
                     }
+    
                 }
                 else {
                     faultDay = '';
+                    document.getElementById('birthDay').style.borderColor = defaultColor;
                     document.getElementById('faultbirthday').innerHTML = '';
                 }
-            }
-            break;
+                break;
+            case 2:
+                if (year.value % 4 == 0) {
+                    if (year.value % 100 == 0) {
+                        if (year.value % 400 == 0) {
+                            if (day.selectedIndex > 29) {
+                                document.getElementById('birthDay').style.borderColor = errorColor;
+                                document.getElementById('faultbirthday').innerHTML = "This day is invalid";
+                                if (faultDay !== '') {
+                                    faultDay += 'This day is invalid!\n';
+                                }
+                                else {
+                                    faultDay = 'This day is invalid!\n';
+                                }
+                            }
+                            else {
+                                faultDay = '';
+                                document.getElementById('birthDay').style.borderColor = defaultColor;
+                                document.getElementById('faultbirthday').innerHTML = '';
+                            }
+                        }
+                        else {
+                            if (day.selectedIndex > 28) {
+                                document.getElementById('birthDay').style.borderColor = errorColor;
+                                document.getElementById('faultbirthday').innerHTML = "This day is invalid";
+                                if (faultDay !== '') {
+                                    faultDay += 'This day is invalid!\n';
+                                }
+                                else {
+                                    faultDay = 'This day is invalid!\n';
+                                }
+                            }
+                            else {
+                                faultDay = '';
+                                document.getElementById('birthDay').style.borderColor = defaultColor;
+                                document.getElementById('faultbirthday').innerHTML = '';
+                            }
+                        }
+                    }
+    
+                }
+                else {
+                    if (day.selectedIndex > 28) {
+                        document.getElementById('birthDay').style.borderColor = errorColor;
+                        document.getElementById('faultbirthday').innerHTML = "This day is invalid";
+                        if (faultDay !== '') {
+                            faultDay += 'This day is invalid!\n';
+                        }
+                        else {
+                            faultDay = 'This day is invalid!\n';
+                        }
+                    }
+                    else {
+                        faultDay = '';
+                        document.getElementById('birthDay').style.borderColor = defaultColor;
+                        document.getElementById('faultbirthday').innerHTML = '';
+                    }
+                }
+                break;
+    }
+    
     }
     checkIfDayHasAlreadyBeen(day, month, year);
 }
@@ -583,9 +601,11 @@ function checkFaults() {
         //     usersStored = JSON.parse(localStorage.getItem('user'));
         //     window.open('../html/home.html', '_self');
         // }
-        createUser(document.getElementById('email').value, document.getElementById('password').value);
-        signInUser(document.getElementById('email').value, document.getElementById('password').value);
-        saveUser(document.getElementById('firstName').value, document.getElementById('email').value, document.getElementById('birthDay').value, document.getElementById('birthMonth').value, document.getElementById('birthYear').value, document.getElementById('password').value);
+        createUser(document.getElementById('email').value, document.getElementById('password').value);  
+        setTimeout(() =>{
+            signInUser(document.getElementById('email').value, document.getElementById('password').value);
+            saveUser(document.getElementById('firstName').value, document.getElementById('email').value, document.getElementById('birthDay').value, document.getElementById('birthMonth').value, document.getElementById('birthYear').value, document.getElementById('password').value);
+        }, 2000);
     }
 }
 
@@ -626,26 +646,31 @@ function checkIfDayHasAlreadyBeen(day, month, year) {
     if (year.value === '2019') {
         if (month.selectedIndex !== 0) {
             if (month.selectedIndex > (date.getMonth() + 1)) {
+                document.getElementById('birthMonth').style.borderColor = errorColor;
                 faultMonth = 'You have to pick a date from the past!';
                 document.getElementById('faultbirthmonth').innerHTML = 'You have to pick a date from the past!';
             }
             else if (month.selectedIndex === (date.getMonth() + 1)) {
                 if (day.selectedIndex !== 0) {
                     if (day.selectedIndex > (date.getDay())) {
+                        document.getElementById('birthDay').style.borderColor = errorColor;
                         faultDay = 'You have to choose either today or a day of the past!';
                         document.getElementById('faultbirthday').innerHTML = 'You have to choose either today or a day of the past!';
                     }
                     else {
+                        document.getElementById('birthDay').style.borderColor = defaultColor;
                         faultDay = '';
                         document.getElementById('faultbirthday').innerHTML = '';
                     }
                 }
                 else {
+                    document.getElementById('birthDay').style.borderColor = errorColor;
                     faultDay = "Day can't be blank!\n";
                     document.getElementById('faultbirthday').innerHTML = "Day can't be blank";
                 }
             }
             else {
+                document.getElementById('birthMonth').style.borderColor = defaultColor;
                 faultMonth = '';
                 document.getElementById('faultbirthmonth').innerHTML = '';
             }
