@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    user-select: none;
+    overflow-x: hidden;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    top: 0;
+    width: 100vw;
+    height: 7.2vh;
+}
+
+li {
+    margin: 0.5%;
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+nav ul li a, nav ul li a:after, nav ul li a:before {
+    transition: all .5s;
+}
+
+nav ul li a:hover {
+    color: white;
+}
+
+nav.nav1 ul li a {
+    position: relative;
+    z-index: 1;
+}
+
+nav.nav1 ul li a:hover {
+    color: white;
+}
+
+nav.nav1 ul li a:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 1px;
+    content: '.';
+    color: transparent;
+    background: #555;
+    visibility: none;
+    opacity: 0;
+    z-index: -1;
+}
+
+nav.nav1 ul li a:hover:after {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+}
+
+.chart {
+    height: 50vh;
+    width: 60vw;
+    position: relative;
+    left: 20vw;
+    margin-top: 10vh;
+}
+
+#chart1, #chart2, #chart3 {
+    border: #555 2px solid;
+}
+
+#heading{
+    font-size: 6vh;
+    text-align: center;
+}

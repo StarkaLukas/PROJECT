@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game On</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../style/profile.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+</head>
+
+<body onload="start()">
+    <nav class="nav1">
+        <div id="loggedIn" style="display: block;">
+            <ul>
+                <li style="float: left;"><a href="../index.html" style="float:left;">NAME</a></li>
+                <li><a href="./profile.html">Your account</a></li>
+                <li><a href="./configurator.html">Dart Configurator</a></li>
+                <li><a href="./game.html">Game On</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h1 id="heading"></h1>
+    <div class="chart">
+        <h1>Stats</h1>
+        <canvas id="chart1" height="100"></canvas>
+    </div>
+    <div class="chart">
+        <h1>Stats</h1>
+        <canvas id="chart2" height="100"></canvas>
+    </div>
+    <div class="chart">
+        <h1>Stats</h1>
+        <canvas id="chart3" height="100"></canvas>
+    </div>
+    <script src="../script/profile.js"></script>
+</body>
+
+</html>

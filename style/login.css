@@ -2,7 +2,7 @@ body{
     user-select: none;
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-color: white;
     color: lightslategray;
     font-family: 'Nunito', sans-serif;
 }
@@ -10,9 +10,9 @@ input[type=text], input[type=password]{
     width: 20vw;
     padding: 1%;
     border: none;
-    border-bottom: 2px yellow solid;
-    background-color: black;
-    color: white;
+    border-bottom: 2px black solid;
+    background-color: white;
+    color: black;
     font-family: 'Nunito', sans-serif;
 }
 input[type=text]:focus, input[type=password]:focus{
@@ -23,8 +23,8 @@ select{
     width: 6vw;
     padding: 1%;
     margin-right: 0.5vw; 
-    background-color: black;
-    border: 2px yellow solid;
+    background-color: white;
+    border: 2px black solid;
     border-radius: 10%;
     color: lightslategray;
     font-size: 16px;
@@ -37,9 +37,9 @@ option{
     color: white;
 }
 button{
-    background-color: black;
-    border: 2px yellow solid;
-    color: white;
+    background-color: white;
+    border: 2px black solid;
+    color: black;
     padding: 1%;
     text-align: center;
     text-decoration: none;
@@ -54,8 +54,8 @@ button{
     margin-left: 5vw;
 }
 button:hover{
-    background-color: yellow;
-    color: black;
+    background-color: black;
+    color: white;
 }
 #form{
     width: 20vw;
@@ -83,4 +83,14 @@ a{
 }
 .register{
     text-align: center;
+}
+
+#home{
+    position: absolute;
+    font-size: 5vh;
+    color: black;
+}
+
+#home:hover{
+    cursor: pointer;
 }

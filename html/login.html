@@ -13,20 +13,23 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body onload="check()">
+    <i class="fas fa-home" id="home"></i>
     <div id="form">
         <form>
-            <p>Email</p>
+            <p id="emailText">Email</p>
             <input type="text" name="email" id="email">
             <p id="faultemail" class="faults"></p>
-            <p>Password</p>
+            <p id="passwordText">Password</p>
             <input type="password" name="password" id="password">
             <p id="faultpassword" class="faults"></p>
         </form>
         <button id="button">Login</button>
-        <p class="register">Don't have an account?<a href="./register.html" class="register"> Create one here</a></p>
+        <p class="register">Don't have an account?<a href="./register.html" class="register" style="color: black"> Create one here</a></p>
     </div>
     <script src="../script/login.js"></script>
 </body>

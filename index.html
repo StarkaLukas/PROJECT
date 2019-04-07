@@ -7,38 +7,128 @@
     <title>TITLE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./style/index.css" />
-    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="./script/jquery.fullpage.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
-<body>
+<body onload="start()">
     <div id="fullpage">
         <section>
-            <nav>
-                <ul>
-                    <li><a href="./html/login.html">Login</a></li>
-                    <li><a href="./html/register.html">Register</a></li>
-                </ul>
+            <nav class="nav1">
+                <div id="notLoggedIn" style="display: none;">
+                    <ul>
+                        <li style="float: left;"><a href="./" style="float:left;">NAME</a></li>
+                        <li><a href="./html/register.html">Register</a></li>
+                        <li><a href="./html/login.html">Login</a></li>
+                    </ul>
+                </div>
             </nav>
+            <nav class="nav1">
+                <div id="loggedIn" style="display: none;">
+                    <ul>
+                        <li style="float: left;"><a href="./" style="float:left;">NAME</a></li>
+                        <li><a href="./html/profile.html">Your account</a></li>
+                        <li><a href="./html/configurator.html">Dart Configurator</a></li>
+                        <li><a href="./html/game.html">Game On</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <nav class="nav2">
+                <div id="placeHolder" style="display: block;">
+                    <ul>
+                        <li><a href="./html/profile.html" style="color: rgba(0, 0, 0, 0.0)">.</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <img id="dart_icon" src="./images/dart_icon.svg">
+            <div id="slideshow">
+                <div class="slide">
+                    <p class="text">1</p>
+                    <img src="./images/placeholder.png" alt="placeholder" style="width: 100%; height: 92.8vh">
+                </div>
+                <div class="slide">
+                    <p class="text">2</p>
+                    <img src="./images/placeholder.png" alt="placeholder" style="width: 100%; height: 92.8vh">
+                </div>
+                <div class="slide">
+                    <p class="text">3</p>
+                    <img src="./images/placeholder.png" alt="placeholder" style="width: 100%; height: 92.8vh">
+                </div>
+                <div class="slide">
+                    <p class="text">4</p>
+                    <img src="./images/placeholder.png" alt="placeholder" style="width: 100%; height: 92.8vh">
+                </div>
+                <div class="slide">
+                    <p class="text">5</p>
+                    <img src="./images/placeholder.png" alt="placeholder" style="width: 100%; height: 92.8vh">
+                </div>
+                <div class="slide">
+                    <p class="text">6</p>
+                    <img src="./images/placeholder.png" alt="placeholder" style="width: 100%; height: 92.8vh">
+                </div>
+            </div>
+            <i class="fas fa-arrow-left" id="left"></i>
+            <i class="fas fa-arrow-right" id="right"></i>
         </section>
-        <section>
-            
+        <section id="navigation">
+            <div data-aos="zoom-in" class="information" id="scrollAbout">
+                <h1>About</h1>
+            </div>
+            <div data-aos="zoom-in" class="information" id="scrollFeatures">
+                <h1>Features</h1>
+            </div>
+            <div data-aos="zoom-in" class="information" id="scrollPractice">
+                <h1>Practice</h1>
+            </div>
+            <div data-aos="zoom-in" class="information" id="scrollStats">
+                <h1>Stats</h1>
+            </div>
+            <div data-aos="zoom-in" class="information" id="scrollDart">
+                <h1>Dart Configurator</h1>
+            </div>
+            <div data-aos="zoom-in" class="information" id="scrollTimeline">
+                <h1>Timeline</h1>
+            </div>
         </section>
-        <section>
-
+        <section id="about">
+            <h1 data-aos="zoom-out" class="heading">About</h1>
+            <div data-aos="zoom-out" class="placeHolder">Placeholder</div>
         </section>
-        <section>
-
+        <section id="features">
+            <h1 data-aos="zoom-out" class="heading">Features</h1>
+            <div data-aos="zoom-out" class="placeHolder">Placeholder</div>
         </section>
-        <section>
-
+        <section id="practice">
+            <h1 data-aos="zoom-out" class="heading">Practise</h1>
+            <div data-aos="zoom-out" class="placeHolder">Placeholder</div>
         </section>
-    </div>
-    <script>
-        FastClick.attach(document.body);
-        $('#fullpage').fullpage();
-    </script>
+        <section id="stats">
+            <h1 data-aos="zoom-out" class="heading">Stats</h1>
+            <div data-aos="zoom-out" class="placeHolder">Placeholder</div>
+        </section>
+        <section id="dart">
+            <h1 data-aos="zoom-out" class="heading" style="color: lightgrey;">Dart Configurator</h1>
+            <div data-aos="zoom-out" class="placeHolder" style="color: white; border-color: white;">Placeholder</div>
+        </section>
+        <section id="timeline">
+            <h1 data-aos="zoom-out" class="heading" style="color: lightgrey;">Timeline</h1>
+            <div data-aos="zoom-out" class="placeHolder" style="color: white; border-color: white;">Placeholder</div>
+        </section>
+        <script src="./script/index.js"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
 </body>
 
 </html>

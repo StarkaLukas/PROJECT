@@ -17,7 +17,7 @@ let password = document.getElementById('password');
 let passwordText = document.getElementById('faultpassword');
 let button = document.getElementById('button');
 let activeUser, faultemail, faultpassword;
-let defaultColor = 'yellow';
+let defaultColor = 'black';
 let errorColor = 'red';
 
 let faultPassword = '';
@@ -32,6 +32,21 @@ function check() {
     password.addEventListener('keyup', ()=>{
         password.style.borderBottomColor = defaultColor;
         passwordText.innerHTML = '';
+    });
+    document.getElementById('email').addEventListener('focus', () => {
+        focusMethod(document.getElementById('emailText'));
+    });
+    document.getElementById('email').addEventListener('blur', () => {
+        blurMethod(document.getElementById('emailText'), document.getElementById('email'));
+    });
+    document.getElementById('password').addEventListener('focus', () => {
+        focusMethod(document.getElementById('passwordText'));
+    });
+    document.getElementById('password').addEventListener('blur', () => {
+        blurMethod(document.getElementById('passwordText'), document.getElementById('password'));
+    });
+    document.getElementById('home').addEventListener('click', ()=>{
+        window.open('../index.html', '_self');
     });
 }
 
@@ -103,6 +118,9 @@ function checkBlank(field, fieldString) {
 function checkFaults() {
     if (faultPassword === '' && faultEmail == '') {
         signInUser(document.getElementById('email').value, document.getElementById('password').value);
+        setTimeout(() =>{
+            window.open('./profile.html', '_self');
+        }, 3000);
     }
     faultpassword = '';
     faultEmail = '';
@@ -126,3 +144,9 @@ function signInUser(email, password) {
     });
 }
 
+function focusMethod(element) {
+    element.style.color = 'black';
+}
+function blurMethod(element, otherElement) {
+    element.style.color = 'lightslategray';
+}

@@ -17,7 +17,7 @@ let button = document.getElementById('button');
 let countMale = 0;
 let countFemale = 0;
 let countOther = 0;
-let defaultColor = 'yellow';
+let defaultColor = 'black';
 let errorColor = 'red';
 let users = [];
 let usersStored = JSON.parse(localStorage.getItem('user'));
@@ -112,6 +112,9 @@ function start() {
     });
     document.getElementById('birthYear').addEventListener('change', () => {
         checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
+    });
+    document.getElementById('home').addEventListener('click', ()=>{
+        window.open('../index.html', '_self');
     });
 }
 function check() {
@@ -364,11 +367,11 @@ function checkPassword2(password, word) {
     }
 }
 function checkBox(element, checkBox) {
-    if (element.style.color == 'white') {
+    if (element.style.color == 'black') {
         element.style.color = 'lightslategray';
     }
     else {
-        element.style.color = 'white';
+        element.style.color = 'black';
     }
     if (!checkBox.checked) {
         document.getElementById('faultcheck').innerHTML = 'Terms of Use need to be agreed';
@@ -584,7 +587,7 @@ function checkBlank(field, fieldString) {
     }
 }
 function focusMethod(element) {
-    element.style.color = 'white';
+    element.style.color = 'black';
 }
 function blurMethod(element, otherElement) {
     element.style.color = 'lightslategray';
@@ -606,6 +609,9 @@ function checkFaults() {
             signInUser(document.getElementById('email').value, document.getElementById('password').value);
             saveUser(document.getElementById('firstName').value, document.getElementById('email').value, document.getElementById('birthDay').value, document.getElementById('birthMonth').value, document.getElementById('birthYear').value, document.getElementById('password').value);
         }, 2000);
+        setTimeout(() =>{
+            window.open('./profile.html', '_self');
+        }, 3000);
     }
 }
 
