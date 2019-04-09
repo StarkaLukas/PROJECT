@@ -35,6 +35,7 @@ function start() {
     setTimeout(()=>{
         writeWelcomeBack();
     }, 2000);
+    document.getElementById('logOut').addEventListener('click', logOut());
 }
 
 function writeWelcomeBack(){
@@ -45,4 +46,8 @@ function writeWelcomeBack(){
         document.getElementById('heading').innerHTML = `Welcome back ${username}`;
         console.log(username);
       });
+}
+
+function logOut(){
+    firebase.auth().signOut();
 }
