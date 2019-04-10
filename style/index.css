@@ -41,10 +41,11 @@ ul {
   top: 0;
   width: 100vw;
   height: 7.2vh;
+  font-size: 1.8vh;
 }
 
 li {
-  margin: 0.5%;
+  margin: 0.5vw;
   float: right;
 }
 
@@ -142,18 +143,20 @@ nav.nav1 ul li a:hover:after {
 }
 
 #left, #right {
-  font-size: 10vh;
+  font-size: 5vh;
   position: absolute;
-  bottom: 45vh;
+  bottom: 47.5vh;
 }
 #left:hover, #right:hover{
   cursor: pointer;
 }
 
 #right {
-  right: 0;
+  right: 7vw;
 }
-
+#left{
+  left: 7vw;
+}
 @-webkit-keyframes fade {
   from {opacity: .6} 
   to {opacity: 1}
