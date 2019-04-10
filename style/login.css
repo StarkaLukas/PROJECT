@@ -18,21 +18,6 @@ input[type=text], input[type=password]{
 input[type=text]:focus, input[type=password]:focus{
     outline: none;
 }
-
-select{
-    width: 6vw;
-    padding: 1%;
-    margin-right: 0.5vw; 
-    background-color: white;
-    border: 2px black solid;
-    border-radius: 10%;
-    color: lightslategray;
-    font-size: 16px;
-    font-family: 'Nunito', sans-serif;
-}
-select:focus{
-    outline: none;
-}
 option{
     color: white;
 }
@@ -89,6 +74,7 @@ a{
     position: absolute;
     font-size: 5vh;
     color: black;
+    left: 1vw;
 }
 
 #home:hover{
