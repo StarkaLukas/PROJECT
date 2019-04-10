@@ -116,6 +116,16 @@ function start() {
     document.getElementById('home').addEventListener('click', ()=>{
         window.open('../index.html', '_self');
     });
+
+    document.onkeydown = keyListener;
+}
+function keyListener(key){
+    if(!key){
+        key = window.event;
+    }
+    if(key.keyCode == 13){
+        check();
+    }
 }
 function check() {
     checkBlank(document.getElementById('firstName').value, 'First name');

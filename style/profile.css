@@ -80,7 +80,7 @@ nav.nav1 ul li a:hover:after {
     width: 60vw;
     position: relative;
     left: 20vw;
-    margin-top: 10vh;
+    margin-top: 2.5vh;
 }
 
 #chart1, #chart2, #chart3 {

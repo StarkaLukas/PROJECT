@@ -35,7 +35,6 @@ function start() {
     setTimeout(()=>{
         writeWelcomeBack();
     }, 2000);
-    document.getElementById('logOut').addEventListener('click', logOut());
 }
 
 function writeWelcomeBack(){
@@ -43,6 +42,7 @@ function writeWelcomeBack(){
 
     return firebase.database().ref('/users/' + userID).once('value').then(function(snapshot) {
         let username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        document.getElementById('heading').style.color = 'black';
         document.getElementById('heading').innerHTML = `Welcome back ${username}`;
         console.log(username);
       });
