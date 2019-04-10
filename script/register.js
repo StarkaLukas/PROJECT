@@ -374,10 +374,10 @@ function checkBox(element, checkBox) {
         element.style.color = 'black';
     }
     if (!checkBox.checked) {
-        document.getElementById('faultcheck').innerHTML = 'Terms of Use need to be agreed';
+        document.getElementById('termsText').style.color = errorColor;
     }
     else {
-        document.getElementById('faultcheck').innerHTML = '';
+        document.getElementById('termsText').style.color = defaultColor;
     }
 
 }
@@ -385,11 +385,11 @@ function checkTermsOfUse(checkBox, word) {
     if (!checkBox.checked) {
         if (faultTOU !== '') {
             faultTOU += word + ' need to be agreed!\n';
-            document.getElementById('faultcheck').innerHTML = 'Terms of Use need to be agreed';
+            document.getElementById('termsText').style.color = errorColor;
         }
         else {
             faultTOU = word + ' need to be agreed!\n';
-            document.getElementById('faultcheck').innerHTML = 'Terms of Use need to be agreed';
+            document.getElementById('termsText').style.color = errorColor;
         }
     }
     else {
