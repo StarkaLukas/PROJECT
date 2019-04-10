@@ -25,11 +25,11 @@ let faultEmail = '';
 
 function check() {
     button.addEventListener('click', submit);
-    email.addEventListener('keyup', ()=>{
+    email.addEventListener('keyup', () => {
         email.style.borderBottomColor = defaultColor;
         emailText.innerHTML = '';
     });
-    password.addEventListener('keyup', ()=>{
+    password.addEventListener('keyup', () => {
         password.style.borderBottomColor = defaultColor;
         passwordText.innerHTML = '';
     });
@@ -45,9 +45,10 @@ function check() {
     document.getElementById('password').addEventListener('blur', () => {
         blurMethod(document.getElementById('passwordText'), document.getElementById('password'));
     });
-    document.getElementById('home').addEventListener('click', ()=>{
+    document.getElementById('home').addEventListener('click', () => {
         window.open('../index.html', '_self');
     });
+    document.onkeydown = keyListener;
 }
 
 function submit() {
@@ -118,8 +119,8 @@ function checkBlank(field, fieldString) {
 function checkFaults() {
     if (faultPassword === '' && faultEmail == '') {
         signInUser(document.getElementById('email').value, document.getElementById('password').value);
-        setTimeout(() =>{
-            window.open('./profile.html', '_self');
+        setTimeout(() => {
+            openFunction();
         }, 3000);
     }
     faultpassword = '';
@@ -134,11 +135,15 @@ function signInUser(email, password) {
         switch (errorCode) {
             case 'auth/user-not-found':
                 document.getElementById('faultemail').innerHTML = 'Wrong email!';
-                email.style.borderBottomColor = errorColor;
+                document.getElementById('email').style.borderBottomColor = errorColor;
                 break;
             case 'auth/wrong-password':
                 document.getElementById('faultpassword').innerHTML = 'Wrong password!';
-                password.style.borderBottomColor = errorColor;
+                document.getElementById('password').style.borderBottomColor = errorColor;
+                break;
+            case 'auth/invalid-email':
+                document.getElementById('faultemail').innerHTML = 'Please enter a valid email';
+                email.style.borderBottomColor = errorColor;
                 break;
         }
     });
@@ -149,4 +154,19 @@ function focusMethod(element) {
 }
 function blurMethod(element, otherElement) {
     element.style.color = 'lightslategray';
+}
+
+function keyListener(key) {
+    if (!key) {
+        key = window.event;
+    }
+    if (key.keyCode == 13) {
+        submit();
+    }
+}
+
+function openFunction() {
+    if(firebase.auth().currentUser !== null){
+        window.open('./profile.html', '_self');
+    }
 }
