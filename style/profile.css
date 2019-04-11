@@ -6,7 +6,7 @@ body {
     overflow-x: hidden;
 }
 
-ul {
+.ulist {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -15,22 +15,23 @@ ul {
     top: 0;
     width: 100vw;
     height: 7.2vh;
-}
-
-li {
-    margin: 0.5%;
+    font-size: 1.8vh;
+  }
+  
+  .list {
+    margin: 0.5vw;
     float: right;
-}
-
-li a {
+  }
+  
+.list a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 1.4vh 1.6vw;
     text-decoration: none;
-}
-
-li a:hover:not(.active) {
+  }
+  
+  li a:hover:not(.active) {
     background-color: #111;
 }
 
@@ -49,6 +50,7 @@ nav.nav1 ul li a {
 
 nav.nav1 ul li a:hover {
     color: white;
+    text-decoration: none;
 }
 
 nav.nav1 ul li a:after {
@@ -75,6 +77,10 @@ nav.nav1 ul li a:hover:after {
     height: 100%;
 }
 
+nav{
+    position: absolute;
+    top: 0;
+}
 .chart {
     height: 50vh;
     width: 60vw;
@@ -89,5 +95,33 @@ nav.nav1 ul li a:hover:after {
 
 #heading{
     font-size: 6vh;
+    text-align: center;
+}
+
+
+#dropdown-button{
+    margin: 0.5vw;
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 1.4vh 1.6vw;
+    text-decoration: none;
+    background-color: black;
+    border: none;
+    font-size: 1.8vh;
+}
+
+#dropdown-menu{
+    background-color: black;
+    position: absolute;
+    top: 7.2vh;
+    font-size: 1.8vh;
+}
+#content, #notLoggedInContent{
+    margin-top: 10vh;
+}
+
+#notLoggedInContent{
     text-align: center;
 }

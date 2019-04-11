@@ -32,7 +32,7 @@ section {
   height: 100vh;
 }
 
-ul {
+.ulist {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -44,16 +44,16 @@ ul {
   font-size: 1.8vh;
 }
 
-li {
+.list {
   margin: 0.5vw;
   float: right;
 }
 
-li a {
+.list a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 1.4vh 1.6vw;
   text-decoration: none;
 }
 
@@ -76,6 +76,7 @@ nav.nav1 ul li a {
 
 nav.nav1 ul li a:hover {
   color: white;
+  text-decoration: none;
 }
 
 nav.nav1 ul li a:after {
@@ -100,6 +101,11 @@ nav.nav1 ul li a:hover:after {
   opacity: 1;
   visibility: visible;
   height: 100%;
+}
+
+nav{
+  position: absolute;
+  top: 0;
 }
 
 #slideshow {
@@ -134,10 +140,10 @@ nav.nav1 ul li a:hover:after {
 }
 
 .text {
-  color: #f2f2f2;
+  color: lightgray;
   font-size: 10vh;
   position: absolute;
-  bottom: 35vh;
+  bottom: 65vh;
   width: 100%;
   text-align: center;
 }
@@ -147,59 +153,78 @@ nav.nav1 ul li a:hover:after {
   position: absolute;
   bottom: 47.5vh;
 }
-#left:hover, #right:hover{
+
+#left:hover, #right:hover {
   cursor: pointer;
 }
 
 #right {
   right: 7vw;
 }
-#left{
+
+#left {
   left: 7vw;
 }
+
 @-webkit-keyframes fade {
-  from {opacity: .6} 
-  to {opacity: 1}
+  from {
+    opacity: .6
+  }
+  to {
+    opacity: 1
+  }
 }
 
 @keyframes fade {
-  from {opacity: .6} 
-  to {opacity: 1}
+  from {
+    opacity: .6
+  }
+  to {
+    opacity: 1
+  }
 }
 
-.information{
+.information {
   border: black 2px solid;
   width: 20vw;
   height: 10vh;
-  position: absolute;
-  left: 40vw;
+  /* position: relative; */
+  margin-left: 40vw;
   text-align: center;
   font-size: 2vh;
 }
-.information:nth-child(1){
+
+/* 
+.information:nth-child(1) {
   top: 103.4vh;
 }
-.information:nth-child(2){
+
+.information:nth-child(2) {
   top: 119.8vh;
 }
-.information:nth-child(3){
+
+.information:nth-child(3) {
   top: 136.4vh;
 }
-.information:nth-child(4){
+
+.information:nth-child(4) {
   top: 152.0vh;
 }
-.information:nth-child(5){
+
+.information:nth-child(5) {
   top: 169.6vh;
 }
-.information:nth-child(6){
-  top: 186.6vh;
-}
 
-.heading{
+.information:nth-child(6) {
+  top: 186.6vh;
+} */
+
+.heading {
   font-size: 10vh;
   text-align: center;
 }
-.placeHolder{
+
+.placeHolder {
   border: black 2px solid;
   position: relative;
   width: 60vw;
@@ -208,116 +233,98 @@ nav.nav1 ul li a:hover:after {
   text-align: center;
 }
 
-#icon{
+#icon {
   color: white;
 }
 
-#informations{
+#informations {
   width: 100vw;
   height: 100vh;
+  display: flex;
+  align-items: space-around;
+  flex-wrap: wrap;
+  margin-top: 5vh;
 }
 
-.information:hover{
+.information:hover {
   cursor: pointer;
 }
 
-
 .icon_down {
-
   display: inline-block;
-
   vertical-align: middle;
-
   -webkit-transform: perspective(1px) translateZ(0);
-
   transform: perspective(1px) translateZ(0);
-
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-
-
 }
 
 .icon_down .icon {
-
   -webkit-transform: translateZ(0);
-
   transform: translateZ(0);
-    
-    visibility: visible;
-
+  visibility: visible;
 }
 
 .icon_down:hover .icon, .icon_down:focus .icon, .icon_down:active .icon {
-
   -webkit-animation-name: hvr-icon-down;
-
   animation-name: hvr-icon-down;
-
   -webkit-animation-duration: 0.75s;
-
   animation-duration: 0.75s;
-
   -webkit-animation-timing-function: ease-out;
-
   animation-timing-function: ease-out;
-    
-    visibility: visible;
-
+  visibility: visible;
 }
-.icon{
-    padding-top: 1vw;
-    padding-left: 1vw;
-    color: black;
+
+.icon {
+  padding-top: 1vw;
+  padding-left: 1vw;
+  color: gainsboro;
 }
 
 @-webkit-keyframes hvr-icon-down {
-
-  0%,
-
-	50%,
-
-	100% {
-
+  0%, 50%, 100% {
     -webkit-transform: translateY(0);
-
     transform: translateY(0);
-
+    color: black;
   }
-
-  25%,
-
-	75% {
-
+  25%, 75% {
     -webkit-transform: translateY(6px);
-
     transform: translateY(6px);
-
+    color: black;
   }
-
 }
 
 @keyframes hvr-icon-down {
-
-  0%,
-
-	50%,
-
-	100% {
-
+  0%, 50%, 100% {
     -webkit-transform: translateY(0);
-
     transform: translateY(0);
-
+    color: black;
   }
-
-  25%,
-
-	75% {
-
+  25%, 75% {
     -webkit-transform: translateY(6px);
-
     transform: translateY(6px);
-
+    color: black;
   }
+}
 
+#dropdown-button{
+  margin: 0.5vw;
+  float: right;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1.4vh 1.6vw;
+  text-decoration: none;
+  background-color: black;
+  border: none;
+  font-size: 1.8vh;
+}
+
+#dropdown-menu{
+  background-color: black;
+  position: absolute;
+  top: 7.2vh;
+  font-size: 1.8vh;
+}
+#content{
+  margin-top: 10vh;
 }
