@@ -35,6 +35,7 @@ function start() {
     setTimeout(()=>{
         writeWelcomeBack();
     }, 2000);
+    checkLoggedIn();
 }
 
 function writeWelcomeBack(){
@@ -44,6 +45,8 @@ function writeWelcomeBack(){
         let username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
         document.getElementById('heading').style.color = 'black';
         document.getElementById('heading').innerHTML = `Welcome back ${username}`;
+        document.getElementById('name').innerHTML = username;
+        document.getElementById('name').style.color = 'white';
         console.log(username);
       });
 }
@@ -51,3 +54,21 @@ function writeWelcomeBack(){
 function logOut(){
     firebase.auth().signOut();
 }
+
+function checkLoggedIn() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            document.getElementById('notLoggedIn').style.display = 'none';
+            document.getElementById('loggedIn').style.display = 'block';
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('notLoggedInContent').style.display = 'none';
+        } else {
+            document.getElementById('notLoggedIn').style.display = 'block';
+            document.getElementById('loggedIn').style.display = 'none';
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('notLoggedInContent').style.display = 'block';
+        }
+        document.getElementById('placeHolder').style.display = 'none';
+    });
+}
+

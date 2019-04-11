@@ -15,31 +15,70 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
 <body onload="start()">
     <nav class="nav1">
-        <div id="loggedIn" style="display: block;">
-            <ul>
-                <li style="float: left;"><a href="../index.html" style="float:left;">NAME</a></li>
-                <li><a href="./profile.html">Your account</a></li>
-                <li><a href="./configurator.html">Dart Configurator</a></li>
-                <li><a href="./game.html">Game On</a></li>
+        <div id="notLoggedIn" style="display: none;">
+            <ul class="ulist">
+                <li class="list" style="float: left;"><a href="../index.html" style="float:left;"><i class="far fa-circle"></i>
+                        insert name and logo here</a></li>
+                <li class="list"><a href="./login.html" style="margin-right: 0.5vw;">Login</a></li>
+                <li class="list"><a href="./register.html">Register</a></li>
             </ul>
         </div>
     </nav>
-    <h1 id="heading" style="color: white;">.</h1>
-    <div class="chart">
-        <h1>Stats</h1>
-        <canvas id="chart1" height="100"></canvas>
+    <nav class="nav1">
+        <div id="loggedIn" style="display: none;">
+            <ul class="ulist">
+                <li class="list" style="float: left;"><a href="../index.html" style="float:left;"><i
+                            class="far fa-circle"></i>
+                        insert name and logo here</a></li>
+                <div>
+                    <button class="btn btn-default dropdown-toggle" id="dropdown-button" type="button"
+                        data-toggle="dropdown">
+                        Your account<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
+                        <li class="list2"><a href="./profile.html" id="name" style="color: black;">.</a></li>
+                        <li class="divider list2"></li>
+                        <li class="list2"><a onclick="logOut()" style="color: white">Log out</a></li>
+                    </ul>
+                </div>
+                <li class="list"><a href="./configurator.html">Dart Configurator</a></li>
+                <li class="list"><a href="./game.html">Game On</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="nav2">
+        <div id="placeHolder" style="display: block;">
+            <ul class="ulist">
+                <li class="list"><a href="./profile.html" style="color: rgba(0, 0, 0, 0.0)">.</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="content" style="display: none;">
+        <h1 id="heading" style="color: white;">.</h1>
+        <div class="chart">
+            <h1>Stats</h1>
+            <canvas id="chart1" height="100"></canvas>
+        </div>
+        <div class="chart">
+            <h1>Stats</h1>
+            <canvas id="chart2" height="100"></canvas>
+        </div>
+        <div class="chart">
+            <h1>Stats</h1>
+            <canvas id="chart3" height="100"></canvas>
+        </div>
     </div>
-    <div class="chart">
-        <h1>Stats</h1>
-        <canvas id="chart2" height="100"></canvas>
-    </div>
-    <div class="chart">
-        <h1>Stats</h1>
-        <canvas id="chart3" height="100"></canvas>
+    <div id="notLoggedInContent" style="display: none">
+        <h1>You're not logged in :(</h1>
     </div>
     <script src="../script/profile.js"></script>
 </body>

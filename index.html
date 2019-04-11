@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TITLE</title>
+    <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./style/index.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
@@ -19,33 +19,48 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body onload="start()">
     <div id="fullpage">
         <section>
             <nav class="nav1">
                 <div id="notLoggedIn" style="display: none;">
-                    <ul>
-                        <li style="float: left;"><a href="./" style="float:left;">NAME</a></li>
-                        <li><a href="./html/login.html" style="margin-right: 0.5vw;">Login</a></li>
-                        <li><a href="./html/register.html">Register</a></li>
+                    <ul class="ulist">
+                        <li class="list" style="float: left;"><a href="./" style="float:left;"><i class="far fa-circle"></i> insert name and logo here</a></li>
+                        <li class="list" ><a href="./html/login.html" style="margin-right: 0.5vw;">Login</a></li>
+                        <li class="list" ><a href="./html/register.html">Register</a></li>
                     </ul>
                 </div>
             </nav>
             <nav class="nav1">
                 <div id="loggedIn" style="display: none;">
-                    <ul>
-                        <li style="float: left;"><a href="./" style="float:left;">NAME</a></li>
-                        <li><a href="./html/profile.html">Your account</a></li>
-                        <li><a href="./html/configurator.html">Dart Configurator</a></li>
-                        <li><a href="./html/game.html">Game On</a></li>
-                    </ul>
+                        <ul class="ulist">
+                                <li class="list" style="float: left;"><a href="./" style="float:left;"><i
+                                            class="far fa-circle"></i>
+                                        insert name and logo here</a></li>
+                                <div>
+                                    <button class="btn btn-default dropdown-toggle" id="dropdown-button" type="button"
+                                        data-toggle="dropdown">
+                                        Your account<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
+                                        <li class="list2"><a href="./html/profile.html" id="name" style="color: black;">.</a></li>
+                                        <li class="divider list2"></li>
+                                        <li class="list2"><a onclick="logOut()" style="color: white">Log out</a></li>
+                                    </ul>
+                                </div>
+                                <li class="list"><a href="./html/configurator.html">Dart Configurator</a></li>
+                                <li class="list"><a href="./html/game.html">Game On</a></li>
+                            </ul>
                 </div>
             </nav>
             <nav class="nav2">
                 <div id="placeHolder" style="display: block;">
-                    <ul>
-                        <li><a href="./html/profile.html" style="color: rgba(0, 0, 0, 0.0)">.</a></li>
+                    <ul class="ulist">
+                        <li class="list" ><a href="./html/profile.html" style="color: rgba(0, 0, 0, 0.0)">.</a></li>
                     </ul>
                 </div>
             </nav>

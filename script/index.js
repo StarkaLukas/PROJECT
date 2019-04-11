@@ -53,7 +53,10 @@ function start() {
         frame = 0;
         actualSlide++;
         slide(actualSlide);
-    })
+    });
+    setTimeout(()=>{
+        writeWelcomeBack();
+    }, 2000);
 }
 
 function checkLoggedIn() {
@@ -88,4 +91,19 @@ function scroll(scrollTo){
     $([document.documentElement, document.body]).animate({
         scrollTop: $(scrollTo).offset().top
     }, 750);
+}
+
+function logOut(){
+    firebase.auth().signOut();
+}
+
+function writeWelcomeBack(){
+    let userID = firebase.auth().currentUser.uid;
+
+    return firebase.database().ref('/users/' + userID).once('value').then(function(snapshot) {
+        let username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        document.getElementById('name').innerHTML = username;
+        document.getElementById('name').style.color = 'white';
+        console.log(username);
+      });
 }
