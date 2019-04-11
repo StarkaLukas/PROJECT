@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../style/register.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../style/register.css" />
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
@@ -15,46 +16,51 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
+
 <body onload="start()">
     <i class="fas fa-home" id="home"></i>
     <div id="form">
-    <form>
-        <p id="firstNameText">Username:</p>
-        <input type="text" name="firstName" id="firstName">
-        <p class="faults" id="faultfirstName"></p>
-        <p id="emailText">Email  Adress:</p>
-        <input type="text" name="email" id="email">
-        <p class="faults" id="faultemail"></p>
-        <p id="email2Text">Confirm your Email Adress:</p>
-        <input type="text" name="email2" id="email2">
-        <p class="faults" id="faultemail2"></p>
-        <p>Playing darts since:</p>
-        <select name="birthDay" id="birthDay">
-            <option value="">Day</option>
-        </select>
-        <select name="birthMonth" id="birthMonth">
-            <option value="">Month</option>
-        </select>
-        <select name="birthYear" id="birthYear">
-            <option value="">Year</option>
-        </select>
-        <p class="faults" id="faultbirthday"></p>
-        <p class="faults" id="faultbirthmonth"></p>
-        <p class="faults" id="faultbirthyear"></p>
-        <p id="passwordText">Password:</p>
-        <input type="password" name="password" id="password">
-        <p class="faults" id="faultpassword"></p>
-        <p id="password2Text">Confirm your Password:</p>
-        <input type="password" name="password2" id="password2">
-        <p class="faults" id="faultpassword2"></p>
-        <input type="checkbox" name="check" id="check">
-        <p class="inline" id="termsText">I agree to the Terms of Use</p><br>
-        <p class="faults" id="faultcheck"></p>
-    </form>
-    <p class="faults" id="faultRegister" style="text-align: center"></p>
-    <button id="button">Commit</button>
-    <p class="login">Already have an account?<a class="login" href="./login.html" style="color: black;"> Log in here</a></p>
+        <form>
+            <p id="firstNameText">Username:</p>
+            <input type="text" name="firstName" id="firstName">
+            <p class="faults" id="faultfirstName"></p>
+            <p id="emailText">Email Adress:</p>
+            <input type="text" name="email" id="email">
+            <p class="faults" id="faultemail"></p>
+            <p id="email2Text">Confirm your Email Adress:</p>
+            <input type="text" name="email2" id="email2">
+            <p class="faults" id="faultemail2"></p>
+            <p>Playing darts since:</p>
+            <div id="select">
+                <select name="birthDay" id="birthDay">
+                    <option value="">Day</option>
+                </select>
+                <select name="birthMonth" id="birthMonth">
+                    <option value="">Month</option>
+                </select>
+                <select name="birthYear" id="birthYear">
+                    <option value="">Year</option>
+                </select>
+            </div>
+            <p class="faults" id="faultbirthday"></p>
+            <p class="faults" id="faultbirthmonth"></p>
+            <p class="faults" id="faultbirthyear"></p>
+            <p id="passwordText">Password:</p>
+            <input type="password" name="password" id="password">
+            <p class="faults" id="faultpassword"></p>
+            <p id="password2Text">Confirm your Password:</p>
+            <input type="password" name="password2" id="password2">
+            <p class="faults" id="faultpassword2"></p>
+            <input type="checkbox" name="check" id="check">
+            <p class="inline" id="termsText">I agree to the Terms of Use</p><br>
+            <p class="faults" id="faultcheck"></p>
+        </form>
+        <p class="faults" id="faultRegister" style="text-align: center"></p>
+        <button id="button">Commit</button>
+        <p class="login">Already have an account?<a class="login" href="./login.html" style="color: black;"> Log in
+                here</a></p>
     </div>
     <script src="../script/register.js"></script>
 </body>
+
 </html>
