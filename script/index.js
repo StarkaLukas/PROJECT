@@ -1,16 +1,7 @@
 'use strict'
-let config = {
-    apiKey: "AIzaSyAWkinQIM4C_2YHjUq1RYr2wk4q_pIX5HY",
-    authDomain: "project-c21db.firebaseapp.com",
-    databaseURL: "https://project-c21db.firebaseio.com",
-    projectId: "project-c21db",
-    storageBucket: "project-c21db.appspot.com",
-    messagingSenderId: "575431938944"
-};
 let actualSlide = 1;
 let frame = 0;
 
-firebase.initializeApp(config);
 
 function start() {
     slide(actualSlide);
@@ -54,23 +45,8 @@ function start() {
         actualSlide++;
         slide(actualSlide);
     });
-    setTimeout(()=>{
-        writeWelcomeBack();
-    }, 2000);
 }
 
-function checkLoggedIn() {
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            document.getElementById('notLoggedIn').style.display = 'none';
-            document.getElementById('loggedIn').style.display = 'block';
-        } else {
-            document.getElementById('notLoggedIn').style.display = 'block';
-            document.getElementById('loggedIn').style.display = 'none';
-        }
-        document.getElementById('placeHolder').style.display = 'none';
-    });
-}
 
 function slide(slide){
     let slides = document.getElementsByClassName('slide');
@@ -91,19 +67,4 @@ function scroll(scrollTo){
     $([document.documentElement, document.body]).animate({
         scrollTop: $(scrollTo).offset().top
     }, 750);
-}
-
-function logOut(){
-    firebase.auth().signOut();
-}
-
-function writeWelcomeBack(){
-    let userID = firebase.auth().currentUser.uid;
-
-    return firebase.database().ref('/users/' + userID).once('value').then(function(snapshot) {
-        let username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-        document.getElementById('name').innerHTML = username;
-        document.getElementById('name').style.color = 'white';
-        console.log(username);
-      });
 }
