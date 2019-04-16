@@ -48,6 +48,13 @@ function check() {
     document.getElementById('home').addEventListener('click', () => {
         window.open('../index.html', '_self');
     });
+    
+    document.getElementById('hidden').addEventListener('click', () =>{
+        passwordVisibility(document.getElementById('password'), document.getElementById('hidden'), document.getElementById('visible'), false);
+    });
+    document.getElementById('visible').addEventListener('click', () =>{
+        passwordVisibility(document.getElementById('password'), document.getElementById('visible'), document.getElementById('hidden'), true);
+    });
     document.onkeydown = keyListener;
 }
 
@@ -169,4 +176,15 @@ function openFunction() {
     if(firebase.auth().currentUser !== null){
         window.open('./profile.html', '_self');
     }
+}
+
+function passwordVisibility(inputField, elementShown, elementHidden, visible){
+    if(visible){
+        inputField.type = 'text';
+    }
+    else{
+        inputField.type = 'password';
+    }
+    elementShown.style.display = 'none';
+    elementHidden.style.display = 'block';
 }

@@ -116,6 +116,18 @@ function start() {
     document.getElementById('home').addEventListener('click', ()=>{
         window.open('../index.html', '_self');
     });
+    document.getElementById('hidden1').addEventListener('click', () =>{
+        passwordVisibility(document.getElementById('password'), document.getElementById('hidden1'), document.getElementById('visible1'), false);
+    });
+    document.getElementById('visible1').addEventListener('click', () =>{
+        passwordVisibility(document.getElementById('password'), document.getElementById('visible1'), document.getElementById('hidden1'), true);
+    });
+    document.getElementById('hidden2').addEventListener('click', () =>{
+        passwordVisibility(document.getElementById('password2'), document.getElementById('hidden2'), document.getElementById('visible2'), false);
+    });
+    document.getElementById('visible2').addEventListener('click', () =>{
+        passwordVisibility(document.getElementById('password2'), document.getElementById('visible2'), document.getElementById('hidden2'), true);
+    });
 
     document.onkeydown = keyListener;
 }
@@ -441,12 +453,14 @@ function checkDateOfBirth(day, month, year) {
             faultDay = "Day can't be blank!\n";
         }
         document.getElementById('birthDay').style.borderColor = errorColor;
+        document.getElementById('birthDay').style.color = errorColor;
         document.getElementById('faultbirthday').innerHTML = "Day can't be blank";
     }
     else {
         faultDay = '';
         document.getElementById('faultbirthday').innerHTML = '';
         document.getElementById('birthDay').style.borderColor = defaultColor;
+        document.getElementById('birthDay').style.color = defaultColor;
     }
     if (month.selectedIndex == 0) {
         if (faultMonth !== '') {
@@ -456,12 +470,14 @@ function checkDateOfBirth(day, month, year) {
             faultMonth = "Month can't be blank!\n";
         }
         document.getElementById('birthMonth').style.borderColor = errorColor;
+        document.getElementById('birthMonth').style.color = errorColor;
         document.getElementById('faultbirthmonth').innerHTML = "Month can't be blank!";
     }
     else {
         faultMonth = '';
         document.getElementById('faultbirthmonth').innerHTML = '';
         document.getElementById('birthMonth').style.borderColor = defaultColor;
+        document.getElementById('birthMonth').style.color = defaultColor;
     }
     if (year.selectedIndex == 0) {
         if (faultYear !== '') {
@@ -471,11 +487,13 @@ function checkDateOfBirth(day, month, year) {
             faultYear = "Year can't be blank!\n";
         }
         document.getElementById('birthYear').style.borderColor = errorColor;
+        document.getElementById('birthYear').style.color = errorColor;
         document.getElementById('faultbirthyear').innerHTML = "Year can't be blank!";
     }
     else {
         faultYear = '';
         document.getElementById('birthYear').style.borderColor = defaultColor;
+        document.getElementById('birthYear').style.color = defaultColor;
         document.getElementById('faultbirthyear').innerHTML = '';
     }
 
@@ -487,6 +505,7 @@ function checkDateOfBirth(day, month, year) {
             case 11:
                 if (day.selectedIndex > 30) {
                     document.getElementById('birthDay').style.borderColor = errorColor;
+                    document.getElementById('birthDay').style.color = errorColor;
                     document.getElementById('faultbirthday').innerHTML = "This day is invalid";
                     if (faultDay !== '') {
                         faultDay += 'This day is invalid!\n';
@@ -499,6 +518,7 @@ function checkDateOfBirth(day, month, year) {
                 else {
                     faultDay = '';
                     document.getElementById('birthDay').style.borderColor = defaultColor;
+                    document.getElementById('birthDay').style.color = defaultColor;
                     document.getElementById('faultbirthday').innerHTML = '';
                 }
                 break;
@@ -508,6 +528,7 @@ function checkDateOfBirth(day, month, year) {
                         if (year.value % 400 == 0) {
                             if (day.selectedIndex > 29) {
                                 document.getElementById('birthDay').style.borderColor = errorColor;
+                                document.getElementById('birthDay').style.color = errorColor;
                                 document.getElementById('faultbirthday').innerHTML = "This day is invalid";
                                 if (faultDay !== '') {
                                     faultDay += 'This day is invalid!\n';
@@ -519,12 +540,14 @@ function checkDateOfBirth(day, month, year) {
                             else {
                                 faultDay = '';
                                 document.getElementById('birthDay').style.borderColor = defaultColor;
+                                document.getElementById('birthDay').style.color = defaultColor;
                                 document.getElementById('faultbirthday').innerHTML = '';
                             }
                         }
                         else {
                             if (day.selectedIndex > 28) {
                                 document.getElementById('birthDay').style.borderColor = errorColor;
+                                document.getElementById('birthDay').style.color = errorColor;
                                 document.getElementById('faultbirthday').innerHTML = "This day is invalid";
                                 if (faultDay !== '') {
                                     faultDay += 'This day is invalid!\n';
@@ -536,6 +559,7 @@ function checkDateOfBirth(day, month, year) {
                             else {
                                 faultDay = '';
                                 document.getElementById('birthDay').style.borderColor = defaultColor;
+                                document.getElementById('birthDay').style.color = defaultColor;
                                 document.getElementById('faultbirthday').innerHTML = '';
                             }
                         }
@@ -545,6 +569,7 @@ function checkDateOfBirth(day, month, year) {
                 else {
                     if (day.selectedIndex > 28) {
                         document.getElementById('birthDay').style.borderColor = errorColor;
+                        document.getElementById('birthDay').style.color = errorColor;
                         document.getElementById('faultbirthday').innerHTML = "This day is invalid";
                         if (faultDay !== '') {
                             faultDay += 'This day is invalid!\n';
@@ -556,6 +581,7 @@ function checkDateOfBirth(day, month, year) {
                     else {
                         faultDay = '';
                         document.getElementById('birthDay').style.borderColor = defaultColor;
+                        document.getElementById('birthDay').style.color = defaultColor;
                         document.getElementById('faultbirthday').innerHTML = '';
                     }
                 }
@@ -663,6 +689,7 @@ function checkIfDayHasAlreadyBeen(day, month, year) {
         if (month.selectedIndex !== 0) {
             if (month.selectedIndex > (date.getMonth() + 1)) {
                 document.getElementById('birthMonth').style.borderColor = errorColor;
+                document.getElementById('birthMonth').style.color = errorColor;
                 faultMonth = 'You have to pick a date from the past!';
                 document.getElementById('faultbirthmonth').innerHTML = 'You have to pick a date from the past!';
             }
@@ -670,27 +697,42 @@ function checkIfDayHasAlreadyBeen(day, month, year) {
                 if (day.selectedIndex !== 0) {
                     if (day.selectedIndex > (date.getDay())) {
                         document.getElementById('birthDay').style.borderColor = errorColor;
+                        document.getElementById('birthDay').style.color = errorColor;
                         faultDay = 'You have to choose either today or a day of the past!';
                         document.getElementById('faultbirthday').innerHTML = 'You have to choose either today or a day of the past!';
                     }
                     else {
                         document.getElementById('birthDay').style.borderColor = defaultColor;
+                        document.getElementById('birthDay').style.color = defaultColor;
                         faultDay = '';
                         document.getElementById('faultbirthday').innerHTML = '';
                     }
                 }
                 else {
                     document.getElementById('birthDay').style.borderColor = errorColor;
+                    document.getElementById('birthDay').style.color = errorColor;
                     faultDay = "Day can't be blank!\n";
                     document.getElementById('faultbirthday').innerHTML = "Day can't be blank";
                 }
             }
             else {
                 document.getElementById('birthMonth').style.borderColor = defaultColor;
+                document.getElementById('birthMonth').style.color = defaultColor;
                 faultMonth = '';
                 document.getElementById('faultbirthmonth').innerHTML = '';
             }
         }
 
     }
+}
+
+function passwordVisibility(inputField, elementShown, elementHidden, visible){
+    if(visible){
+        inputField.type = 'text';
+    }
+    else{
+        inputField.type = 'password';
+    }
+    elementShown.style.display = 'none';
+    elementHidden.style.display = 'block';
 }

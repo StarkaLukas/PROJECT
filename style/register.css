@@ -102,3 +102,10 @@ a{
 #home:hover{
     cursor: pointer;
 }
+
+.visibility{
+    position: relative;
+}
+.visibility:hover{
+    color: black;
+}
