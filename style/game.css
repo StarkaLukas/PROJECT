@@ -105,7 +105,7 @@ nav{
 #dropdown-menu{
   background-color: black;
   position: absolute;
-  top: 7.2vh;
+  top: 6.8vh;
   font-size: 1.8vh;
 }
 #content, #notLoggedInContent{
@@ -118,7 +118,7 @@ nav{
 
 #dartboard{
   position: relative;
-  top: 20vh;
+  top: 30vh;
   left: 20vw;
 }
 svg{
@@ -128,4 +128,32 @@ svg{
 
 #single4{
   fill: #111;
+}
+
+.player{
+  width: 20vw;
+  height: 80vh;
+  position: absolute;
+  top: 10vh;
+  background-color: black;
+  color: white;
+  padding: 1%;
+  text-align: center;
+}
+#player1{
+  left: 2vw;
+}
+#player2{
+  right: 2vw;
+}
+
+#score{
+  width: 20vw;
+  position: absolute;
+  top: 10vh;
+  background-color: black;
+  color: white;
+  padding: 1%;
+  text-align: center;
+  left: 40vw;
 }

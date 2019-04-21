@@ -19,18 +19,74 @@ class DartField {
     }
 }
 
+class Player{
+    constructor(darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg){
+        this.darts = darts;
+        this.legAverage = legAverage;
+        this.matchAverage = matchAverage;
+        this.first9Average = first9Average;
+        this.tons = tons;
+        this.ton40s = ton40s;
+        this.ton80s = ton80s;
+        this.highestFinish = highestFinish;
+        this.doublePercentage = doublePercentage;
+        this.bestLeg;
+    }
+    
+    get legAverage(){
+        return this.legAverage;
+    }
+
+    get matchAverage(){
+        return this.matchAverage;
+    }
+    get first9Average(){
+        return this.first9Average;
+    }
+    get tons(){
+        return this.tons;
+    }
+    get ton40s(){
+        return this.ton40s;
+    }
+    get ton80s(){
+        return this.ton80s;
+    }
+    get highestFinish(){
+        return this.highestFinish;
+    }
+    get doublePercentage(){
+        return this.doublePercentage;
+    }
+    get bestLeg(){
+        return this.bestLeg;
+    }
+
+    set legAverage(newAverage){
+        this.legAverage = newAverage;
+    }
+}
+
 let score = 501;
 let fields = new Array;
+let computerLevel = 1;
+let you = new Player(0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
+let component = new Player(0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
+
 window.addEventListener('load', start2);
 
 function start2() {
     createFields();
+    setTimeout(()=>{
+        writeNameOfUser('username');
+    }, 2000);
+    writeNameOfComputer('computername');
 }
 function createFields() {
     for (let i = 1; i <= 20; i++) {
         switch (i) {
             case 20:
-            case 18:
+            case 18: 
             case 13:
             case 10:
             case 2:
@@ -66,6 +122,18 @@ function createFields() {
             fields[field].hoverDefault();
         });
     }
+}
 
+function writeNameOfUser(field){
+    let userID = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/users/' + userID).once('value').then(function(snapshot) {
+        let username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        document.getElementById(field).innerHTML = username;
+        document.getElementById(field).style.color = 'white';
+      });
+}
 
+function writeNameOfComputer(field){
+    document.getElementById(field).innerHTML = `Computer ${computerLevel}`;
+    document.getElementById(field).style.color = 'white'; 
 }
