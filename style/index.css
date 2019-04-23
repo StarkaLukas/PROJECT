@@ -152,10 +152,16 @@ nav{
   font-size: 5vh;
   position: absolute;
   bottom: 47.5vh;
+  color: gainsboro;
+  background-color: rgba(0, 0, 0, 0);
+  border: 10px solid rgba(0, 0, 0, 0);
+  border-radius: 100%;
 }
 
 #left:hover, #right:hover {
   cursor: pointer;
+  border: 10px solid grey;
+  background-color: grey;
 }
 
 #right {
@@ -166,6 +172,24 @@ nav{
   left: 7vw;
 }
 
+#left:hover{
+  animation: leftAnimation 1000ms ease-in-out;
+}
+#right:hover{
+  animation: rightAnimation 1000ms ease-in-out;
+}
+
+@keyframes leftAnimation{
+  0%   {left: 7vw}
+  50%  {left: 6vw}
+  100% {left: 7vw}
+}
+
+@keyframes rightAnimation{
+  0%   {right: 7vw}
+  50%  {right: 6vw}
+  100% {right: 7vw}
+}
 @-webkit-keyframes fade {
   from {
     opacity: .6
