@@ -38,9 +38,13 @@ function checkLoggedIn() {
         if (user) {
             document.getElementById('notLoggedIn').style.display = 'none';
             document.getElementById('loggedIn').style.display = 'block';
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('contentNotLoggedIn').style.display = 'none';
         } else {
             document.getElementById('notLoggedIn').style.display = 'block';
             document.getElementById('loggedIn').style.display = 'none';
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('contentNotLoggedIn').style.display = 'block';
         }
         document.getElementById('placeHolder').style.display = 'none';
     });

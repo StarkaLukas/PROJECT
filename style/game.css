@@ -157,3 +157,9 @@ svg{
   text-align: center;
   left: 40vw;
 }
+
+#headerNotLoggedIn{
+  font-size: 5vh;
+  text-align: center;
+  margin-top: 45vh;
+}

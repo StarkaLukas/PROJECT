@@ -33,39 +33,39 @@ class Player{
         this.bestLeg;
     }
     
-    get legAverage(){
-        return this.legAverage;
-    }
+//     get legAverage(){
+//         return this.legAverage;
+//     }
 
-    get matchAverage(){
-        return this.matchAverage;
-    }
-    get first9Average(){
-        return this.first9Average;
-    }
-    get tons(){
-        return this.tons;
-    }
-    get ton40s(){
-        return this.ton40s;
-    }
-    get ton80s(){
-        return this.ton80s;
-    }
-    get highestFinish(){
-        return this.highestFinish;
-    }
-    get doublePercentage(){
-        return this.doublePercentage;
-    }
-    get bestLeg(){
-        return this.bestLeg;
-    }
+//     get matchAverage(){
+//         return this.matchAverage;
+//     }
+//     get first9Average(){
+//         return this.first9Average;
+//     }
+//     get tons(){
+//         return this.tons;
+//     }
+//     get ton40s(){
+//         return this.ton40s;
+//     }
+//     get ton80s(){
+//         return this.ton80s;
+//     }
+//     get highestFinish(){
+//         return this.highestFinish;
+//     }
+//     get doublePercentage(){
+//         return this.doublePercentage;
+//     }
+//     get bestLeg(){
+//         return this.bestLeg;
+//     }
 
-    set legAverage(newAverage){
-        this.legAverage = newAverage;
-    }
-}
+//     set legAverage(newAverage){
+//         this.legAverage = newAverage;
+//     }
+ }
 
 let score = 501;
 let fields = new Array;
