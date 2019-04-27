@@ -4,22 +4,24 @@ body{
     padding: 0;
     background-color: white;
     color: lightslategray;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
-input[type=text], #box{
+/* input[type=text]{
     width: 20vw;
     padding: 1%;
     border: none;
     border-bottom: 2px black solid;
     background-color: white;
     color: black;
-    font-family: 'Nunito', sans-serif;
-}
-input[type=password]{
+    font-family: 'Noto Sans KR', sans-serif;
+} */
+input[type=password], input[type=text]{
     width: 15vw;
     display: inline-block;
     color: black;
-    font-family: 'Nunito', 'sans-serif';
+    font-family: 'Noto Sans KR', sans-serif;
+    border: none;
+    border-bottom: 2px black solid;
 }
 i {
     display: inline-block;
@@ -43,7 +45,7 @@ button{
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     width: 10vw;
     margin-left: 5vw;
 }
