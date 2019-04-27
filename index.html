@@ -18,52 +18,59 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./style/timeline.css">
 </head>
+
 <body onload="start()">
     <div id="fullpage">
         <section>
             <nav class="nav1">
                 <div id="notLoggedIn" style="display: none;">
                     <ul class="ulist">
-                        <li class="list" style="float: left;"><a href="./" style="float:left;"><i class="far fa-circle"></i> insert name and logo here</a></li>
-                        <li class="list" ><a href="./html/login.html" style="margin-right: 0.5vw;">Login</a></li>
-                        <li class="list" ><a href="./html/register.html">Register</a></li>
+                        <li class="list" style="float: left;"><a href="./" style="float:left;"><i
+                                    class="far fa-circle"></i> insert name and logo here</a></li>
+                        <li class="list"><a href="./html/login.html" style="margin-right: 0.5vw;">Login</a></li>
+                        <li class="list"><a href="./html/register.html">Register</a></li>
                     </ul>
                 </div>
             </nav>
             <nav class="nav1">
                 <div id="loggedIn" style="display: none;">
-                        <ul class="ulist">
-                                <li class="list" style="float: left;"><a href="./" style="float:left;"><i
-                                            class="far fa-circle"></i>
-                                        insert name and logo here</a></li>
-                                <div>
-                                    <button class="btn btn-default dropdown-toggle" id="dropdown-button" type="button"
-                                        data-toggle="dropdown">
-                                        Your account<span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
-                                        <li class="list2"><a href="./html/profile.html" id="name" style="color: black;">.</a></li>
-                                        <li class="divider list2"></li>
-                                        <li class="list2"><a onclick="logOut()" style="color: white">Log out</a></li>
-                                    </ul>
-                                </div>
-                                <li class="list"><a href="./html/configurator.html">Dart Configurator</a></li>
-                                <li class="list"><a href="./html/game.html">Game On</a></li>
+                    <ul class="ulist">
+                        <li class="list" style="float: left;"><a href="./" style="float:left;"><i
+                                    class="far fa-circle"></i>
+                                insert name and logo here</a></li>
+                        <div>
+                            <button class="btn btn-default dropdown-toggle" id="dropdown-button" type="button"
+                                data-toggle="dropdown">
+                                Your account<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
+                                <li class="list2"><a href="./html/profile.html" id="name" style="color: black;">.</a>
+                                </li>
+                                <li class="divider list2"></li>
+                                <li class="list2"><a onclick="logOut()" style="color: white">Log out</a></li>
                             </ul>
+                        </div>
+                        <li class="list"><a href="./html/configurator.html">Dart Configurator</a></li>
+                        <li class="list"><a href="./html/game.html">Game On</a></li>
+                    </ul>
                 </div>
             </nav>
             <nav class="nav2">
                 <div id="placeHolder" style="display: block;">
                     <ul class="ulist">
-                        <li class="list" ><a href="./html/profile.html" style="color: rgba(0, 0, 0, 0.0)">.</a></li>
+                        <li class="list"><a href="./html/profile.html" style="color: rgba(0, 0, 0, 0.0)">.</a></li>
                     </ul>
                 </div>
             </nav>
+            <div id="content"></div>
+            <div id="contentNotLoggedIn"></div>
             <img id="dart_icon" src="./images/dart_icon.svg">
             <div id="slideshow">
                 <div class="slide">
@@ -98,22 +105,22 @@
             <div id="informations">
                 <div data-aos="zoom-in" class="information icon_down" id="scrollAbout">
                     <h1>About <i class="fas fa-arrow-circle-down icon"></i> </h1>
-                   
+
                 </div>
                 <div data-aos="zoom-in" class="information icon_down" id="scrollFeatures">
                     <h1>Features<i class="fas fa-arrow-circle-down icon"></i></h1>
-                    
+
                 </div>
                 <div data-aos="zoom-in" class="information icon_down" id="scrollPractice">
                     <h1>Practice<i class="fas fa-arrow-circle-down icon"></i></h1>
                 </div>
                 <div data-aos="zoom-in" class="information icon_down" id="scrollStats">
                     <h1>Stats<i class="fas fa-arrow-circle-down icon"></i></h1>
-                    
+
                 </div>
                 <div data-aos="zoom-in" class="information icon_down" id="scrollDart">
                     <h1>Configurator<i class="fas fa-arrow-circle-down icon"></i></h1>
-                    
+
                 </div>
                 <div data-aos="zoom-in" class="information icon_down" id="scrollTimeline">
                     <h1>Timeline<i class="fas fa-arrow-circle-down icon"></i></h1>
@@ -141,9 +148,197 @@
             <div data-aos="zoom-out" class="placeHolder" style="color: white; border-color: white;">Placeholder</div>
         </section>
         <section id="timeline">
-            <h1 data-aos="zoom-out" class="heading" style="color: lightgrey;">Timeline</h1>
-            <div data-aos="zoom-out" class="placeHolder" style="color: white; border-color: white;">Placeholder</div>
+            <div class="timeline-container" id="timeline-1">
+                <div class="timeline-header">
+                    <h2 class="timeline-header__title">Mustafa Kemal Atatürk</h2>
+                    <h3 class="timeline-header__subtitle">FATHER OF THE TURKS</h3>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">1994</h2>
+                            <p class="timeline__content-desc">Dennis Priestly</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">1995</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">1996</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">1997</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">1998</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">1999</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2000</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2001</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2002</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2003</h2>
+                            <p class="timeline__content-desc">John Part</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2004</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2005</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2006</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2007</h2>
+                            <p class="timeline__content-desc">Raymond van Barneveld</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2008</h2>
+                            <p class="timeline__content-desc">John Part</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2009</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2010</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2011</h2>
+                            <p class="timeline__content-desc">Adrian Lewis</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2012</h2>
+                            <p class="timeline__content-desc">Adrian Lewis</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2013</h2>
+                            <p class="timeline__content-desc">Phil Taylor</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2014</h2>
+                            <p class="timeline__content-desc">Michael van Gerwen</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2015</h2>
+                            <p class="timeline__content-desc">Gary Anderson</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2016</h2>
+                            <p class="timeline__content-desc">Gary Anderson</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2017</h2>
+                            <p class="timeline__content-desc">Michael van Gerwen</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2018</h2>
+                            <p class="timeline__content-desc">Rob Cross</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+                        <div class="timeline__content"><img class="timeline__img"
+                                src="http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg" />
+                            <h2 class="timeline__content-title">2019</h2>
+                            <p class="timeline__content-desc">Michael van Gerwen</p>
+                        </div>
+                    </div>
+                </div>
         </section>
+        <script src="./script/timeline.js"></script>
         <script src="./script/navigationFirebase.js"></script>
         <script src="./script/index.js"></script>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
