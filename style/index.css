@@ -154,28 +154,29 @@ nav{
   bottom: 47.5vh;
   color: gainsboro;
   background-color: rgba(0, 0, 0, 0);
-  border: 10px solid rgba(0, 0, 0, 0);
   border-radius: 100%;
 }
 
 #left:hover, #right:hover {
   cursor: pointer;
-  border: 10px solid grey;
-  background-color: grey;
 }
 
 #right {
   right: 7vw;
+  transition: right 1000ms ease-in-out;
 }
 
 #left {
   left: 7vw;
+  transition: left 1000ms ease-in-out;
 }
 
 #left:hover{
+  left: 6vw;
   animation: leftAnimation 1000ms ease-in-out;
 }
 #right:hover{
+  right: 6vw;
   animation: rightAnimation 1000ms ease-in-out;
 }
 
@@ -346,9 +347,14 @@ nav{
 #dropdown-menu{
   background-color: black;
   position: absolute;
-  top: 7.2vh;
+  top: 6.8vh;
   font-size: 1.8vh;
 }
 #content{
   margin-top: 10vh;
+}
+
+#slideshow .slide:nth-child(3) img{
+  -webkit-filter: grayscale(10%);
+  filter: grayscale(10%);
 }

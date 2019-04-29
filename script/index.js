@@ -2,8 +2,9 @@
 let actualSlide = 1;
 let frame = 0;
 
+window.addEventListener('load', startIndex);
 
-function start() {
+function startIndex() {
     slide(actualSlide);
     setInterval(()=>{
         if(frame === 50){
@@ -45,6 +46,7 @@ function start() {
         actualSlide++;
         slide(actualSlide);
     });
+    writeWelcomeBack();
 }
 
 
@@ -61,10 +63,27 @@ function slide(slide){
         slides[i].style.display = 'none';
     }
     slides[actualSlide - 1].style.display = 'block';
+    changeColor(actualSlide);
 }
 
 function scroll(scrollTo){
     $([document.documentElement, document.body]).animate({
         scrollTop: $(scrollTo).offset().top
     }, 750);
+}
+
+function changeColor(slide){
+    console.log(slide);
+    switch(slide){
+        case 2:
+        case 4:
+        case 6:
+            document.getElementById('dart_icon').src = './images/dart_icon_grey.svg';
+            break;
+        case 1:
+        case 3:
+        case 5:
+        document.getElementById('dart_icon').src = './images/dart_icon_white.svg';
+            break;
+    }
 }

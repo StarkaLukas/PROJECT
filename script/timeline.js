@@ -36,7 +36,7 @@
                 ")"
             );
             selectors.item.last().addClass(selectors.activeClass);
-          } else if (pos <= max - 40 && pos >= min) {
+          } else if (pos <= max - 4 && pos >= min) {
             selectors.id.css(
               "background-image",
               "url(" +
@@ -53,5 +53,5 @@
     };
   })(jQuery);
   
-  $("#timeline-1").timeline();
+  $("#timeline").timeline();
   
