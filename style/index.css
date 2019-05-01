@@ -140,7 +140,13 @@ nav{
 }
 
 .text {
-  color: lightgray;
+  color: white;
+  text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
   font-size: 10vh;
   position: absolute;
   bottom: 65vh;
@@ -354,7 +360,23 @@ nav{
   margin-top: 10vh;
 }
 
-#slideshow .slide:nth-child(3) img{
-  -webkit-filter: grayscale(10%);
-  filter: grayscale(10%);
+.link{
+  text-decoration: none;
+}
+
+.link:hover{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.linkBox{
+  position: absolute;
+  height: 10vh;
+  width: 20vW;
+  background-color : green;
+  border: 1px solid rgba(0, 0, 0, 0.0);
+  border-radius: 60%;
+  text-align: center;
+  top: 40vh;
+  left: 40vw;
 }
