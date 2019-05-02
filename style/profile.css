@@ -115,7 +115,7 @@ nav{
 #dropdown-menu{
     background-color: black;
     position: absolute;
-    top: 7.2vh;
+    top: 6.8vh;
     font-size: 1.8vh;
 }
 #content, #notLoggedInContent{
@@ -125,3 +125,4 @@ nav{
 #notLoggedInContent{
     text-align: center;
 }
+
