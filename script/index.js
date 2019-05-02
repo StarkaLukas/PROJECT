@@ -7,7 +7,7 @@ window.addEventListener('load', startIndex);
 function startIndex() {
     slide(actualSlide);
     setInterval(()=>{
-        if(frame === 50){
+        if(frame === 75){
             actualSlide++;
             slide(actualSlide);
             frame = 0;
@@ -75,16 +75,18 @@ function scroll(scrollTo){
 function changeColor(slide){
     console.log(slide);
     switch(slide){
-        case 4:
-        case 6:
-            document.getElementById('dart_icon').src = './images/dart_icon_grey.svg';
-            document.getElementById('right').style.color = 'grey';
-            document.getElementById('left').style.color = 'grey';
-            break;
+        // case 4:
+        // case 6:
+        //     document.getElementById('dart_icon').src = './images/dart_icon_grey.svg';
+        //     document.getElementById('right').style.color = 'grey';
+        //     document.getElementById('left').style.color = 'grey';
+        //     break;
         case 1:
         case 2:
         case 3:
+        case 4:
         case 5:
+        case 6:
         document.getElementById('dart_icon').src = './images/dart_icon_white.svg';
         document.getElementById('right').style.color = 'white';
             document.getElementById('left').style.color = 'white';

@@ -103,7 +103,7 @@ nav.nav1 ul li a:hover:after {
   height: 100%;
 }
 
-nav{
+nav {
   position: absolute;
   top: 0;
 }
@@ -141,12 +141,7 @@ nav{
 
 .text {
   color: white;
-  text-shadow:
-       3px 3px 0 #000,
-     -1px -1px 0 #000,  
-      1px -1px 0 #000,
-      -1px 1px 0 #000,
-       1px 1px 0 #000;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   font-size: 10vh;
   position: absolute;
   bottom: 65vh;
@@ -177,26 +172,40 @@ nav{
   transition: left 1000ms ease-in-out;
 }
 
-#left:hover{
+#left:hover {
   left: 6vw;
   animation: leftAnimation 1000ms ease-in-out;
 }
-#right:hover{
+
+#right:hover {
   right: 6vw;
   animation: rightAnimation 1000ms ease-in-out;
 }
 
-@keyframes leftAnimation{
-  0%   {left: 7vw}
-  50%  {left: 6vw}
-  100% {left: 7vw}
+@keyframes leftAnimation {
+  0% {
+    left: 7vw
+  }
+  50% {
+    left: 6vw
+  }
+  100% {
+    left: 7vw
+  }
 }
 
-@keyframes rightAnimation{
-  0%   {right: 7vw}
-  50%  {right: 6vw}
-  100% {right: 7vw}
+@keyframes rightAnimation {
+  0% {
+    right: 7vw
+  }
+  50% {
+    right: 6vw
+  }
+  100% {
+    right: 7vw
+  }
 }
+
 @-webkit-keyframes fade {
   from {
     opacity: .6
@@ -337,7 +346,7 @@ nav{
   }
 }
 
-#dropdown-button{
+#dropdown-button {
   margin: 0.5vw;
   float: right;
   display: block;
@@ -350,33 +359,55 @@ nav{
   font-size: 1.8vh;
 }
 
-#dropdown-menu{
+#dropdown-menu {
   background-color: black;
   position: absolute;
   top: 6.8vh;
   font-size: 1.8vh;
 }
-#content{
+
+#content {
   margin-top: 10vh;
 }
 
-.link{
+.link {
   text-decoration: none;
+  color: white;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-.link:hover{
-  text-decoration: none;
-  cursor: pointer;
-}
 
-.linkBox{
+
+.linkBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4vh;
   position: absolute;
-  height: 10vh;
-  width: 20vW;
-  background-color : green;
+  height: 5vh;
+  background-color: darkolivegreen;
   border: 1px solid rgba(0, 0, 0, 0.0);
-  border-radius: 60%;
+  border-radius: 2vw;
   text-align: center;
   top: 40vh;
-  left: 40vw;
+  padding: 1%;
+}
+
+.flexBoxForLinkBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-chevron-right{
+  color: white;
+  text-shadow: none;
+  font-size: 4vh;
+  margin-left: 0.5vw;
+}
+.link:hover {
+  text-decoration: none;
+  cursor: pointer;
+  color: brown;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
