@@ -64,17 +64,21 @@
     </nav>
     <div id="content" style="display:none">
         <div id="options">
-            <form action="">
+            <h1>Choose your settings</h1>
+            <form id="optionsForm" action="">
                 <p>Game type</p>
-                <select name="gameType" id="gameType">
-                    <option>170</option>
-                    <option>201</option>
-                    <option>301</option>
-                    <option>501</option>
-                    <option>701</option>
-                    <option>1001</option>
-                    <option>Custom</option>
-                </select>
+                <div class="select">
+                    <select name="gameType" id="gameType">
+                        <option value="platzhalter" disabled selected hidden>---</option>
+                        <option>170</option>
+                        <option>201</option>
+                        <option>301</option>
+                        <option>501</option>
+                        <option>701</option>
+                        <option>1001</option>
+                        <option>Custom</option>
+                    </select>
+                </div>
                 <div id="customPoints" style="display: none">
                     <input type="text" name="customPoints" id="customPoints">
                 </div>
@@ -90,30 +94,56 @@
                     </form>
                 </div>
                 <p>Opponent</p>
-                <select name="opponentType" id="opponentType">
-                    <option>Single (no opponent)</option>
-                    <option>Trainer (computer)</option>
-                    <option>Guest (local opponent)</option>
-                </select>
+                <div class="select">
+                    <select name="opponentType" id="opponentType">
+                        <option value="platzhalter" disabled selected hidden>---</option>
+                        <option>Single (no opponent)</option>
+                        <option>Trainer (computer)</option>
+                        <option>Guest (local opponent)</option>
+                    </select>
+                </div>
+
                 <div id="computerDifficulty" style="display: none">
                     <p>Level</p>
                     <input type="range" name="difficulty" id="difficulty">
                     <p>Start to throw</p>
-                    <select name="startToThrow" id="startToThrow">
-                        <option>Me</option>
-                        <option>Opponent</option>
-                    </select>
-                </div>
-                <div id="localPlayer" style="display: none">
-                        <p>Start to throw</p>
+                    <div class="select">
                         <select name="startToThrow" id="startToThrow">
+                            <option value="platzhalter" disabled selected hidden>---</option>
                             <option>Me</option>
                             <option>Opponent</option>
                         </select>
+                    </div>
                 </div>
-                <p>Best of Sets</p>
+                <div id="localPlayer" style="display: none">
+                    <p>Start to throw</p>
+                    <div class="select">
+                        <select name="startToThrow" id="startToThrow">
+                            <option value="platzhalter" disabled selected hidden>---</option>
+                            <option>Me</option>
+                            <option>Opponent</option>
+                        </select>
+                    </div>
+                </div>
                 
+                <p>Best of Sets</p>
+                <div class="select">
+                    <select name="bestOfSets" id="bestOfSets">
+                        <option value="platzhalter" disabled selected hidden>---</option>
+                    </select>
+                </div>
+                <p>Draw possible?</p>
+                <input type="checkbox" name="drawSets" id="drawSets">
+               
+                <br>
                 <p>Best of Legs</p>
+                <div class="select">
+                    <select name="bestOfLegs" id="bestOfLegs">
+                        <option value="platzhalter" disabled selected hidden>---</option>
+                    </select>
+                </div>
+                <p>Draw possible?</p>
+                <input type="checkbox" name="drawLegs" id="drawLegs">
             </form>
         </div>
         <div id="game" style="display: none">

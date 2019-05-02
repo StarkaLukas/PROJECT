@@ -14,13 +14,13 @@ class DartField {
     hoverSelect() {
         this.field.style.fill = this.hoverColor;
     }
-    hoverDefault(){
+    hoverDefault() {
         this.field.style.fill = this.color;
     }
 }
 
-class Player{
-    constructor(darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg){
+class Player {
+    constructor(darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg) {
         this.darts = darts;
         this.legAverage = legAverage;
         this.matchAverage = matchAverage;
@@ -32,40 +32,40 @@ class Player{
         this.doublePercentage = doublePercentage;
         this.bestLeg;
     }
-    
-//     get legAverage(){
-//         return this.legAverage;
-//     }
 
-//     get matchAverage(){
-//         return this.matchAverage;
-//     }
-//     get first9Average(){
-//         return this.first9Average;
-//     }
-//     get tons(){
-//         return this.tons;
-//     }
-//     get ton40s(){
-//         return this.ton40s;
-//     }
-//     get ton80s(){
-//         return this.ton80s;
-//     }
-//     get highestFinish(){
-//         return this.highestFinish;
-//     }
-//     get doublePercentage(){
-//         return this.doublePercentage;
-//     }
-//     get bestLeg(){
-//         return this.bestLeg;
-//     }
+    //     get legAverage(){
+    //         return this.legAverage;
+    //     }
 
-//     set legAverage(newAverage){
-//         this.legAverage = newAverage;
-//     }
- }
+    //     get matchAverage(){
+    //         return this.matchAverage;
+    //     }
+    //     get first9Average(){
+    //         return this.first9Average;
+    //     }
+    //     get tons(){
+    //         return this.tons;
+    //     }
+    //     get ton40s(){
+    //         return this.ton40s;
+    //     }
+    //     get ton80s(){
+    //         return this.ton80s;
+    //     }
+    //     get highestFinish(){
+    //         return this.highestFinish;
+    //     }
+    //     get doublePercentage(){
+    //         return this.doublePercentage;
+    //     }
+    //     get bestLeg(){
+    //         return this.bestLeg;
+    //     }
+
+    //     set legAverage(newAverage){
+    //         this.legAverage = newAverage;
+    //     }
+}
 
 let score = 501;
 let fields = new Array;
@@ -77,16 +77,17 @@ window.addEventListener('load', start2);
 
 function start2() {
     createFields();
-    setTimeout(()=>{
+    setTimeout(() => {
         writeNameOfUser('username');
     }, 2000);
     writeNameOfComputer('computername');
+    prepareOptions();
 }
 function createFields() {
     for (let i = 1; i <= 20; i++) {
         switch (i) {
             case 20:
-            case 18: 
+            case 18:
             case 13:
             case 10:
             case 2:
@@ -124,16 +125,86 @@ function createFields() {
     }
 }
 
-function writeNameOfUser(field){
+function writeNameOfUser(field) {
     let userID = firebase.auth().currentUser.uid;
-    return firebase.database().ref('/users/' + userID).once('value').then(function(snapshot) {
+    return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot) {
         let username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
         document.getElementById(field).innerHTML = username;
         document.getElementById(field).style.color = 'white';
-      });
+    });
 }
 
-function writeNameOfComputer(field){
+function writeNameOfComputer(field) {
     document.getElementById(field).innerHTML = `Computer ${computerLevel}`;
-    document.getElementById(field).style.color = 'white'; 
+    document.getElementById(field).style.color = 'white';
+}
+
+function prepareOptions() {
+    let select, i, j, selElmnt, a, b, c;
+
+    select = document.getElementsByClassName("select");
+    for (i = 0; i < select.length; i++) {
+        selElmnt = select[i].getElementsByTagName("select")[0];
+
+        a = document.createElement("DIV");
+        a.setAttribute("class", "select-selected");
+        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+        select[i].appendChild(a);
+
+        b = document.createElement("DIV");
+        b.setAttribute("class", "select-items select-hide");
+        for (j = 1; j < selElmnt.length; j++) {
+
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.addEventListener("click", function (e) {
+
+                var y, i, k, s, h;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < s.length; i++) {
+                    if (s.options[i].innerHTML == this.innerHTML) {
+                        s.selectedIndex = i;
+                        h.innerHTML = this.innerHTML;
+                        y = this.parentNode.getElementsByClassName("same-as-selected");
+                        for (k = 0; k < y.length; k++) {
+                            y[k].removeAttribute("class");
+                        }
+                        this.setAttribute("class", "same-as-selected");
+                        break;
+                    }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+        }
+        select[i].appendChild(b);
+        a.addEventListener("click", function (e) {
+
+            e.stopPropagation();
+            closeAllSelect(this);
+            this.nextSibling.classList.toggle("select-hide");
+            this.classList.toggle("select-arrow-active");
+        });
+    }
+    function closeAllSelect(elmnt) {
+
+        var x, y, i, arrNo = [];
+        x = document.getElementsByClassName("select-items");
+        y = document.getElementsByClassName("select-selected");
+        for (i = 0; i < y.length; i++) {
+            if (elmnt == y[i]) {
+                arrNo.push(i)
+            } else {
+                y[i].classList.remove("select-arrow-active");
+            }
+        }
+        for (i = 0; i < x.length; i++) {
+            if (arrNo.indexOf(i)) {
+                x[i].classList.add("select-hide");
+            }
+        }
+    }
+
+    document.addEventListener("click", closeAllSelect);
 }
