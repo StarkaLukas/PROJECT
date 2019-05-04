@@ -82,6 +82,7 @@ function start2() {
     }, 2000);
     writeNameOfComputer('computername');
     prepareOptions();
+    document.getElementById('submitButton').addEventListener('click', clickFunction);
 }
 function createFields() {
     for (let i = 1; i <= 20; i++) {
@@ -207,4 +208,9 @@ function prepareOptions() {
     }
 
     document.addEventListener("click", closeAllSelect);
+}
+
+function clickFunction(){
+    document.getElementById('options').style.display = 'none';
+    document.getElementById('game').style.display = 'block';
 }

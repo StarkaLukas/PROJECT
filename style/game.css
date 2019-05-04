@@ -229,5 +229,31 @@ svg{
   width: 20vw;
   position: absolute;
   left: 40vw;
-  top: 30vh;
+  top: 25vh;
+}
+
+.option{
+  margin-top: 2vh;
+}
+
+#submitButton{
+  background-color: white;
+  border: 2px black solid;
+  color: black;
+  padding: 1%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  width: 10vw;
+  margin-left: 5vw;
+}
+#submitButton:hover{
+  background-color: black;
+  color: white;
 }
