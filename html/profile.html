@@ -22,11 +22,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
-<body onload="start()">
+<body onload="start()" style="background-color: #ebebeb;">
     <nav class="nav1">
         <div id="notLoggedIn" style="display: none;">
             <ul class="ulist">
-                <li class="list" style="float: left;"><a href="../index.html" style="float:left;"><i class="far fa-circle"></i>
+                <li class="list" style="float: left;"><a href="../index.html" style="float:left;"><i
+                            class="far fa-circle"></i>
                         insert name and logo here</a></li>
                 <li class="list"><a href="./login.html" style="margin-right: 0.5vw;">Login</a></li>
                 <li class="list"><a href="./register.html">Register</a></li>
@@ -63,19 +64,107 @@
         </div>
     </nav>
     <div id="content" style="display: none;">
-        <input type="file" name="filepond" id="filepond">
-        <h1 id="heading" style="color: white;">.</h1>
-        <div class="chart">
-            <h1>Stats</h1>
-            <canvas id="chart1" height="100"></canvas>
+        <div id="profile">
+            <img src="../images/profile_picture_default.png" id="profilePicture">
+            <h1 id="heading" style="color: white;">.</h1>
         </div>
-        <div class="chart">
-            <h1>Stats</h1>
-            <canvas id="chart2" height="100"></canvas>
+        <div class="averageChart">
+            <div class="chart">
+                <h1>x01 Average</h1>
+                <canvas id="chart1" height="100"></canvas>
+                <div id="averageInfo">
+                    <div class="avgColumn" id="averageThreeDartInfo">
+                        <h5 class="avgTitle"><strong>3 Dart </strong>Average</h5>
+                        <div class="lowest">
+                            <p>0.0</p>
+                            <span>Lowest</span>
+                        </div>
+                        <div class="highest">
+                            <p>0.0</p>
+                            <span>Highest</span>
+                        </div>
+                        <div class="placeholder">
+                        </div>
+                        <div class="total">
+                            <strong>0.0</strong>
+                            <span>Total</span>
+                        </div>
+                    </div>
+                    <div class="avgColumn" id="averageFirstNineInfo">
+                        <h5 class="avgTitle"><strong>First 9 </strong>Average</h5>
+                        <div class="lowest">
+                            <p>0.0</p>
+                            <span>Lowest</span>
+                        </div>
+                        <div class="highest">
+                            <p>0.0</p>
+                            <span>Highest</span>
+                        </div>
+                        <div class="placeholder">
+                        </div>
+                        <div class="total">
+                            <strong>0.0</strong>
+                            <span>Total</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="chart">
-            <h1>Stats</h1>
-            <canvas id="chart3" height="100"></canvas>
+        <div class="averageChart">
+            <div class="checkOutInfo">
+                <div class="checkoutColumn">
+                    <h5 class="checkoutTitle"><strong>100+ </strong>Total</h5>
+                    <div class="total"><strong>0</strong></div>
+                    <div class="total"><span>0.00 / leg</span></div>
+                </div>
+                <div class="checkoutColumn">
+                        <h5 class="checkoutTitle"><strong>140+ </strong>Total</h5>
+                        <div class="total"><strong>0</strong></div>
+                        <div class="total"><span>0.00 / leg</span></div>
+                </div>
+                <div class="checkoutColumn">
+                    <h5 class="checkoutTitle"><strong>180 </strong>Total</h5>
+                    <div class="total"><strong>0</strong></div>
+                    <div class="total"><span>0.00 / leg</span></div>
+                </div>
+            </div>
+            <div class="checkOutInfo">
+                    <div class="checkoutColumn">
+                        <h5 class="checkoutTitle">Matches <strong>Won</strong></h5>
+                        <div class="total"><strong>0</strong></div>
+                    </div>
+                    <div class="checkoutColumn">
+                            <h5 class="checkoutTitle">Matches <strong>Played</strong></h5>
+                            <div class="total"><strong>0</strong></div>
+                    </div>
+                    <div class="checkoutColumn">
+                        <h5 class="checkoutTitle">Matches <strong>Lost </strong></h5>
+                        <div class="total"><strong>0</strong></div>
+                    </div>
+                </div>
+        </div>
+        <div class="averageChart">
+            <div class="chart">
+                <h1>x01 Checkout</h1>
+                <canvas id="chart2" height="100"></canvas>
+                <div class="checkOutInfo">
+                    <div class="checkoutColumn">
+                        <h5 class="checkoutTitle"><strong>Highest </strong>Finish</h5>
+                        <div class="total"><strong>0</strong></div>
+                    </div>
+                    <div class="checkoutColumn">
+                        <h5 class="checkoutTitle"><strong>Total </strong>Checkout</h5>
+                        <span class="chartCheckout">
+                            <div class="total"><strong>0%</strong></div>
+                        </span>
+                        <div class="total"><span>0/0</span></div>
+                    </div>
+                    <div class="checkoutColumn">
+                        <h5 class="checkoutTitle"><strong>Best </strong>Leg</h5>
+                        <div class="total"><strong>0</strong></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div id="notLoggedInContent" style="display: none">

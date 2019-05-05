@@ -16,22 +16,22 @@ body {
     width: 100vw;
     height: 7.2vh;
     font-size: 1.8vh;
-  }
-  
-  .list {
+}
+
+.list {
     margin: 0.5vw;
     float: right;
-  }
-  
+}
+
 .list a {
     display: block;
     color: white;
     text-align: center;
     padding: 1.4vh 1.6vw;
     text-decoration: none;
-  }
-  
-  li a:hover:not(.active) {
+}
+
+li a:hover:not(.active) {
     background-color: #111;
 }
 
@@ -77,29 +77,24 @@ nav.nav1 ul li a:hover:after {
     height: 100%;
 }
 
-nav{
+nav {
     position: absolute;
     top: 0;
 }
+
 .chart {
     height: 50vh;
-    width: 60vw;
+    width: 90%;
     position: relative;
-    left: 20vw;
+    left: 5%;
     margin-top: 2.5vh;
 }
 
-#chart1, #chart2, #chart3 {
-    border: #555 2px solid;
-}
-
-#heading{
+#heading {
     font-size: 6vh;
-    text-align: center;
 }
 
-
-#dropdown-button{
+#dropdown-button {
     margin: 0.5vw;
     float: right;
     display: block;
@@ -112,17 +107,140 @@ nav{
     font-size: 1.8vh;
 }
 
-#dropdown-menu{
+#dropdown-menu {
     background-color: black;
     position: absolute;
     top: 6.8vh;
     font-size: 1.8vh;
 }
-#content, #notLoggedInContent{
+
+#content, #notLoggedInContent {
     margin-top: 10vh;
 }
 
-#notLoggedInContent{
+#notLoggedInContent {
     text-align: center;
 }
 
+#profilePicture {
+    border-radius: 50%;
+    vertical-align: middle;
+    height: 20vh;
+    width: 20vh;
+}
+
+.averageChart, #profile {
+    width: 60vw;
+    margin-left: 20vw;
+    margin-top: 10vh;
+    padding: 2%;
+    background-color: white;
+}
+
+#averageThreeDartInfo {
+    background-color: #4da5f5;
+    border-radius: 4px 0 0 4px;
+}
+
+#averageFirstNineInfo {
+    background-color: black;
+    border-radius: 0 4px 4px 0;
+}
+
+.avgColumn {
+    width: 50%;
+    float: left;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.avgTitle {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 17px;
+}
+
+#averageThreeDartInfo .lowest {
+    width: 49%;
+    border-right: 1px solid #82bef5;
+}
+
+#averageFirstNineInfo .lowest{
+    width: 49%;
+    border-right: 1px solid #84898f;
+}
+
+.avgColumn .highest, .avgColumn .lowest {
+    float: left;
+    width: 50%;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 60px;
+}
+
+.placeholder {
+    clear: both;
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    width: 100%;
+}
+
+.avgColumn .total {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+span {
+    display: block;
+    font-size: 12px;
+    line-height: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+.averageChart::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.checkoutColumn{
+    min-height: 224px;
+    width: 32.5%;
+    width: calc(33.3% - 1px);
+    float: left;
+    border-right: 1px solid #e5e5e5;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.checkoutTitle{
+    margin-bottom: 20px;
+}
+
+.checkoutColumn .total{
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 70px;
+    color: #0d0d0d;
+    padding-top: 30px;
+}
+.chartcheckout {
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    font-size: 38px;
+    color: #0d0d0d;
+    font-weight: 700;
+}
+
+.percent {
+    display: inline-block;
+    line-height: 150px;
+    z-index: 2;
+}

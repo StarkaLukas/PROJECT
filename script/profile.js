@@ -26,12 +26,7 @@ function start() {
         options: {}
     });
 
-    let ctx3 = document.getElementById('chart3').getContext('2d');
-    let myChart3 = new Chart(ctx3, {
-        type: 'bar',
-        data: {},
-        options: {}
-    });
+
     setTimeout(()=>{
         writeWelcomeBack();
     }, 2000);
@@ -44,7 +39,7 @@ function writeWelcomeBack(){
     return firebase.database().ref('/users/' + userID).once('value').then(function(snapshot) {
         let username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
         document.getElementById('heading').style.color = 'black';
-        document.getElementById('heading').innerHTML = `Welcome back ${username}`;
+        document.getElementById('heading').innerHTML = `${username}`;
         document.getElementById('name').innerHTML = username;
         document.getElementById('name').style.color = 'white';
         console.log(username);
