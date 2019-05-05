@@ -335,3 +335,7 @@ svg{
 .optionsDart .select{
   margin-bottom: 2vh;
 }
+.dartZone{
+  position: absolute;
+  height: 6vh;
+}
