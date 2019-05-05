@@ -10,16 +10,16 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    </head>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
 
 <body onload="start()">
     <nav class="nav1">
@@ -62,13 +62,96 @@
             </ul>
         </div>
     </nav>
-    <div id="content" style="display:none">
-        <h1 id="heading">Dart Configurator site</h1>
-    </div>
-    <div id="contentNotLoggedIn" style="display: none">
-        <h1 id="headerNotLoggedIn">This site is only available when you're logged in! :(</h1>
+    <div class="contentBox">
+        <div id="content" style="display:none">
+            <div class="optionsDart">
+                <div class="flightOption">
+                    <h5>Flight</h5>
+                    <div class="select">
+                        <select name="gameType" id="gameType">
+                            <option value="platzhalter" disabled selected hidden>Shape</option>
+                        </select>
+                    </div>
+                    <div class="select">
+                        <select name="gameType" id="gameType">
+                            <option value="platzhalter" disabled selected hidden>Design</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="shaftOption">
+                    <h5>Shaft</h5>
+                    <div class="select">
+                        <select name="gameType" id="gameType">
+                            <option value="platzhalter" disabled selected hidden>Length</option>
+                        </select>
+                    </div>
+                    <div class="select">
+                        <select name="gameType" id="gameType">
+                            <option value="platzhalter" disabled selected hidden>Material</option>
+                        </select>
+                    </div>
+                    <div class="select">
+                        <select name="gameType" id="gameType">
+                            <option value="platzhalter" disabled selected hidden>Design</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="barrelOption">
+                    <h5>Barrel</h5>
+                    <div class="select">
+                        <select name="gameType" id="gameType">
+                            <option value="platzhalter" disabled selected hidden>Weight</option>
+                        </select>
+                    </div>
+                    <div class="select">
+                        <select name="gameType" id="gameType">
+                            <option value="platzhalter" disabled selected hidden>Length</option>
+                        </select>
+                    </div>
+                    <div class="select">
+                        <select name="gameType" id="gameType">
+                            <option value="platzhalter" disabled selected hidden>Design</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pointOption">
+                    <h5>Point</h5>
+                    <div class="select">
+                        <select name="gameType" id="gameType">
+                            <option value="platzhalter" disabled selected hidden>Design</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="dart">
+                <div class="flight">
+                    <img src="../images/flight_placeholder.png" alt="Flight">
+                </div>
+
+                <div class="shaft">
+                    <img src="../images/shaft_placeholder.png" alt="Shaft">
+                </div>
+                <div class="barrel">
+                    <img src="../images/barrel_placeholder.png" alt="Barrel">
+                </div>
+                <div class="point">
+                    <img src="../images/point_placeholder.png" alt="Point">
+                </div>
+                <div class="total">
+                    <h5>Total: <strong>xx €</strong></h5>
+                </div>
+            </div>
+            <button id="cart">Add to cart <i class="fas fa-cart-plus"></i></button>
+            <div class="cart">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+        </div>
+        <div id="contentNotLoggedIn" style="display: none">
+            <h1 id="headerNotLoggedIn">This site is only available when you're logged in! :(</h1>
+        </div>
     </div>
     <script src="../script/navigationFirebase.js"></script>
     <script src="../script/configurator.js"></script>
 </body>
+
 </html>

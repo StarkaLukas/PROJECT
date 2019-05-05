@@ -118,7 +118,7 @@ nav{
 
 #dartboard{
   position: relative;
-  top: 30vh;
+  top: 20vh;
   left: 20vw;
 }
 svg{
@@ -236,7 +236,7 @@ svg{
   margin-top: 2vh;
 }
 
-#submitButton{
+#submitButton, #cart{
   background-color: white;
   border: 2px black solid;
   color: black;
@@ -256,4 +256,82 @@ svg{
 #submitButton:hover{
   background-color: black;
   color: white;
+}
+
+.dart, .optionsDart{
+  position: absolute;
+  height: 80vh;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 1%;
+  width: 50vw;
+  left: 35vw;
+  top: 10vh;
+  padding-top: 30vh;
+}
+.flight img, .shaft img, .barrel img, .point img{
+  width: 10vw;
+  position: absolute;
+}
+.flight {
+  margin-left: 2vw;
+}
+.shaft{
+  margin-left: 14vw;
+  margin-top: 7vh;
+}
+
+.barrel{
+  margin-left: 26vw;
+}
+.point{
+  margin-left: 38vw;
+}
+
+.contentBox{
+  background-color: #ebebeb;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: -100;
+}
+
+.dart h5{
+  font-size: 7vh;
+  position: absolute;
+  right: 2vw;
+  bottom: 2vh; 
+}
+#cart{
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 10vw;
+  position: absolute;
+  right: 2vw;
+  bottom: 10vh;
+  width: 10vw;
+}
+
+.fa-shopping-cart{
+  position: absolute;
+  right: 2vw;
+  font-size: 5vh;
+  color: black;
+}
+
+.optionsDart{
+  left: 2vw;
+  width: 30vw;
+  padding: 0.1%;
+  padding-left: 2%;
+}
+
+.optionsDart h5{
+  font-size: 4vh;
+
+}
+
+.optionsDart .select{
+  margin-bottom: 2vh;
 }
