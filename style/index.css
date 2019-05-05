@@ -385,7 +385,6 @@ nav {
   font-size: 4vh;
   position: absolute;
   height: 5vh;
-  background-color: darkolivegreen;
   border: 1px solid rgba(0, 0, 0, 0.0);
   border-radius: 2vw;
   text-align: center;
@@ -405,9 +404,70 @@ nav {
   font-size: 4vh;
   margin-left: 0.5vw;
 }
+
 .link:hover {
   text-decoration: none;
   cursor: pointer;
-  color: brown;
+  color: white;
   text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#linkBox1{
+  background-color: silver;
+}
+
+#linkBox2{
+  background-color: green;
+}
+
+#linkBox3{
+  background-color: burlywood;
+}
+
+#linkBox4{
+  background-color: orange;
+}
+
+#linkBox5{
+  background-color: red;
+}
+
+#linkBox6{
+  background-color: purple;
+}
+
+
+#dartZone{
+  position: absolute;
+  height: 6vh;
+}
+
+.divLeft{
+  background-color: white;
+  border-radius: 2%;
+  position: relative;
+  width: 40vw;
+  padding: 1%;
+  left: 10vw;
+  top: 10vh;
+}
+
+.divRight{
+  background-color: white;
+  border-radius: 2%;
+  position: relative;
+  width: 40vw;
+  padding: 1%;
+  left: 50vw;
+  top: 10vh;
+}
+
+.imageLeft{
+  position: relative;
+  left: 10vw;
+}
+
+.imageRight{
+  position: relative;
+  left: 50vw;
 }

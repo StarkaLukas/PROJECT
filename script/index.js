@@ -36,6 +36,9 @@ function startIndex() {
     document.getElementById('scrollTimeline').addEventListener('click', () =>{
         scroll('#timeline');
     });
+    document.getElementById('linkBox1').addEventListener('click', ()=>{
+        scroll('#navigation');
+    });
     document.getElementById('left').addEventListener('click', () =>{
         frame = 0;
         actualSlide--;
@@ -46,6 +49,7 @@ function startIndex() {
         actualSlide++;
         slide(actualSlide);
     });
+    hoverFunctionLinkBox();
     writeWelcomeBack();
 }
 
@@ -92,4 +96,34 @@ function changeColor(slide){
             document.getElementById('left').style.color = 'white';
         break;
     }
+}
+
+function hoverFunctionLinkBox(){
+    let element, box;
+
+    for (let i = 1; i < 7; i++) {
+        
+        element = 'arrow' + i;
+        box = 'linkBox' + i;
+        
+        console.log(element);
+        console.log(box);
+        
+        document.getElementById(box).addEventListener('mouseover', ()=>{
+            document.getElementById(element).style.color = 'yellow';
+        });
+        document.getElementById(box).addEventListener('mouseout', ()=>{
+            hoverArrowOut(element);
+        });
+    }
+}
+
+function hoverArrow(elementToChange){
+    console.log(elementToChange);
+    document.getElementById(elementToChange).style.color = 'yellow';
+}
+
+function hoverArrowOut(elementToChange){
+    console.log(elementToChange);
+    document.getElementById(elementToChange).style.color = 'white';
 }

@@ -30,10 +30,9 @@
     <div id="fullpage">
         <section>
             <nav class="nav1">
+                <a href="./"><img id="dartZone" src="./images/dartzone.jpg" alt="DartZone"></a>
                 <div id="notLoggedIn" style="display: none;">
                     <ul class="ulist">
-                        <li class="list" style="float: left;"><a href="./" style="float:left;"><i
-                                    class="far fa-circle"></i> insert name and logo here</a></li>
                         <li class="list"><a href="./html/login.html" style="margin-right: 0.5vw;">Login</a></li>
                         <li class="list"><a href="./html/register.html">Register</a></li>
                     </ul>
@@ -41,10 +40,8 @@
             </nav>
             <nav class="nav1">
                 <div id="loggedIn" style="display: none;">
+                    <a href="./"><img id="dartZone" src="./images/dartzone.jpg" alt="DartZone"></a>
                     <ul class="ulist">
-                        <li class="list" style="float: left;"><a href="./" style="float:left;"><i
-                                    class="far fa-circle"></i>
-                                insert name and logo here</a></li>
                         <div>
                             <button class="btn btn-default dropdown-toggle" id="dropdown-button" type="button"
                                 data-toggle="dropdown">
@@ -74,44 +71,50 @@
             <img id="dart_icon" src="./images/dart_icon.svg">
             <div id="slideshow">
                 <div class="slide">
-                    <p class="text">Welcome to "NAME"</p>
+                    <p class="text">Welcome to Dartzone</p>
                     <div class="flexBoxForLinkBox">
-                            <div class="linkBox"><a class="link">START YOUR JOURNEY<i class="fas fa-chevron-right"></i></a></div>
+                        <div class="linkBox" id="linkBox1"><a class="link">START YOUR JOURNEY<i
+                                    class="fas fa-chevron-right" id="arrow1"></i></a></div>
                     </div>
                     <img src="./images/darts-wallpaper-1.jpg" alt="placeholder" style="width: 100%; height: 92.8vh">
                 </div>
                 <div class="slide">
                     <p class="text">It is up to you!</p>
                     <div class="flexBoxForLinkBox">
-                            <div class="linkBox"><a class="link" href="html/register.html">SIGN UP FOR FREE<i class="fas fa-chevron-right"></i></a></div>
+                        <div class="linkBox" id="linkBox2"><a class="link" href="html/register.html">SIGN UP FOR FREE<i
+                                    class="fas fa-chevron-right" id="arrow2"></i></a></div>
                     </div>
                     <img src="./images/darts-wallpaper-2.jpg" alt="placeholder" style="width: 100%; height: 92.8vh">
                 </div>
                 <div class="slide">
                     <p class="text">Already a member?</p>
                     <div class="flexBoxForLinkBox">
-                            <div class="linkBox"><a class="link" href="html/login.html">LOG IN NOW<i class="fas fa-chevron-right"></i></a></div>
+                        <div class="linkBox" id="linkBox3"><a class="link" href="html/login.html">LOG IN NOW<i
+                                    class="fas fa-chevron-right" id="arrow3"></i></a></div>
                     </div>
                     <img src="./images/darts-wallpaper-3.jpg" alt="placeholder" style="width: 100%; height: 92.8vh">
                 </div>
                 <div class="slide">
                     <p class="text">Play a game of darts</p>
                     <div class="flexBoxForLinkBox">
-                            <div class="linkBox"><a class="link" href="html/game.html">WITH OUR ONLINE SCORER<i class="fas fa-chevron-right"></i></a></div>
+                        <div class="linkBox" id="linkBox4"><a class="link" href="html/game.html">WITH OUR ONLINE
+                                SCORER<i class="fas fa-chevron-right" id="arrow4"></i></a></div>
                     </div>
                     <img src="./images/darts-wallpaper-4.jpg" alt="placeholder" style="width: 100%; height: 92.8vh">
                 </div>
                 <div class="slide">
                     <p class="text">Find your perfect setup</p>
                     <div class="flexBoxForLinkBox">
-                            <div class="linkBox"><a class="link" href="html/configurator.html">WITH OUR DARTS CONFIGURATOR<i class="fas fa-chevron-right"></i></a></div>
+                        <div class="linkBox" id="linkBox5"><a class="link" href="html/configurator.html">WITH OUR DARTS
+                                CONFIGURATOR<i class="fas fa-chevron-right" id="arrow5"></i></a></div>
                     </div>
                     <img src="./images/darts-wallpaper-5.jpg" alt="placeholder" style="width: 100%; height: 92.8vh">
                 </div>
                 <div class="slide">
                     <p class="text">See your improvements</p>
                     <div class="flexBoxForLinkBox">
-                            <div class="linkBox"><a class="link" href="html/profile.html">WITH OUR PERSONALIZED STATISTICS<i class="fas fa-chevron-right"></i></a></div>
+                        <div class="linkBox" id="linkBox6"><a class="link" href="html/profile.html">WITH OUR
+                                PERSONALIZED STATISTICS<i class="fas fa-chevron-right" id="arrow6"></i></a></div>
                     </div>
                     <img src="./images/darts-wallpaper-6.jpg" alt="placeholder" style="width: 100%; height: 92.8vh">
                 </div>
@@ -126,7 +129,7 @@
 
                 </div>
                 <div data-aos="zoom-in" class="information icon_down" id="scrollFeatures">
-                    <h1>Features<i class="fas fa-arrow-circle-down icon"></i></h1>
+                    <h1>Devices<i class="fas fa-arrow-circle-down icon"></i></h1>
 
                 </div>
                 <div data-aos="zoom-in" class="information icon_down" id="scrollPractice">
@@ -147,219 +150,228 @@
         </section>
         <section id="about">
             <h1 data-aos="zoom-out" class="heading">About</h1>
-            <div data-aos="zoom-out" class="placeHolder">Placeholder</div>
+            <div class="divLeft" data-aos="zoom-out">
+                    <h2 ><strong>Dartzone</strong> is a free dart practice / scorer tool with loads of features and options.	
+                            Play against local players, or practice with a Trainer or alone.</h2>
+                </div>
+                <div class="imageRight" data-aos="zoom-out" style="left: 60vw;">
+                        <img src="./images/about.png" alt="Practice">
+                    </div>
         </section>
         <section id="features">
-            <h1 data-aos="zoom-out" class="heading">Features</h1>
-            <div data-aos="zoom-out" class="placeHolder">Placeholder</div>
+            <h1 data-aos="zoom-out" class="heading">Devices</h1>
+            <div class="divRight" data-aos="zoom-out">
+                    <h2 >For <strong>Steel & Softdarter</strong>
+                            No matter what type of dart you're playing, you can use Dartzone.
+                            
+                            In both cases, Dartzone is a good complemental tool to record your scores & matches and to improve your game.</h2>
+                </div>
+                <div class="imageLeft" data-aos="zoom-out">
+                    <img src="./images/devices.png" alt="Practice">
+                </div>
         </section>
         <section id="practice">
             <h1 data-aos="zoom-out" class="heading">Practise</h1>
-            <div data-aos="zoom-out" class="placeHolder">Placeholder</div>
+            <div class="divLeft" data-aos="zoom-out">
+                <h2 >Practicing is the key point for improving your game of darts. Dartzone will help
+                    you in your practice routines with some nice practice games.
+                    Furthermore you can play any competition games (x01) in single mode or against a Trainer where you
+                    can choose between <strong>10 different strength levels.</strong></h2>
+            </div>
+            <div class="imageRight" data-aos="zoom-out">
+                <img src="./images/practice.png" alt="Practice">
+            </div>
+
         </section>
         <section id="stats">
             <h1 data-aos="zoom-out" class="heading">Stats</h1>
-            <div data-aos="zoom-out" class="placeHolder">Placeholder</div>
+            <div class="divRight" data-aos="zoom-out">
+                    <h2 >Dartzone saves <strong>detailed statistics about your games. </strong>With these stats you have an precise overview on how your progressed, and which part of your game needs to be worked on.
+
+                    </h2>
+                </div>
+                <div class="imageLeft" data-aos="zoom-out">
+                    <img src="./images/stats.png" alt="Practice">
+                </div>
         </section>
         <section id="dart">
-            <h1 data-aos="zoom-out" class="heading" style="color: lightgrey;">Dart Configurator</h1>
-            <div data-aos="zoom-out" class="placeHolder" style="color: white; border-color: white;">Placeholder</div>
+            <h1 data-aos="zoom-out" class="heading">Dart Configurator</h1>
+            <div class="divLeft" data-aos="zoom-out">
+                    <h2 >You can create<strong>your own perfect fitting darts setup </strong>with Dartzone. There you can choose between loads of different pieces from different top darts brands.</h2>
+                </div>
+                <div class="imageRight" data-aos="zoom-out">
+                        <img src="./images/configurator.png" alt="Practice">
+                    </div>
         </section>
-            <div class="timeline-container" id="timeline">
-                <div class="timeline-header">
-                    <h1 data-aos="zoom-out" class="heading" style="color: white;">Timeline</h1>
-                </div>
-                <div class="timeline">
-                    <div class="timeline-item" data-text="Dennis Priestly">
-                        <div class="timeline__content"><img class="timeline__img"
-                                src="./images/1994.jpg" />
-                            <h2 class="timeline__content-title">1994</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                                src="./images/1995.jpg" />
-                            <h2 class="timeline__content-title">1995</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/1996.jpg" />
-                            <h2 class="timeline__content-title">1996</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/1997.jpg" />
-                            <h2 class="timeline__content-title">1997</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/1998.jpg" />
-                            <h2 class="timeline__content-title">1998</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/1999.jpg" />
-                            <h2 class="timeline__content-title">1999</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2000.jpg" />
-                            <h2 class="timeline__content-title">2000</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2001.jpg" />
-                            <h2 class="timeline__content-title">2001</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2002.jpg" />
-                            <h2 class="timeline__content-title">2002</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="John Part">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2003.jpg" />
-                            <h2 class="timeline__content-title">2003</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2004.jpg" />
-                            <h2 class="timeline__content-title">2004</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2005.jpg" />
-                            <h2 class="timeline__content-title">2005</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2006.jpg" />
-                            <h2 class="timeline__content-title">2006</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Raymond van Barneveld">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2007.jpg" />
-                            <h2 class="timeline__content-title">2007</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="John Part">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2008.jpg" />
-                            <h2 class="timeline__content-title">2008</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2009.jpg" />
-                            <h2 class="timeline__content-title">2009</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2010.jpg" />
-                            <h2 class="timeline__content-title">2010</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Adrian Lewis">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2011.jpg" />
-                            <h2 class="timeline__content-title">2011</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Adrian Lewis">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2012.jpg" />
-                            <h2 class="timeline__content-title">2012</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Phil Taylor">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2013.jpg" />
-                            <h2 class="timeline__content-title">2013</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Michael van Gerwen">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2014.jpg" />
-                            <h2 class="timeline__content-title">2014</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Gary Anderson">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2015.jpg" />
-                            <h2 class="timeline__content-title">2015</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Gary Anderson">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2016.jpg" />
-                            <h2 class="timeline__content-title">2016</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Michael van Gerwen">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2017.jpg" />
-                            <h2 class="timeline__content-title">2017</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Rob Cross">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2018.jpg" />
-                            <h2 class="timeline__content-title">2018</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
-                    </div>
-                    <div class="timeline-item" data-text="Michael van Gerwen">
-                        <div class="timeline__content"><img class="timeline__img"
-                            src="./images/2019.jpg" />
-                            <h2 class="timeline__content-title">2019</h2>
-                            <p class="timeline__content-desc"></p>
-                        </div>
+        <div class="timeline-container" id="timeline">
+            <div class="timeline-header">
+                <h1 data-aos="zoom-out" class="heading" style="color: white;">Timeline</h1>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-text="Dennis Priestly">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/1994.jpg" />
+                        <h2 class="timeline__content-title">1994</h2>
+                        <p class="timeline__content-desc"></p>
                     </div>
                 </div>
-        <script src="./script/timeline.js"></script>
-        <script src="./script/navigationFirebase.js"></script>
-        <script src="./script/index.js"></script>
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/1995.jpg" />
+                        <h2 class="timeline__content-title">1995</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/1996.jpg" />
+                        <h2 class="timeline__content-title">1996</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/1997.jpg" />
+                        <h2 class="timeline__content-title">1997</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/1998.jpg" />
+                        <h2 class="timeline__content-title">1998</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/1999.jpg" />
+                        <h2 class="timeline__content-title">1999</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2000.jpg" />
+                        <h2 class="timeline__content-title">2000</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2001.jpg" />
+                        <h2 class="timeline__content-title">2001</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2002.jpg" />
+                        <h2 class="timeline__content-title">2002</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="John Part">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2003.jpg" />
+                        <h2 class="timeline__content-title">2003</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2004.jpg" />
+                        <h2 class="timeline__content-title">2004</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2005.jpg" />
+                        <h2 class="timeline__content-title">2005</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2006.jpg" />
+                        <h2 class="timeline__content-title">2006</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Raymond van Barneveld">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2007.jpg" />
+                        <h2 class="timeline__content-title">2007</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="John Part">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2008.jpg" />
+                        <h2 class="timeline__content-title">2008</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2009.jpg" />
+                        <h2 class="timeline__content-title">2009</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2010.jpg" />
+                        <h2 class="timeline__content-title">2010</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Adrian Lewis">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2011.jpg" />
+                        <h2 class="timeline__content-title">2011</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Adrian Lewis">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2012.jpg" />
+                        <h2 class="timeline__content-title">2012</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Phil Taylor">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2013.jpg" />
+                        <h2 class="timeline__content-title">2013</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Michael van Gerwen">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2014.jpg" />
+                        <h2 class="timeline__content-title">2014</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Gary Anderson">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2015.jpg" />
+                        <h2 class="timeline__content-title">2015</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Gary Anderson">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2016.jpg" />
+                        <h2 class="timeline__content-title">2016</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Michael van Gerwen">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2017.jpg" />
+                        <h2 class="timeline__content-title">2017</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Rob Cross">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2018.jpg" />
+                        <h2 class="timeline__content-title">2018</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-text="Michael van Gerwen">
+                    <div class="timeline__content"><img class="timeline__img" src="./images/2019.jpg" />
+                        <h2 class="timeline__content-title">2019</h2>
+                        <p class="timeline__content-desc"></p>
+                    </div>
+                </div>
+            </div>
+            <script src="./script/timeline.js"></script>
+            <script src="./script/navigationFirebase.js"></script>
+            <script src="./script/index.js"></script>
+            <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+            <script>
+                AOS.init();
+            </script>
 </body>
 
 </html>
