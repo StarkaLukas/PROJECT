@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: 'Noto Sans KR', sans-serif;
   user-select: none;
-  background: linear-gradient(720deg, #000000 0%, #4D4D4D 20%, #999999 40%, rgb(223, 213, 213) 60%, white 100%);
+  background: #ebebeb;
   overflow-x: hidden;
 }
 
