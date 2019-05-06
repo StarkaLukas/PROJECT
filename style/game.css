@@ -339,3 +339,9 @@ svg{
   position: absolute;
   height: 6vh;
 }
+
+.optionsDart::after{
+    content: "";
+    clear: both;
+    display: table;
+}

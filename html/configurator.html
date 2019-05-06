@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="icon" href="../images/favicon.png" type="image/gif" sizes="32x32">
 </head>
 
 <body onload="start()">
@@ -33,22 +34,23 @@
     </nav>
     <nav class="nav1">
         <div id="loggedIn" style="display: none;">
-                <a href="../index.html"><img class="dartZone" src="../images/dartzone.jpg" alt="DartZone"></a>
-            <ul class="ulist">
-                    <button class="btn btn-default dropdown-toggle" id="dropdown-button" type="button"
-                        data-toggle="dropdown">
-                        Your account<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
-                        <li class="list2"><a href="./profile.html" id="name" style="color: black;">.</a></li>
-                        <li class="divider list2"></li>
-                        <li class="list2"><a onclick="logOut()" style="color: white">Log out</a></li>
-                    </ul>
-                </div>
-                <li class="list"><a href="./configurator.html">Dart Configurator</a></li>
-                <li class="list"><a href="./game.html">Game On</a></li>
-            </ul>
-        </div>
+            <a href="../index.html"><img class="dartZone" src="../images/dartzone.jpg" alt="DartZone"></a>
+        <ul class="ulist">
+            <div>
+                <button class="btn btn-default dropdown-toggle" id="dropdown-button" type="button"
+                    data-toggle="dropdown">
+                    Your account<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
+                    <li class="list2"><a href="./profile.html" id="name" style="color: black;">.</a></li>
+                    <li class="divider list2"></li>
+                    <li class="list2"><a onclick="logOut()" style="color: white">Log out</a></li>
+                </ul>
+            </div>
+            <li class="list"><a href="./configurator.html">Dart Configurator</a></li>
+            <li class="list"><a href="./game.html">Game On</a></li>
+        </ul>
+    </div>
     </nav>
     <nav class="nav2">
         <div id="placeHolder" style="display: block;">
