@@ -94,6 +94,8 @@ nav {
     font-size: 6vh;
     position: absolute;
     margin-left: 15vw;
+    border: none;
+    border-bottom: 2px lightgray solid;
 }
 
 #dropdown-button {
