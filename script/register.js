@@ -116,18 +116,18 @@ function start() {
     document.getElementById('home').addEventListener('click', ()=>{
         window.open('../index.html', '_self');
     });
-    document.getElementById('hidden1').addEventListener('click', () =>{
-        passwordVisibility(document.getElementById('password'), document.getElementById('hidden1'), document.getElementById('visible1'), false);
-    });
-    document.getElementById('visible1').addEventListener('click', () =>{
-        passwordVisibility(document.getElementById('password'), document.getElementById('visible1'), document.getElementById('hidden1'), true);
-    });
-    document.getElementById('hidden2').addEventListener('click', () =>{
-        passwordVisibility(document.getElementById('password2'), document.getElementById('hidden2'), document.getElementById('visible2'), false);
-    });
-    document.getElementById('visible2').addEventListener('click', () =>{
-        passwordVisibility(document.getElementById('password2'), document.getElementById('visible2'), document.getElementById('hidden2'), true);
-    });
+    // document.getElementById('hidden1').addEventListener('click', () =>{
+    //     passwordVisibility(document.getElementById('password'), document.getElementById('hidden1'), document.getElementById('visible1'), false);
+    // });
+    // document.getElementById('visible1').addEventListener('click', () =>{
+    //     passwordVisibility(document.getElementById('password'), document.getElementById('visible1'), document.getElementById('hidden1'), true);
+    // });
+    // document.getElementById('hidden2').addEventListener('click', () =>{
+    //     passwordVisibility(document.getElementById('password2'), document.getElementById('hidden2'), document.getElementById('visible2'), false);
+    // });
+    // document.getElementById('visible2').addEventListener('click', () =>{
+    //     passwordVisibility(document.getElementById('password2'), document.getElementById('visible2'), document.getElementById('hidden2'), true);
+    // });
 
     document.onkeydown = keyListener;
 }
@@ -657,8 +657,7 @@ function saveUser(username, email, day, month, year, password) {
         email: email,
         day: day,
         month: month,
-        year: year,
-        password: password
+        year: year
     }, (error) => {
         if (error) {
             console.log('%c Error!', 'color: #FF0000');
