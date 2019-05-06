@@ -49,12 +49,12 @@ function check() {
         window.open('../index.html', '_self');
     });
     
-    document.getElementById('hidden').addEventListener('click', () =>{
-        passwordVisibility(document.getElementById('password'), document.getElementById('hidden'), document.getElementById('visible'), false);
-    });
-    document.getElementById('visible').addEventListener('click', () =>{
-        passwordVisibility(document.getElementById('password'), document.getElementById('visible'), document.getElementById('hidden'), true);
-    });
+    // document.getElementById('hidden').addEventListener('click', () =>{
+    //     passwordVisibility(document.getElementById('password'), document.getElementById('hidden'), document.getElementById('visible'), false);
+    // });
+    // document.getElementById('visible').addEventListener('click', () =>{
+    //     passwordVisibility(document.getElementById('password'), document.getElementById('visible'), document.getElementById('hidden'), true);
+    // });
     document.onkeydown = keyListener;
 }
 
