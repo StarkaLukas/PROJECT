@@ -66,7 +66,7 @@
                 <div class="option">
                     <p>Game type</p>
                     <div class="select">
-                        <select name="gameType" id="gameType">
+                        <select name="gameType" id="gameType" class="selectField">
                             <option value="platzhalter" disabled selected hidden>---</option>
                             <option>170</option>
                             <option>201</option>
@@ -77,6 +77,7 @@
                             <option>Custom</option>
                         </select>
                     </div>
+                    <p id="faultGameType" class="faultText"></p>
                     <div id="customPoints" style="display: none">
                         <input type="text" name="customPoints" id="customPoints">
                     </div>
@@ -95,44 +96,49 @@
                 <div class="option">
                     <p>Opponent</p>
                     <div class="select">
-                        <select name="opponentType" id="opponentType">
+                        <select name="opponentType" id="opponentType" class="selectField">
                             <option value="platzhalter" disabled selected hidden>---</option>
                             <option>Single (no opponent)</option>
                             <option>Trainer (computer)</option>
                             <option>Guest (local opponent)</option>
                         </select>
+                        
                     </div>
-
+                    <p class="faultText"></p>
                     <div id="computerDifficulty" style="display: none">
                         <p>Level</p>
                         <input type="range" name="difficulty" id="difficulty">
                         <p>Start to throw</p>
                         <div class="select">
-                            <select name="startToThrow" id="startToThrow">
+                            <select name="startToThrow" id="startToThrow" class="selectField">
                                 <option value="platzhalter" disabled selected hidden>---</option>
                                 <option>Me</option>
                                 <option>Opponent</option>
                             </select>
                         </div>
+                        <p class="faultText"></p>
                     </div>
                     <div id="localPlayer" style="display: none">
                         <p>Start to throw</p>
                         <div class="select">
-                            <select name="startToThrow" id="startToThrow">
+                            <select name="startToThrow" id="startToThrow" class="selectField">
                                 <option value="platzhalter" disabled selected hidden>---</option>
                                 <option>Me</option>
                                 <option>Opponent</option>
                             </select>
                         </div>
+                        <p class="faultText"></p>
                     </div>
                 </div>
                 <div class="option">
                     <p>Best of Sets</p>
                     <div class="select">
-                        <select name="bestOfSets" id="bestOfSets">
+                        <select name="bestOfSets" id="bestOfSets" class="selectField">
                             <option value="platzhalter" disabled selected hidden>---</option>
                         </select>
+                        
                     </div>
+                    <p class="faultText"></p>
                     <p>Draw possible?</p>
                     <input type="checkbox" name="drawSets" id="drawSets">
 
@@ -141,10 +147,11 @@
                 <div class="option">
                     <p>Best of Legs</p>
                     <div class="select">
-                        <select name="bestOfLegs" id="bestOfLegs">
+                        <select name="bestOfLegs" id="bestOfLegs" class="selectField">
                             <option value="platzhalter" disabled selected hidden>---</option>
                         </select>
                     </div>
+                    <p class="faultText"></p>
                     <p>Draw possible?</p>
                     <input type="checkbox" name="drawLegs" id="drawLegs">
                 </div>

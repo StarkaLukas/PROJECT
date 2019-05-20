@@ -345,3 +345,7 @@ svg{
     clear: both;
     display: table;
 }
+
+.faultText{
+  color: red;
+}

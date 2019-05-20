@@ -67,9 +67,9 @@ class Player {
     //     }
 }
 
-let score = 501;
+let score, computerLevel, faults;
+let amountLegsAndSets = 21;
 let fields = new Array;
-let computerLevel = 1;
 let you = new Player(0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
 let component = new Player(0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
 
@@ -82,7 +82,9 @@ function start2() {
     }, 2000);
     writeNameOfComputer('computername');
     prepareOptions();
-    document.getElementById('submitButton').addEventListener('click', clickFunction);
+    document.getElementById('submitButton').addEventListener('click', checkSettings);
+    insertNumbers(document.getElementById('bestOfSets'), amountLegsAndSets, false);
+    insertNumbers(document.getElementById('bestOfLegs'), amountLegsAndSets, false);
 }
 function createFields() {
     for (let i = 1; i <= 20; i++) {
@@ -210,7 +212,37 @@ function prepareOptions() {
     document.addEventListener("click", closeAllSelect);
 }
 
-function clickFunction(){
+function switchGameMode(){
     document.getElementById('options').style.display = 'none';
     document.getElementById('game').style.display = 'block';
+}
+
+function checkSettings(){
+    faults = '';
+    for (let i = 0; i < document.getElementsByClassName('selectField').length; i++) {
+        checkBlank(document.getElementsByClassName('selectField')[i], document.getElementsByClassName('faultText')[i]); 
+    }
+}
+
+function checkBlank(field, faultField){
+    if(field.selectedIndex === 0){
+        faultField.innerHTML = "Field can't be blank!<br>";
+        faults = "Field can't be blank";
+    }
+    else{
+        faultField.innerHTML = '';
+    }
+}
+
+function insertNumbers(field, amount, drawPossible){
+    for (let i = 0; i < amount; i++) {
+        if(!drawPossible){
+            if(i % 2 === 1){
+                field.innerHTML += '<option value="1">1</option>';
+            }
+        }else{
+            field.innerHTML += '<option>' + i + '</option>';
+        } 
+    }
+
 }
