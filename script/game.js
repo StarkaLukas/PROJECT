@@ -79,12 +79,20 @@ function start2() {
     createFields();
     setTimeout(() => {
         writeNameOfUser('username');
+        
     }, 2000);
+    setTimeout(() =>{
+        prepareOptions();
+    }, 10)
     writeNameOfComputer('computername');
-    prepareOptions();
     document.getElementById('submitButton').addEventListener('click', checkSettings);
     insertNumbers(document.getElementById('bestOfSets'), amountLegsAndSets, false);
     insertNumbers(document.getElementById('bestOfLegs'), amountLegsAndSets, false);
+    document.getElementById('drawLegs').addEventListener('click', drawLegs);
+    document.getElementById('drawSets').addEventListener('click', drawSets);
+    for (let i = 0; i < document.getElementsByClassName('select').length; i++) {
+        document.getElementsByClassName('select')[i].addEventListener('click', () =>{ removeErrorText(document.getElementsByClassName('faultText')[i])});
+    }
 }
 function createFields() {
     for (let i = 1; i <= 20; i++) {
@@ -235,14 +243,37 @@ function checkBlank(field, faultField){
 }
 
 function insertNumbers(field, amount, drawPossible){
-    for (let i = 0; i < amount; i++) {
+    
+    for (let i = 1; i < amount; i++) {
         if(!drawPossible){
             if(i % 2 === 1){
-                field.innerHTML += '<option value="1">1</option>';
+                field.innerHTML += '<option>' + i + '</option>';
             }
         }else{
             field.innerHTML += '<option>' + i + '</option>';
         } 
     }
+}
 
+
+// function drawLegs(){
+
+// }
+
+// function drawSets(){
+//     let checkBox = document.getElementById('drawSets');
+
+//     if(checkBox.checked){
+//         insertNumbers(document.getElementById('bestOfSets'), amountLegsAndSets, true);
+//         console.log('draw');
+//         prepareOptions();
+//     }
+//     else{
+//         insertNumbers(document.getElementById('bestOfSets'), amountLegsAndSets, false);
+//         prepareOptions();
+//     }
+// }
+
+function removeErrorText(textField){
+    textField.innerHTML = '';
 }
