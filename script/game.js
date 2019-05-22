@@ -93,6 +93,7 @@ function start2() {
     for (let i = 0; i < document.getElementsByClassName('select').length; i++) {
         document.getElementsByClassName('select')[i].addEventListener('click', () =>{ removeErrorText(document.getElementsByClassName('faultText')[i])});
     }
+    document.getElementsByClassName('select')[0].addEventListener('click', gameTypeFunction)
 }
 function createFields() {
     for (let i = 1; i <= 20; i++) {
@@ -276,4 +277,22 @@ function insertNumbers(field, amount, drawPossible){
 
 function removeErrorText(textField){
     textField.innerHTML = '';
+}
+
+function gameTypeFunction(){
+    if(document.getElementById('gameType').selectedIndex === 7){
+        customGameType();
+    }
+    else{
+        nonCustomGameType();
+        score = parseInt(document.getElementById('gameType').value);
+    }
+}
+
+function customGameType(){
+    document.getElementById('customPoints').style.display = 'block';
+}
+
+function nonCustomGameType(){
+    document.getElementById('customPoints').style.display = 'none';
 }
