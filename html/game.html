@@ -25,7 +25,7 @@
 <body onload="start()">
     <nav class="nav1">
         <div id="notLoggedIn" style="display: none;">
-                <a href="../index.html"><img class="dartZone" src="../images/dartzone.jpg" alt="DartZone"></a>
+            <a href="../index.html"><img class="dartZone" src="../images/dartzone.jpg" alt="DartZone"></a>
             <ul class="ulist">
                 <li class="list"><a href="./login.html" style="margin-right: 0.5vw;">Login</a></li>
                 <li class="list"><a href="./register.html">Register</a></li>
@@ -34,7 +34,7 @@
     </nav>
     <nav class="nav1">
         <div id="loggedIn" style="display: none;">
-                <a href="../index.html"><img class="dartZone" src="../images/dartzone.jpg" alt="DartZone"></a>
+            <a href="../index.html"><img class="dartZone" src="../images/dartzone.jpg" alt="DartZone"></a>
             <ul class="ulist">
                 <div>
                     <button class="btn btn-default dropdown-toggle" id="dropdown-button" type="button"
@@ -62,7 +62,6 @@
     <div id="content" style="display:none">
         <div id="options">
             <h1>Choose your settings</h1>
-            <form id="optionsForm" action="">
                 <div class="option">
                     <p>Game type</p>
                     <div class="select">
@@ -78,19 +77,41 @@
                         </select>
                     </div>
                     <p id="faultGameType" class="faultText"></p>
-                    <div id="customPoints" style="display: none">
-                        <input type="text" name="customPoints" id="customPoints">
-                    </div>
                     <div id="gameoptions" style="display: none">
-                        <form>
-                            <input type="radio" name="s_out" id="s_out">Single Out
-                            <input type="radio" name="d_out" id="d_out">Double Out
-                            <input type="radio" name="m_out" id="m_out">Master Out
-                        </form>
-                        <form>
-                            <input type="radio" name="s_in" id="s_in">Straight In
-                            <input type="radio" name="d_in" id="d_in">Double In
-                        </form>
+                        <form></form>
+                        <div class="gameoptionsRow">
+                            <div class="classgameoptionThree">
+                                <strong>Single Out</strong>
+                                <br>
+                                <input type="radio" name="s_out" id="s_out" class="radioButton out">
+                            </div>
+                            <div class="classgameoptionThree">
+                                <strong>Double Out</strong>
+                                <br>
+                                <input type="radio" name="d_out" id="d_out" class="radioButton out">
+                            </div>
+                            <div class="classgameoptionThree">
+                                <strong>Master Out</strong>
+                                <br>
+                                <input type="radio" name="m_out" id="m_out" class="radioButton out">
+                            </div>
+                            <p class="faultRadio"></p>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="separator"></div>
+                        <div class="gameoptionsRow">
+                            <div class="classgameoptionTwo">
+                                <strong>Single In</strong>
+                                <br>
+                                <input type="radio" name="s_in" id="s_in" class="radioButton in">
+                            </div>
+                            <div class="classgameoptionTwo">
+                                <strong>Double In</strong>
+                                <br>
+                                <input type="radio" name="d_in" id="d_in" class="radioButton in">
+                            </div>
+                            <p class="faultRadio"></p>
+                        </div>
                     </div>
                 </div>
                 <div class="option">
@@ -102,63 +123,80 @@
                             <option>Trainer (computer)</option>
                             <option>Guest (local opponent)</option>
                         </select>
-                        
+
                     </div>
                     <p class="faultText"></p>
                     <div id="computerDifficulty" style="display: none">
-                        <p>Level</p>
-                        <input type="range" name="difficulty" id="difficulty">
+                        <p>Level </p><strong id="difficultyText">5</strong>
+                        <input type="range" class="difficulty" name="difficulty" id="difficulty" min="1" max="10"
+                            value="5">
+
+                        <div class="clear"></div>
+                        <div class="separator"></div>
+
                         <p>Start to throw</p>
-                        <div class="select">
-                            <select name="startToThrow" id="startToThrow" class="selectField">
-                                <option value="platzhalter" disabled selected hidden>---</option>
-                                <option>Me</option>
-                                <option>Opponent</option>
-                            </select>
+                        <div class="gameoptionsRow">
+                            <div class="classgameoptionTwo">
+                                <strong>Me</strong>
+                                <br>
+                                <input type="radio" name="meStart" id="meStart" class="radioButton start1">
+                            </div>
+                            <div class="classgameoptionTwo">
+                                <strong>Opponent</strong>
+                                <br>
+                                <input type="radio" name="youStart" id="youStart" class="radioButton start1">
+                            </div>
+                            <p class="faultRadio"></p>
                         </div>
-                        <p class="faultText"></p>
+
                     </div>
                     <div id="localPlayer" style="display: none">
                         <p>Start to throw</p>
+                        <div class="gameoptionsRow">
+                            <div class="classgameoptionTwo">
+                                <strong>Me</strong>
+                                <br>
+                                <input type="radio" name="meStart" id="meStart" class="radioButton start2">
+                            </div>
+                            <div class="classgameoptionTwo">
+                                <strong>Opponent</strong>
+                                <br>
+                                <input type="radio" name="youStart" id="youStart" class="radioButton start2">
+                            </div>
+                            <p class="faultRadio"></p>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="separator"></div>
+                        <div class="gameoptionsRow">
+                            <br>
+                            <p>Name of your opponent</p>
+                            <input type="text" name="nameOfOpponent" id="opponentName">
+                            <p id="faultOpponentName"></p>
+                        </div>
+                    </div>
+                    <div class="option">
+                        <p>Best of Sets</p>
                         <div class="select">
-                            <select name="startToThrow" id="startToThrow" class="selectField">
+                            <select name="bestOfSets" id="bestOfSets" class="selectField">
                                 <option value="platzhalter" disabled selected hidden>---</option>
-                                <option>Me</option>
-                                <option>Opponent</option>
+                            </select>
+
+                        </div>
+                        <p class="faultText"></p>
+                    </div>
+                    <div class="option">
+                        <p>Best of Legs</p>
+                        <div class="select">
+                            <select name="bestOfLegs" id="bestOfLegs" class="selectField">
+                                <option value="platzhalter" disabled selected hidden>---</option>
                             </select>
                         </div>
                         <p class="faultText"></p>
                     </div>
-                </div>
-                <div class="option">
-                    <p>Best of Sets</p>
-                    <div class="select">
-                        <select name="bestOfSets" id="bestOfSets" class="selectField">
-                            <option value="platzhalter" disabled selected hidden>---</option>
-                        </select>
-                        
+                    <div class="option">
+                        <button id="submitButton">Game On!</button>
                     </div>
-                    <p class="faultText"></p>
-                    <p>Draw possible?</p>
-                    <input type="checkbox" name="drawSets" id="drawSets">
-
-                    <br>
                 </div>
-                <div class="option">
-                    <p>Best of Legs</p>
-                    <div class="select">
-                        <select name="bestOfLegs" id="bestOfLegs" class="selectField">
-                            <option value="platzhalter" disabled selected hidden>---</option>
-                        </select>
-                    </div>
-                    <p class="faultText"></p>
-                    <p>Draw possible?</p>
-                    <input type="checkbox" name="drawLegs" id="drawLegs">
-                </div>
-                <div class="option">
-                    <button id="submitButton">Game On!</button>
-                </div>
-            </form>
         </div>
         <div id="game" style="display: none">
             <div id="dartboard">

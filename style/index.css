@@ -165,44 +165,42 @@ nav {
 #right {
   right: 7vw;
   transition: right 1000ms ease-in-out;
+  animation: leftAnimation 1s ease-in-out infinite;
 }
 
 #left {
   left: 7vw;
   transition: left 1000ms ease-in-out;
+  animation: leftAnimation 1s ease-in-out infinite;
 }
 
 #left:hover {
   left: 6vw;
-  animation: leftAnimation 1000ms ease-in-out;
 }
 
 #right:hover {
   right: 6vw;
-  animation: rightAnimation 1000ms ease-in-out;
-}
-
-@keyframes leftAnimation {
-  0% {
-    left: 7vw
-  }
-  50% {
-    left: 6vw
-  }
-  100% {
-    left: 7vw
-  }
 }
 
 @keyframes rightAnimation {
-  0% {
-    right: 7vw
-  }
-  50% {
-    right: 6vw
-  }
+  0%,
   100% {
-    right: 7vw
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(10px, 0);
+  }
+}
+
+@keyframes leftAnimation {
+  0%,
+  100% {
+    transform: translate(10px, 0);
+  }
+
+  50% {
+    transform: translate(0, 0);
   }
 }
 
@@ -374,6 +372,7 @@ nav {
   text-decoration: none;
   color: white;
   text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  
 }
 
 
@@ -470,4 +469,60 @@ nav {
 .imageRight{
   position: relative;
   left: 50vw;
+}
+
+.arrow {
+  cursor: pointer;
+  height: 4vh;
+  position: relative;
+  transform: translateX(-50%) translateY(-50%);
+  transition: transform .1s;
+  width: 2.6vh;
+  top: 1.8vh;
+  left: 1.3vw;
+}
+.arrow-top, .arrow-bottom {
+  background-color: white;
+  height: 4px;
+  left: -5px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+.arrow-top:after, .arrow-bottom:after {
+  background-color: gray;
+  content: '';
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: all 0.15s;
+}
+.arrow-top {
+  transform: rotate(45deg);
+  transform-origin: bottom right;
+}
+.arrow-top:after {
+  left: 100%;
+  right: 0;
+  transition-delay: 0s;
+}
+.arrow-bottom {
+  transform: rotate(-45deg);
+  transform-origin: top right;
+}
+.arrow-bottom:after {
+  left: 0;
+  right: 100%;
+  transition-delay: 0.15s;
+}
+.linkBox:hover .arrow-top:after {
+  left: 0;
+  transition-delay: 0.15s;
+}
+.linkBox:hover .arrow-bottom:after {
+  right: 0;
+  transition-delay: 0s;
+}
+.arrow:active {
+  transform: translateX(-50%) translateY(-50%) scale(0.9);
 }

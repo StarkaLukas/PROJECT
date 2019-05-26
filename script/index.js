@@ -49,7 +49,6 @@ function startIndex() {
         actualSlide++;
         slide(actualSlide);
     });
-    hoverFunctionLinkBox();
     writeWelcomeBack();
 }
 
@@ -98,25 +97,25 @@ function changeColor(slide){
     }
 }
 
-function hoverFunctionLinkBox(){
-    let element, box;
+// function hoverFunctionLinkBox(){
+//     let element, box;
 
-    for (let i = 1; i < 7; i++) {
+//     for (let i = 1; i < 7; i++) {
         
-        element = 'arrow' + i;
-        box = 'linkBox' + i;
+//         element = 'arrow' + i;
+//         box = 'linkBox' + i;
         
-        console.log(element);
-        console.log(box);
+//         console.log(element);
+//         console.log(box);
         
-        document.getElementById(box).addEventListener('mouseover', ()=>{
-            document.getElementById(element).style.color = 'yellow';
-        });
-        document.getElementById(box).addEventListener('mouseout', ()=>{
-            hoverArrowOut(element);
-        });
-    }
-}
+//         document.getElementById(box).addEventListener('mouseover', ()=>{
+//             document.getElementById(element).style.color = 'yellow';
+//         });
+//         document.getElementById(box).addEventListener('mouseout', ()=>{
+//             hoverArrowOut(element);
+//         });
+//     }
+// }
 
 function hoverArrow(elementToChange){
     console.log(elementToChange);

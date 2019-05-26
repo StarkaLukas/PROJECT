@@ -6,7 +6,7 @@ body{
     color: lightslategray;
     font-family: 'Noto Sans KR', sans-serif;
 }
-/* input[type=text]{
+ input[type=text], input[type=password]{
     width: 20vw;
     padding: 1%;
     border: none;
@@ -14,7 +14,8 @@ body{
     background-color: white;
     color: black;
     font-family: 'Noto Sans KR', sans-serif;
-} */
+}
+/*
 input[type=password], input[type=text]{
     width: 15vw;
     display: inline-block;
@@ -22,7 +23,7 @@ input[type=password], input[type=text]{
     font-family: 'Noto Sans KR', sans-serif;
     border: none;
     border-bottom: 2px black solid;
-}
+} */
 i {
     display: inline-block;
 }

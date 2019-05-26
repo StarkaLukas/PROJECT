@@ -67,7 +67,7 @@ class Player {
     //     }
 }
 
-let score, computerLevel, faults;
+let score, computerLevel, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '';
 let amountLegsAndSets = 21;
 let fields = new Array;
 let you = new Player(0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
@@ -79,21 +79,64 @@ function start2() {
     createFields();
     setTimeout(() => {
         writeNameOfUser('username');
-        
+
     }, 2000);
-    setTimeout(() =>{
+    setTimeout(() => {
         prepareOptions();
     }, 10)
     writeNameOfComputer('computername');
     document.getElementById('submitButton').addEventListener('click', checkSettings);
     insertNumbers(document.getElementById('bestOfSets'), amountLegsAndSets, false);
     insertNumbers(document.getElementById('bestOfLegs'), amountLegsAndSets, false);
-    document.getElementById('drawLegs').addEventListener('click', drawLegs);
-    document.getElementById('drawSets').addEventListener('click', drawSets);
+    // document.getElementById('drawLegs').addEventListener('click', drawLegs);
+    // document.getElementById('drawSets').addEventListener('click', drawSets);
     for (let i = 0; i < document.getElementsByClassName('select').length; i++) {
-        document.getElementsByClassName('select')[i].addEventListener('click', () =>{ removeErrorText(document.getElementsByClassName('faultText')[i])});
+        document.getElementsByClassName('select')[i].addEventListener('click', () => { removeErrorText(document.getElementsByClassName('faultText')[i]) });
     }
+<<<<<<< HEAD
+    document.getElementsByClassName('select')[0].addEventListener('click', gameTypeFunction);
+    document.getElementsByClassName('select')[1].addEventListener('click', opponentFunction);
+    document.getElementById('difficulty').addEventListener('input', () => {
+        changeLevel(document.getElementById('difficulty'), document.getElementById('difficultyText'));
+    });
+
+    for (let i = 0; i < document.getElementsByClassName('radioButton').length; i++) {
+        const element = document.getElementsByClassName('radioButton')[i];
+        let secondClass, faultPlace;
+
+        element.addEventListener('click', () => {
+            switch (i) {
+                case 0:
+                case 1:
+                case 2:
+                    secondClass = 'out';
+                    faultPlace = 0;
+                    break;
+                case 3:
+                case 4:
+                    secondClass = 'in';
+                    faultPlace = 1;
+                    break;
+                case 5:
+                case 6:
+                    secondClass = 'start1';
+                    faultPlace = 2;
+                    break;
+                case 7:
+                case 8:
+                    secondClass = 'start2';
+                    faultPlace = 3;
+                    break;
+            }
+            
+            radioFunction(element, secondClass);
+            radioErrorFunction(secondClass, faultPlace);
+        });
+    }
+    document.getElementById('opponentName').addEventListener('keyup', checkOpponentName);
+=======
     document.getElementsByClassName('select')[0].addEventListener('click', gameTypeFunction)
+>>>>>>> 9860fdd508b6ca1e66c912b279b5a9f211791bfa
 }
 function createFields() {
     for (let i = 1; i <= 20; i++) {
@@ -221,38 +264,47 @@ function prepareOptions() {
     document.addEventListener("click", closeAllSelect);
 }
 
-function switchGameMode(){
+function switchGameMode() {
     document.getElementById('options').style.display = 'none';
     document.getElementById('game').style.display = 'block';
 }
 
-function checkSettings(){
+function checkSettings() {
     faults = '';
     for (let i = 0; i < document.getElementsByClassName('selectField').length; i++) {
-        checkBlank(document.getElementsByClassName('selectField')[i], document.getElementsByClassName('faultText')[i]); 
+        checkBlank(document.getElementsByClassName('selectField')[i], document.getElementsByClassName('faultText')[i]);
+    }
+    if (faults === '' && faultsRadio1 === '' && faultsRadio2 === '' && faultsRadio3 === '' && faultsRadio4 === '' && faultsAmount === '' && faultsOpponent === '') {
+        switchGameMode();
     }
 }
 
-function checkBlank(field, faultField){
-    if(field.selectedIndex === 0){
+function checkBlank(field, faultField) {
+    if (field.selectedIndex === 0) {
         faultField.innerHTML = "Field can't be blank!<br>";
         faults = "Field can't be blank";
     }
-    else{
+    else {
         faultField.innerHTML = '';
     }
 }
 
-function insertNumbers(field, amount, drawPossible){
-    
+function insertNumbers(field, amount, drawPossible) {
+
     for (let i = 1; i < amount; i++) {
-        if(!drawPossible){
-            if(i % 2 === 1){
-                field.innerHTML += '<option>' + i + '</option>';
+        if (!drawPossible) {
+            if (i % 2 === 1) {
+                let option = document.createElement('option');
+                option.textContent = i;
+
+                field.appendChild(option);
             }
-        }else{
-            field.innerHTML += '<option>' + i + '</option>';
-        } 
+        } else {
+            let option = document.createElement('option');
+            option.textContent = i;
+
+            field.appendChild(option);
+        }
     }
 }
 
@@ -275,24 +327,212 @@ function insertNumbers(field, amount, drawPossible){
 //     }
 // }
 
-function removeErrorText(textField){
+function removeErrorText(textField) {
     textField.innerHTML = '';
 }
 
+<<<<<<< HEAD
+function gameTypeFunction() {
+    if (document.getElementById('gameType').selectedIndex === 7) {
+        customGameType();
+    }
+    else {
+=======
 function gameTypeFunction(){
     if(document.getElementById('gameType').selectedIndex === 7){
         customGameType();
     }
     else{
+>>>>>>> 9860fdd508b6ca1e66c912b279b5a9f211791bfa
         nonCustomGameType();
         score = parseInt(document.getElementById('gameType').value);
     }
 }
 
+<<<<<<< HEAD
+function customGameType() {
+    showCustomInput(document.getElementById('gameoptions'));
+    showGameTypeOptions();
+}
+
+function nonCustomGameType() {
+    hideCustomInput(document.getElementById('gameoptions'));
+    showGameTypeOptions();
+}
+
+function showGameTypeOptions() {
+    document.getElementById('gameoptions').style.display = 'block';
+}
+
+function showCustomInput(fieldToAppend) {
+    if (document.getElementById('customPoints') === null) {
+        let divbox = document.createElement('div');
+        divbox.setAttribute('id', 'customPoints');
+        let clear = document.createElement('div');
+        clear.setAttribute('class', 'clear');
+        let separator = document.createElement('div');
+        separator.setAttribute('class', 'separator');
+
+        fieldToAppend.appendChild(clear);
+        fieldToAppend.appendChild(separator);
+        fieldToAppend.appendChild(divbox);
+
+
+        let amountText = document.createElement('p');
+        amountText.textContent = 'Amount';
+
+        let inputCustomPoints = document.createElement('input');
+        inputCustomPoints.setAttribute('type', 'text');
+        inputCustomPoints.setAttribute('id', 'customPointsInput');
+
+        let faultText = document.createElement('p');
+        faultText.setAttribute('id', 'faultAmount');
+
+        document.getElementById('customPoints').appendChild(amountText);
+        document.getElementById('customPoints').appendChild(inputCustomPoints);
+        document.getElementById('customPoints').appendChild(faultText);
+        document.getElementById('customPointsInput').addEventListener('keyup', pointsCheck);
+    }
+}
+
+function hideCustomInput(fieldToRemove) {
+    if (document.getElementById('customPoints') !== null) {
+        fieldToRemove.removeChild(document.getElementsByClassName('separator')[1]);
+        fieldToRemove.removeChild(document.getElementById('customPoints'));
+    }
+
+}
+
+function opponentFunction() {
+    if (document.getElementById('opponentType').selectedIndex === 1) {
+        document.getElementById('computerDifficulty').style.display = 'none';
+        document.getElementById('localPlayer').style.display = 'none';
+    }
+    else if (document.getElementById('opponentType').selectedIndex === 2) {
+        document.getElementById('computerDifficulty').style.display = 'block';
+        document.getElementById('localPlayer').style.display = 'none';
+    }
+    else if (document.getElementById('opponentType').selectedIndex === 3) {
+        document.getElementById('computerDifficulty').style.display = 'none';
+        document.getElementById('localPlayer').style.display = 'block';
+    }
+}
+
+
+function changeLevel(field, textField) {
+    textField.textContent = field.value;
+}
+
+function radioFunction(active, deactive) {
+    for (let i = 0; i < document.getElementsByClassName(deactive).length; i++) {
+        const element = document.getElementsByClassName(deactive)[i];
+        element.checked = false;
+        if (element !== active) {
+            element.data = '';
+        }
+        // console.log(element);
+    }
+    if (active.data === 'checked') {
+        active.checked = false;
+        active.data = '';
+    } else {
+        active.checked = true;
+        active.data = 'checked';
+    }
+}
+
+function radioErrorFunction(radioClass, faultTextPlace) {
+    let oneChecked = false;
+
+    for (let i = 0; i < document.getElementsByClassName(radioClass).length; i++) {
+        const element = document.getElementsByClassName(radioClass)[i];
+        if (element.checked) {
+            oneChecked = true;
+        }
+    }
+
+    if (oneChecked) {
+        document.getElementsByClassName('faultRadio')[faultTextPlace].textContent = '';
+        switch (faultTextPlace) {
+            case 0:
+                faultsRadio1 = '';
+                break;
+            case 1:
+                faultsRadio2 = '';
+                break;
+            case 2:
+                faultsRadio3 = '';
+                break;
+            case 3:
+                faultsRadio4 = '';
+                break;
+        }
+    }
+    else {
+        document.getElementsByClassName('faultRadio')[faultTextPlace].textContent = 'One option must be picked!';
+        switch (faultTextPlace) {
+            case 0:
+                faultsRadio1 = 'One option must be picked!';
+                break;
+            case 1:
+                faultsRadio2 = 'One option must be picked!';
+                break;
+            case 2:
+                faultsRadio3 = 'One option must be picked!';
+                break;
+            case 3:
+                faultsRadio4 = 'One option must be picked!';
+                break;
+        }
+    }
+}
+
+function checkOpponentName(){
+    let pat = /./g;
+    let res = pat.test(document.getElementById('opponentName').value);
+
+    if(res){
+        faultsOpponent = '';
+        document.getElementById('faultOpponentName').textContent = '';
+        document.getElementById('opponentName').style.borderBottomColor = 'black';
+    }else{
+        faultsOpponent += "Name can't be blank";
+        document.getElementById('faultOpponentName').textContent = "Name can't be blank!";
+        document.getElementById('opponentName').style.borderBottomColor = 'red';
+    }
+}
+
+function pointsCheck(){
+    let amount = parseInt(document.getElementById('customPointsInput').value);
+
+    if(isNaN(amount)){
+        faultsAmount += 'Please enter a number\n';
+        document.getElementById('faultAmount').textContent = 'Please enter a number!';
+        document.getElementById('customPointsInput').style.borderBottomColor = 'red';
+    }
+    else if(amount < 2){
+        if(amount >= 0){
+            faultsAmount += 'This amount is invalid\n';
+            document.getElementById('faultAmount').textContent = 'This amount is invalid!';
+            document.getElementById('customPointsInput').style.borderBottomColor = 'red';
+        }
+        else{
+            faultsAmount += "Negative amounts aren't allowed\n";
+            document.getElementById('faultAmount').textContent = "Negative amounts aren't allowed!";
+            document.getElementById('customPointsInput').style.borderBottomColor = 'red';
+        }
+    }
+    else{
+        faultsAmount = '';
+        document.getElementById('faultAmount').textContent = '';
+        document.getElementById('customPointsInput').style.borderBottomColor = 'black';
+    }
+=======
 function customGameType(){
     document.getElementById('customPoints').style.display = 'block';
 }
 
 function nonCustomGameType(){
     document.getElementById('customPoints').style.display = 'none';
+>>>>>>> 9860fdd508b6ca1e66c912b279b5a9f211791bfa
 }
