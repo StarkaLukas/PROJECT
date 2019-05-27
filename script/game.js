@@ -67,7 +67,11 @@ class Player {
     //     }
 }
 
-let score, computerLevel, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '';
+let score, computerLevel, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '', sets, legs, opponent, inMethod, outMethod, startToThrow, nameOfOpponent;
+let checkBlankStart1 = false;
+let checkBlankStart2 = false;
+let opponentNameNeedsToBeChecked = false;
+let customScoreNeedsToBeChecked = false;
 let amountLegsAndSets = 21;
 let fields = new Array;
 let you = new Player(0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
@@ -93,7 +97,6 @@ function start2() {
     for (let i = 0; i < document.getElementsByClassName('select').length; i++) {
         document.getElementsByClassName('select')[i].addEventListener('click', () => { removeErrorText(document.getElementsByClassName('faultText')[i]) });
     }
-<<<<<<< HEAD
     document.getElementsByClassName('select')[0].addEventListener('click', gameTypeFunction);
     document.getElementsByClassName('select')[1].addEventListener('click', opponentFunction);
     document.getElementById('difficulty').addEventListener('input', () => {
@@ -128,15 +131,12 @@ function start2() {
                     faultPlace = 3;
                     break;
             }
-            
+
             radioFunction(element, secondClass);
             radioErrorFunction(secondClass, faultPlace);
         });
     }
     document.getElementById('opponentName').addEventListener('keyup', checkOpponentName);
-=======
-    document.getElementsByClassName('select')[0].addEventListener('click', gameTypeFunction)
->>>>>>> 9860fdd508b6ca1e66c912b279b5a9f211791bfa
 }
 function createFields() {
     for (let i = 1; i <= 20; i++) {
@@ -274,7 +274,23 @@ function checkSettings() {
     for (let i = 0; i < document.getElementsByClassName('selectField').length; i++) {
         checkBlank(document.getElementsByClassName('selectField')[i], document.getElementsByClassName('faultText')[i]);
     }
+    radioCheckBlank('in', 0);
+    radioCheckBlank('out', 1);
+    if (checkBlankStart1) {
+        radioCheckBlank('start1', 2);
+    } else if (checkBlankStart2) {
+        radioCheckBlank('start2', 3);
+    }
+    if(customScoreNeedsToBeChecked){
+        pointsCheck();
+    }
+    if(opponentNameNeedsToBeChecked){
+        checkOpponentName();
+    }
     if (faults === '' && faultsRadio1 === '' && faultsRadio2 === '' && faultsRadio3 === '' && faultsRadio4 === '' && faultsAmount === '' && faultsOpponent === '') {
+        sets = parseInt(document.getElementById('bestOfSets').value);
+        legs = parseInt(document.getElementById('bestOfLegs').value);
+        opponent = document.getElementById('opponentType').value;
         switchGameMode();
     }
 }
@@ -331,25 +347,18 @@ function removeErrorText(textField) {
     textField.innerHTML = '';
 }
 
-<<<<<<< HEAD
 function gameTypeFunction() {
     if (document.getElementById('gameType').selectedIndex === 7) {
         customGameType();
+        customScoreNeedsToBeChecked = true;
     }
     else {
-=======
-function gameTypeFunction(){
-    if(document.getElementById('gameType').selectedIndex === 7){
-        customGameType();
-    }
-    else{
->>>>>>> 9860fdd508b6ca1e66c912b279b5a9f211791bfa
         nonCustomGameType();
         score = parseInt(document.getElementById('gameType').value);
+        customScoreNeedsToBeChecked = false;
     }
 }
 
-<<<<<<< HEAD
 function customGameType() {
     showCustomInput(document.getElementById('gameoptions'));
     showGameTypeOptions();
@@ -407,14 +416,24 @@ function opponentFunction() {
     if (document.getElementById('opponentType').selectedIndex === 1) {
         document.getElementById('computerDifficulty').style.display = 'none';
         document.getElementById('localPlayer').style.display = 'none';
+        checkBlankStart1 = false;
+        checkBlankStart2 = false;
+        opponentNameNeedsToBeChecked = false;
     }
     else if (document.getElementById('opponentType').selectedIndex === 2) {
         document.getElementById('computerDifficulty').style.display = 'block';
         document.getElementById('localPlayer').style.display = 'none';
+        checkBlankStart1 = true;
+        checkBlankStart2 = false;
+        opponentNameNeedsToBeChecked = false;
     }
     else if (document.getElementById('opponentType').selectedIndex === 3) {
         document.getElementById('computerDifficulty').style.display = 'none';
         document.getElementById('localPlayer').style.display = 'block';
+        nameOfOpponent = document.getElementById('opponentName').value;
+        checkBlankStart1 = false;
+        checkBlankStart2 = true;
+        opponentNameNeedsToBeChecked = true;
     }
 }
 
@@ -487,52 +506,97 @@ function radioErrorFunction(radioClass, faultTextPlace) {
     }
 }
 
-function checkOpponentName(){
+function checkOpponentName() {
     let pat = /./g;
     let res = pat.test(document.getElementById('opponentName').value);
 
-    if(res){
+    if (res) {
         faultsOpponent = '';
         document.getElementById('faultOpponentName').textContent = '';
         document.getElementById('opponentName').style.borderBottomColor = 'black';
-    }else{
+    } else {
         faultsOpponent += "Name can't be blank";
         document.getElementById('faultOpponentName').textContent = "Name can't be blank!";
         document.getElementById('opponentName').style.borderBottomColor = 'red';
     }
 }
 
-function pointsCheck(){
+function pointsCheck() {
     let amount = parseInt(document.getElementById('customPointsInput').value);
 
-    if(isNaN(amount)){
+    if (isNaN(amount)) {
         faultsAmount += 'Please enter a number\n';
         document.getElementById('faultAmount').textContent = 'Please enter a number!';
         document.getElementById('customPointsInput').style.borderBottomColor = 'red';
     }
-    else if(amount < 2){
-        if(amount >= 0){
+    else if (amount < 2) {
+        if (amount >= 0) {
             faultsAmount += 'This amount is invalid\n';
             document.getElementById('faultAmount').textContent = 'This amount is invalid!';
             document.getElementById('customPointsInput').style.borderBottomColor = 'red';
         }
-        else{
+        else {
             faultsAmount += "Negative amounts aren't allowed\n";
             document.getElementById('faultAmount').textContent = "Negative amounts aren't allowed!";
             document.getElementById('customPointsInput').style.borderBottomColor = 'red';
         }
     }
-    else{
+    else {
         faultsAmount = '';
         document.getElementById('faultAmount').textContent = '';
         document.getElementById('customPointsInput').style.borderBottomColor = 'black';
+        score = parseInt(document.getElementById('customPointsInput').value);
     }
-=======
-function customGameType(){
-    document.getElementById('customPoints').style.display = 'block';
 }
 
-function nonCustomGameType(){
-    document.getElementById('customPoints').style.display = 'none';
->>>>>>> 9860fdd508b6ca1e66c912b279b5a9f211791bfa
+function radioCheckBlank(classNames, faultField) {
+    let oneChecked = false;
+
+    for (let i = 0; i < document.getElementsByClassName(classNames).length; i++) {
+        const element = document.getElementsByClassName(classNames)[i];
+        if (element.checked) {
+            oneChecked = true;
+            switch (classNames) {
+                case 'in':
+                    inMethod = element.id;
+                    break;
+                case 'out':
+                    outMethod = element.id;
+                    break;
+                case 'start1':
+                    if (element.id === 'meStart1') {
+                        startToThrow = true;
+                    } else {
+                        startToThrow = false;
+                    }
+                    break;
+                case 'start2':
+                    if (element.id === 'meStart2') {
+                        startToThrow = true;
+                    }
+                    else {
+                        startToThrow = false;
+                    }
+                    break;
+            }
+            document.getElementsByClassName('faultRadio')[faultField].textContent = '';
+        }
+    }
+    if (!oneChecked) {
+        document.getElementsByClassName('faultRadio')[faultField].textContent = 'One option needs to be picked';
+        switch (faultField) {
+            case 0:
+                faultsRadio1 += 'One option needs to be picked\n';
+                break;
+            case 1:
+                faultsRadio2 += 'One option needs to be picked\n';
+                break;
+            case 2:
+                faultsRadio3 += 'One option needs to be picked\n';
+                break;
+            case 3:
+                faultsRadio4 += 'One option needs to be picked\n';
+                break;
+        }
+    }
 }
