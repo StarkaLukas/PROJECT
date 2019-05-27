@@ -57,6 +57,7 @@ button:hover{
 #form{
     width: 20vw;
     margin: auto;
+    margin-top: 25vh;
 }
 .inline{
     display: inline;
