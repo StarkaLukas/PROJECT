@@ -7,10 +7,6 @@ class DartField {
         this.color = color;
         this.hoverColor = hoverColor;
     }
-    subtractScore() {
-        score = score - this.value;
-        console.log(score);
-    }
     hoverSelect() {
         this.field.style.fill = this.hoverColor;
     }
@@ -20,62 +16,114 @@ class DartField {
 }
 
 class Player {
-    constructor(darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg) {
-        this.darts = darts;
-        this.legAverage = legAverage;
-        this.matchAverage = matchAverage;
-        this.first9Average = first9Average;
-        this.tons = tons;
-        this.ton40s = ton40s;
-        this.ton80s = ton80s;
-        this.highestFinish = highestFinish;
-        this.doublePercentage = doublePercentage;
-        this.bestLeg;
+    constructor(remainingPoints, darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg) {
+        this._remainingPoints = remainingPoints;
+        this._darts = darts;
+        this._legAverage = legAverage;
+        this._matchAverage = matchAverage;
+        this._first9Average = first9Average;
+        this._tons = tons;
+        this._ton40s = ton40s;
+        this._ton80s = ton80s;
+        this._highestFinish = highestFinish;
+        this._doublePercentage = doublePercentage;
+        this._bestLeg;
     }
 
-    //     get legAverage(){
-    //         return this.legAverage;
-    //     }
+    gameFunction(field) {
+        if (this._darts === 0) {
+            this._remainingPoints = score;
+            this.firstDartFunction(field);
+        }
+    }
+    firstDartFunction(field) {
+        if (inMethod === 's_in') {
+            this.subtractScore(field.value);
+        }
+        else {
+            if (field.data === 'double') {
+                this.subtractScore(field.value);
+            }
+        }
+    }
 
-    //     get matchAverage(){
-    //         return this.matchAverage;
-    //     }
-    //     get first9Average(){
-    //         return this.first9Average;
-    //     }
-    //     get tons(){
-    //         return this.tons;
-    //     }
-    //     get ton40s(){
-    //         return this.ton40s;
-    //     }
-    //     get ton80s(){
-    //         return this.ton80s;
-    //     }
-    //     get highestFinish(){
-    //         return this.highestFinish;
-    //     }
-    //     get doublePercentage(){
-    //         return this.doublePercentage;
-    //     }
-    //     get bestLeg(){
-    //         return this.bestLeg;
-    //     }
+    subtractScore(amount) {
+        this._remainingPoints -= amount;
+        console.log(this._remainingPoints);
+    }
 
-    //     set legAverage(newAverage){
-    //         this.legAverage = newAverage;
-    //     }
+    get legAverage() {
+        return this._legAverage;
+    }
+
+    get matchAverage() {
+        return this._matchAverage;
+    }
+    get first9Average() {
+        return this._first9Average;
+    }
+    get tons() {
+        return this._tons;
+    }
+    get ton40s() {
+        return this._ton40s;
+    }
+    get ton80s() {
+        return this._ton80s;
+    }
+    get highestFinish() {
+        return this._highestFinish;
+    }
+    get doublePercentage() {
+        return this._doublePercentage;
+    }
+    get bestLeg() {
+        return this._bestLeg;
+    }
+    get remainingPoints() {
+        return this._remainingPoints;
+    }
+    set remainingPoints(remainingPoints) {
+        this._remainingPoints = remainingPoints;
+    }
+    set legAverage(legAverage) {
+        this._legAverage = legAverage;
+    }
+    set matchAverage(matchAverage) {
+        this._matchAverage = matchAverage;
+    }
+    set first9Average(first9Average) {
+        this._first9Average = first9Average;
+    }
+    set tons(tons) {
+        this._tons = tons;
+    }
+    set ton40s(ton40s) {
+        this._ton40s = ton40s;
+    }
+    set ton80s(ton80s) {
+        this._ton80s = ton80s;
+    }
+    set highestFinish(highestFinish) {
+        this._highestFinish = highestFinish;
+    }
+    set doublePercentage(doublePercentage) {
+        this._doublePercentage = doublePercentage;
+    }
+    set bestLeg(bestLeg) {
+        this._bestLeg = bestLeg;
+    }
 }
 
-let score, computerLevel, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '', sets, legs, opponent, inMethod, outMethod, startToThrow, nameOfOpponent;
+let score, computerLevel, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '', sets, legs, opponent, inMethod, outMethod, startToThrow, nameOfOpponent, yourTurn;
 let checkBlankStart1 = false;
 let checkBlankStart2 = false;
 let opponentNameNeedsToBeChecked = false;
 let customScoreNeedsToBeChecked = false;
 let amountLegsAndSets = 21;
 let fields = new Array;
-let you = new Player(0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
-let component = new Player(0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
+let you = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
+let versus = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
 
 window.addEventListener('load', start2);
 
@@ -88,7 +136,6 @@ function start2() {
     setTimeout(() => {
         prepareOptions();
     }, 10)
-    writeNameOfComputer('computername');
     document.getElementById('submitButton').addEventListener('click', checkSettings);
     insertNumbers(document.getElementById('bestOfSets'), amountLegsAndSets, false);
     insertNumbers(document.getElementById('bestOfLegs'), amountLegsAndSets, false);
@@ -139,6 +186,7 @@ function start2() {
     document.getElementById('opponentName').addEventListener('keyup', checkOpponentName);
 }
 function createFields() {
+    let innerField, outerField, doubleField, tripleField, innerBull, outerBull;
     for (let i = 1; i <= 20; i++) {
         switch (i) {
             case 20:
@@ -151,25 +199,41 @@ function createFields() {
             case 8:
             case 14:
             case 12:
-                fields.push(new DartField(document.getElementById('inner' + i), i, 'rgba(0%,0%,0%, 0.0)', 'yellow'));
-                fields.push(new DartField(document.getElementById('outer' + i), i, 'rgba(0%,0%,0%, 0.0)', 'yellow'));
-                fields.push(new DartField(document.getElementById('double' + i), i * 2, 'rgba(100%,0%,0%, 0.0)', 'yellow'));
-                fields.push(new DartField(document.getElementById('triple' + i), i * 3, 'rgba(100%,0%,0%, 0.0)', 'yellow'));
+                innerField = new DartField(document.getElementById('inner' + i), i, 'rgba(0%,0%,0%, 0.0)', 'yellow');
+                outerField = new DartField(document.getElementById('outer' + i), i, 'rgba(0%,0%,0%, 0.0)', 'yellow');
+                doubleField = new DartField(document.getElementById('double' + i), i * 2, 'rgba(100%,0%,0%, 0.0)', 'yellow');
+                tripleField = new DartField(document.getElementById('triple' + i), i * 3, 'rgba(100%,0%,0%, 0.0)', 'yellow');
                 break;
             default:
-                fields.push(new DartField(document.getElementById('inner' + i), i, 'rgb(90.588235%,89.411765%,78.039216%)', 'yellow'));
-                fields.push(new DartField(document.getElementById('outer' + i), i, 'rgb(90.588235%,89.411765%,78.039216%)', 'yellow'));
-                fields.push(new DartField(document.getElementById('double' + i), i * 2, 'rgb(0%,62.745098%,0%)', 'yellow'));
-                fields.push(new DartField(document.getElementById('triple' + i), i * 3, 'rgb(0%,62.745098%,0%)', 'yellow'));
+                innerField = new DartField(document.getElementById('inner' + i), i, 'rgb(90.588235%,89.411765%,78.039216%)', 'yellow');
+                outerField = new DartField(document.getElementById('outer' + i), i, 'rgb(90.588235%,89.411765%,78.039216%)', 'yellow');
+                doubleField = new DartField(document.getElementById('double' + i), i * 2, 'rgb(0%,62.745098%,0%)', 'yellow');
+                tripleField = new DartField(document.getElementById('triple' + i), i * 3, 'rgb(0%,62.745098%,0%)', 'yellow');
                 break;
         }
+        innerField.data = 'single';
+        outerField.data = 'single';
+        doubleField.data = 'double';
+        tripleField.data = 'triple';
+
+        fields.push(innerField);
+        fields.push(outerField);
+        fields.push(doubleField);
+        fields.push(tripleField);
     }
-    fields.push(new DartField(document.getElementById('innerBull'), 50, 'rgb(100%,0%,0%)', 'yellow'));
-    fields.push(new DartField(document.getElementById('outerBull'), 25, 'rgb(0%,62.745098%,0%)', 'yellow'));
+    innerBull = new DartField(document.getElementById('innerBull'), 50, 'rgb(100%,0%,0%)', 'yellow');
+    outerBull = new DartField(document.getElementById('outerBull'), 25, 'rgb(0%,62.745098%,0%)', 'yellow');
+    
+    innerBull.data = 'double';
+    outerBull.data = 'single';
+
+    fields.push(innerBull);
+    fields.push(outerBull);
+
     for (const field in fields) {
         // field.field.addEventListener('click', field.subtractScore);
         fields[field].field.addEventListener('click', () => {
-            fields[field].subtractScore();
+            gameMethod(fields[field]);
         });
         fields[field].field.addEventListener('mouseover', () => {
             fields[field].hoverSelect();
@@ -187,11 +251,6 @@ function writeNameOfUser(field) {
         document.getElementById(field).innerHTML = username;
         document.getElementById(field).style.color = 'white';
     });
-}
-
-function writeNameOfComputer(field) {
-    document.getElementById(field).innerHTML = `Computer ${computerLevel}`;
-    document.getElementById(field).style.color = 'white';
 }
 
 function prepareOptions() {
@@ -281,16 +340,18 @@ function checkSettings() {
     } else if (checkBlankStart2) {
         radioCheckBlank('start2', 3);
     }
-    if(customScoreNeedsToBeChecked){
+    if (customScoreNeedsToBeChecked) {
         pointsCheck();
     }
-    if(opponentNameNeedsToBeChecked){
+    if (opponentNameNeedsToBeChecked) {
         checkOpponentName();
     }
     if (faults === '' && faultsRadio1 === '' && faultsRadio2 === '' && faultsRadio3 === '' && faultsRadio4 === '' && faultsAmount === '' && faultsOpponent === '') {
         sets = parseInt(document.getElementById('bestOfSets').value);
         legs = parseInt(document.getElementById('bestOfLegs').value);
         opponent = document.getElementById('opponentType').value;
+        yourTurn = startToThrow;
+        switchOpponent();
         switchGameMode();
     }
 }
@@ -419,6 +480,7 @@ function opponentFunction() {
         checkBlankStart1 = false;
         checkBlankStart2 = false;
         opponentNameNeedsToBeChecked = false;
+        startToThrow = true;
     }
     else if (document.getElementById('opponentType').selectedIndex === 2) {
         document.getElementById('computerDifficulty').style.display = 'block';
@@ -514,10 +576,12 @@ function checkOpponentName() {
         faultsOpponent = '';
         document.getElementById('faultOpponentName').textContent = '';
         document.getElementById('opponentName').style.borderBottomColor = 'black';
+        nameOfOpponent = document.getElementById('opponentName').value;
     } else {
         faultsOpponent += "Name can't be blank";
         document.getElementById('faultOpponentName').textContent = "Name can't be blank!";
         document.getElementById('opponentName').style.borderBottomColor = 'red';
+        nameOfOpponent = '';
     }
 }
 
@@ -599,4 +663,34 @@ function radioCheckBlank(classNames, faultField) {
                 break;
         }
     }
+}
+
+function gameMethod(field) {
+    if (yourTurn) {
+        you.gameFunction(field);
+    }
+}
+
+function switchOpponent() {
+    if (opponent === 'Single (no opponent)') {
+        hideOpponent();
+    }
+    else {
+        if (opponent === 'Trainer (computer)') {
+            computerLevel = document.getElementById('difficulty').value;
+            showOpponent(`Computer level ${computerLevel}`);
+        } else {
+            showOpponent(nameOfOpponent);
+        }
+    }
+}
+
+function hideOpponent() {
+    document.getElementById('player2').style.display = 'none';
+}
+
+function showOpponent(stringName) {
+    document.getElementById('player2').style.display = 'block';
+    document.getElementById('nameOfOpponent').textContent = stringName;
+    document.getElementById('nameOfOpponent').style.color = 'white';
 }
