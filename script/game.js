@@ -667,8 +667,15 @@ function radioCheckBlank(classNames, faultField) {
 
 function gameMethod(field) {
     if (yourTurn) {
-        you.gameFunction(field);
+        makeTurn(you, field, '1');
+    }else{
+        makeTurn(versus, field, '2');
     }
+}
+
+function makeTurn(player, field, playerString){
+    player.gameFunction(field);
+    writeInformation(document.getElementById('remainingPoints' + playerString), player.remainingPoints);
 }
 
 function switchOpponent() {
@@ -693,4 +700,9 @@ function showOpponent(stringName) {
     document.getElementById('player2').style.display = 'block';
     document.getElementById('nameOfOpponent').textContent = stringName;
     document.getElementById('nameOfOpponent').style.color = 'white';
+}
+
+function writeInformation(field, content){
+    field.style.color = 'white';
+    field.textContent = content;
 }
