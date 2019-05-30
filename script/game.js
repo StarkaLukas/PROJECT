@@ -16,7 +16,7 @@ class DartField {
 }
 
 class Player {
-    constructor(remainingPoints, darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg) {
+    constructor(remainingPoints, darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg, lastScore, legsWon, setsWon) {
         this._remainingPoints = remainingPoints;
         this._darts = darts;
         this._legAverage = legAverage;
@@ -27,13 +27,31 @@ class Player {
         this._ton80s = ton80s;
         this._highestFinish = highestFinish;
         this._doublePercentage = doublePercentage;
-        this._bestLeg;
+        this._bestLeg = bestLeg;
+        this._lastScore = lastScore;
+        this._legsWon = legsWon;
+        this._setsWon = setsWon;
     }
 
     gameFunction(field) {
         if (this._darts === 0) {
             this._remainingPoints = score;
+        }
+        if (this._darts % 3 === 0) {
+            this._lastScore = this._remainingPoints;
+        }
+        if (this._remainingPoints === score) {
+            this._remainingPoints = score;
             this.firstDartFunction(field);
+        } else if (this._remainingPoints <= 170) {
+            this.finishFunction(field, this._darts % 3);
+        }
+        else {
+            this.subtractScore(field.value);
+        }
+        this._darts++;
+        if (this._darts % 3 === 0) {
+            console.log('3 darts');
         }
     }
     firstDartFunction(field) {
@@ -47,9 +65,65 @@ class Player {
         }
     }
 
+    finishFunction(field, remainingDarts) {
+        if (this._remainingPoints - field.value <= 1) {
+            if (this._remainingPoints - field.value === 0) {
+                if (outMethod === 'd_out') {
+                    if (field.data === 'double') {
+                        this.setLegWin(remainingDarts);
+                    } else {
+                        this._remainingPoints = this._lastScore;
+                        this.setDartsHigher(remainingDarts);
+                    }
+                } else if (outMethod === 'm_out') {
+                    if (field.data === 'double' || field.data === 'triple') {
+                        this.setLegWin(remainingDarts);
+                    } else {
+                        this._remainingPoints = this._lastScore;
+                        this.setDartsHigher(remainingDarts);
+                    }
+                } else {
+                    this.setLegWin(remainingDarts);
+                }
+            } else {
+                if (outMethod === 's_out' && this._remainingPoints - field.value === 1) {
+                    this.subtractScore(field.value);
+                }
+                else {
+                    this._remainingPoints = this._lastScore;
+                    this.setDartsHigher(remainingDarts);
+                }
+            }
+        } else {
+            this.subtractScore(field.value);
+        }
+    }
+    setDartsHigher(remainingDarts) {
+        if (remainingDarts === 0) {
+            this._darts += 2;
+        } else if (remainingDarts === 1) {
+            this._darts += 1;
+        }
+    }
+    setLegWin() {
+        this._remainingPoints = score;
+        this._legsWon++;
+        this.checkWon();
+        this._darts = 0;
+    }
+
     subtractScore(amount) {
         this._remainingPoints -= amount;
         console.log(this._remainingPoints);
+    }
+
+    checkWon() {
+        if (this._legsWon === parseInt(legs / 2) + 1) {
+            this._setsWon++;
+        }
+        if (this._setsWon === sets) {
+            winningFunction(this.data);
+        }
     }
 
     get legAverage() {
@@ -83,6 +157,18 @@ class Player {
     get remainingPoints() {
         return this._remainingPoints;
     }
+    get legsWon() {
+        return this._legsWon;
+    }
+    get setsWon() {
+        return this._setsWon;
+    }
+    get lastScore() {
+        return this._lastScore;
+    }
+    set lastScore(lastScore) {
+        this._lastScore = lastScore;
+    }
     set remainingPoints(remainingPoints) {
         this._remainingPoints = remainingPoints;
     }
@@ -113,6 +199,14 @@ class Player {
     set bestLeg(bestLeg) {
         this._bestLeg = bestLeg;
     }
+
+    set legsWon(legsWon) {
+        this._legsWon = legsWon;
+    }
+
+    set setsWon(setsWon) {
+        this._setsWon = setsWon;
+    }
 }
 
 let score, computerLevel, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '', sets, legs, opponent, inMethod, outMethod, startToThrow, nameOfOpponent, yourTurn;
@@ -122,8 +216,10 @@ let opponentNameNeedsToBeChecked = false;
 let customScoreNeedsToBeChecked = false;
 let amountLegsAndSets = 21;
 let fields = new Array;
-let you = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
-let versus = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0);
+let you = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0);
+you.data = 'you';
+let versus = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0);
+versus.data = 'opponent';
 
 window.addEventListener('load', start2);
 
@@ -186,7 +282,7 @@ function start2() {
     document.getElementById('opponentName').addEventListener('keyup', checkOpponentName);
 }
 function createFields() {
-    let innerField, outerField, doubleField, tripleField, innerBull, outerBull;
+    let innerField, outerField, doubleField, tripleField, innerBull, outerBull, outside;
     for (let i = 1; i <= 20; i++) {
         switch (i) {
             case 20:
@@ -223,12 +319,15 @@ function createFields() {
     }
     innerBull = new DartField(document.getElementById('innerBull'), 50, 'rgb(100%,0%,0%)', 'yellow');
     outerBull = new DartField(document.getElementById('outerBull'), 25, 'rgb(0%,62.745098%,0%)', 'yellow');
-    
+    outside = new DartField(document.getElementById('outside'), 0, 'rgb(0%,0%,0%)', 'red');
+
     innerBull.data = 'double';
     outerBull.data = 'single';
+    outside.data = 'outside';
 
     fields.push(innerBull);
     fields.push(outerBull);
+    fields.push(outside);
 
     for (const field in fields) {
         // field.field.addEventListener('click', field.subtractScore);
@@ -352,6 +451,7 @@ function checkSettings() {
         opponent = document.getElementById('opponentType').value;
         yourTurn = startToThrow;
         switchOpponent();
+        checkDoubleText();
         switchGameMode();
     }
 }
@@ -668,14 +768,27 @@ function radioCheckBlank(classNames, faultField) {
 function gameMethod(field) {
     if (yourTurn) {
         makeTurn(you, field, '1');
-    }else{
+    } else {
         makeTurn(versus, field, '2');
     }
 }
 
-function makeTurn(player, field, playerString){
+function makeTurn(player, field, playerString) {
     player.gameFunction(field);
-    writeInformation(document.getElementById('remainingPoints' + playerString), player.remainingPoints);
+    writeInformation(document.getElementById('remainingPoints' + playerString), player.remainingPoints, 'white');
+    writeInformation(document.getElementById('legAverage' + playerString), player.legAverage, 'white');
+    writeInformation(document.getElementById('matchAverage' + playerString), player.matchAverage, 'white');
+    writeInformation(document.getElementById('first9Average' + playerString), player.first9Average, 'white');
+    writeInformation(document.getElementById('tons' + playerString), player.tons, 'white');
+    writeInformation(document.getElementById('ton40s' + playerString), player.ton40s, 'white');
+    writeInformation(document.getElementById('ton80s' + playerString), player.ton80s, 'white');
+    writeInformation(document.getElementById('highestFinish' + playerString), player.highestFinish, 'white');
+    if (outMethod === 'd_out') {
+        writeInformation(document.getElementById('doubles' + playerString), player.doublePercentage, 'white');
+    }else{
+        writeInformation(document.getElementById('doubles' + playerString), 'not available in this game mode', 'lightgray');
+    }
+    writeInformation(document.getElementById('bestLeg' + playerString), player.bestLeg, 'white');
 }
 
 function switchOpponent() {
@@ -702,7 +815,20 @@ function showOpponent(stringName) {
     document.getElementById('nameOfOpponent').style.color = 'white';
 }
 
-function writeInformation(field, content){
-    field.style.color = 'white';
+function writeInformation(field, content, color) {
+    field.style.color = color;
     field.textContent = content;
+}
+
+function winningFunction(playerWon) {
+    console.log(playerWon);
+}
+
+function checkDoubleText() {
+    if (outMethod !== 'd_out') {
+        for (let i = 0; i < document.getElementsByClassName('double').length; i++) {
+            const element = document.getElementsByClassName('double')[i];
+            element.style.color = 'lightgray';
+        }
+    }
 }
