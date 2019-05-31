@@ -49,7 +49,6 @@ function startIndex() {
         actualSlide++;
         slide(actualSlide);
     });
-    writeWelcomeBack();
 }
 
 
