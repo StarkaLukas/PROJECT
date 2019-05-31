@@ -16,7 +16,7 @@ class DartField {
 }
 
 class Player {
-    constructor(remainingPoints, darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg, lastScore, legsWon, setsWon, totalDarts, finished) {
+    constructor(remainingPoints, darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg, lastScore, legsWon, setsWon, totalDarts, finished, first9darts) {
         this._remainingPoints = remainingPoints;
         this._darts = darts;
         this._legAverage = legAverage;
@@ -33,6 +33,7 @@ class Player {
         this._setsWon = setsWon;
         this._totalDarts = totalDarts;
         this._finished = finished;
+        this._first9darts = first9darts;
     }
 
     gameFunction(field) {
@@ -54,13 +55,16 @@ class Player {
         if (!this._finished) {
             this._darts++;
             this._totalDarts++;
+            if(this._darts <= 9){
+                this._first9darts++;
+            }
             if (this._darts % 3 === 0) {
                 this._legAverage = (((this._legAverage * (this._darts - 3)) + this._lastScore - this._remainingPoints) / this._darts);
                 this._matchAverage = (((this._matchAverage * (this._totalDarts - 3)) + this._lastScore - this._remainingPoints) / this._totalDarts)
                 this.checkTon();
                 this.turnMethod();
                 if (this._darts <= 9) {
-                    this._first9Average = (((this._first9Average * (this._darts - 3)) + this._lastScore - this._remainingPoints) / this._darts);
+                    this._first9Average = (((this._first9Average * (this._first9darts - 3)) + this._lastScore - this._remainingPoints) / this._first9darts);
                 }
             }
         } else {
@@ -221,6 +225,9 @@ class Player {
     get finished() {
         return this._finished;
     }
+    get first9darts() {
+        return this._first9darts;
+    }
     set lastScore(lastScore) {
         this._lastScore = lastScore;
     }
@@ -268,6 +275,9 @@ class Player {
     set finished(finished) {
         this._finished = finished;
     }
+    set first9darts(first9darts) {
+        this._first9darts = first9darts;
+    }
 }
 
 let score, computerLevel, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '', sets, legs, opponent, inMethod, outMethod, startToThrow, nameOfOpponent, yourTurn, setStart;
@@ -277,9 +287,9 @@ let opponentNameNeedsToBeChecked = false;
 let customScoreNeedsToBeChecked = false;
 let amountLegsAndSets = 21;
 let fields = new Array;
-let you = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0, 0);
+let you = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0, 0, false, 0);
 you.data = 'you';
-let versus = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0, 0);
+let versus = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0, 0, false, 0);
 versus.data = 'opponent';
 
 window.addEventListener('load', start2);
@@ -905,83 +915,83 @@ function makeComputerTurn() {
     // To be implemented
 }
 
-function saveStatsToFireBase(player, userID){
+function saveStatsToFireBase(player, userID) {
     let date = new Date();
-    let string = date.getDate() + '' + (date.getMonth() + 1) + '' + date.getFullYear();
+    let string = date.getDate() + ';' + (date.getMonth() + 1) + ';' + date.getFullYear();
     console.log(string);
 
-    return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot){
+    return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot) {
         let stats = (snapshot.val() && snapshot.val()[string]) || 'Anonymous';
-        if(stats === 'Anonymous'){
+        if (stats === 'Anonymous') {
             writeNewStats(player, userID, string);
         }
-        else{
+        else {
             updateStats(player, userID, string);
         }
     });
 }
 
-function writeNewStats(player, userID, string){
+function writeNewStats(player, userID, string) {
     firebase.database().ref('users/' + userID + '/' + string).set({
-        matchAverage : player.matchAverage,
-        nineAverage : player.first9Average,
+        matchAverage: player.matchAverage,
+        nineAverage: player.first9Average,
         tons: player.tons,
         ton40s: player.ton40s,
         ton80s: player.ton80s,
         highestFinish: player.highestFinish,
         doublePercentage: player.doublePercentage,
         bestLeg: player.bestLeg
-    }, (error) =>{
-        if(error){
+    }, (error) => {
+        if (error) {
             console.log('%c Fail', 'color: red');
         }
-        else{
+        else {
             console.log('%c Success', 'color: green');
         }
-        
+
     });
 }
 
-function updateStats(player, userID, string){
+function updateStats(player, userID, string) {
     let matchAverage, nineAverage, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg;
-    return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot){
+    return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot) {
         let stats = (snapshot.val() && snapshot.val()[string]) || 'Anonymous';
         matchAverage = (parseInt(stats.matchAverage) + player.matchAverage) / 2;
         nineAverage = (parseInt(stats.nineAverage) + player.first9Average) / 2;
         tons = stats.tons + player.tons;
         ton40s = stats.ton40s + player.ton40s;
         ton80s = stats.ton80s + player.ton80s;
-        if(stats.highestFinish < player.highestFinish){
+        if (stats.highestFinish < player.highestFinish) {
             highestFinish = player.highestFinish;
-        }else{
+        } else {
             highestFinish = stats.highestFinish;
         }
         doublePercentage = (stats.doublePercentage + player.doublePercentage) / 2;
-        if(stats.bestLeg > player.bestLeg){
+        if (stats.bestLeg > player.bestLeg) {
             bestLeg = player.bestLeg;
-        }else{
+        } else {
             bestLeg = stats.bestLeg;
         }
         firebase.database().ref('users/' + userID + '/' + string).set({
-            matchAverage : matchAverage,
-            nineAverage : nineAverage,
+            matchAverage: matchAverage,
+            nineAverage: nineAverage,
             tons: tons,
             ton40s: ton40s,
             ton80s: ton80s,
             highestFinish: highestFinish,
             doublePercentage: doublePercentage,
             bestLeg: bestLeg
-        }, (error) =>{
-            if(error){
+        }, (error) => {
+            if (error) {
                 console.log('%c Fail', 'color: red');
             }
-            else{
+            else {
                 console.log('%c Success', 'color: green');
             }
         });
     });
 }
 
-function popupWinner(){
+function popupWinner() {
 
 }
