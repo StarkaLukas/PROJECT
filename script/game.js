@@ -885,6 +885,8 @@ function writeInformation(field, content, color) {
 
 function winningFunction(playerWon) {
     console.log(playerWon);
+    saveStatsToFireBase(you, firebase.auth().currentUser.uid);
+    popupWinner();
 }
 
 function checkDoubleText() {
@@ -901,4 +903,85 @@ function checkDoubleText() {
 
 function makeComputerTurn() {
     // To be implemented
+}
+
+function saveStatsToFireBase(player, userID){
+    let date = new Date();
+    let string = date.getDate() + '' + (date.getMonth() + 1) + '' + date.getFullYear();
+    console.log(string);
+
+    return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot){
+        let stats = (snapshot.val() && snapshot.val()[string]) || 'Anonymous';
+        if(stats === 'Anonymous'){
+            writeNewStats(player, userID, string);
+        }
+        else{
+            updateStats(player, userID, string);
+        }
+    });
+}
+
+function writeNewStats(player, userID, string){
+    firebase.database().ref('users/' + userID + '/' + string).set({
+        matchAverage : player.matchAverage,
+        nineAverage : player.first9Average,
+        tons: player.tons,
+        ton40s: player.ton40s,
+        ton80s: player.ton80s,
+        highestFinish: player.highestFinish,
+        doublePercentage: player.doublePercentage,
+        bestLeg: player.bestLeg
+    }, (error) =>{
+        if(error){
+            console.log('%c Fail', 'color: red');
+        }
+        else{
+            console.log('%c Success', 'color: green');
+        }
+        
+    });
+}
+
+function updateStats(player, userID, string){
+    let matchAverage, nineAverage, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg;
+    return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot){
+        let stats = (snapshot.val() && snapshot.val()[string]) || 'Anonymous';
+        matchAverage = (parseInt(stats.matchAverage) + player.matchAverage) / 2;
+        nineAverage = (parseInt(stats.nineAverage) + player.first9Average) / 2;
+        tons = stats.tons + player.tons;
+        ton40s = stats.ton40s + player.ton40s;
+        ton80s = stats.ton80s + player.ton80s;
+        if(stats.highestFinish < player.highestFinish){
+            highestFinish = player.highestFinish;
+        }else{
+            highestFinish = stats.highestFinish;
+        }
+        doublePercentage = (stats.doublePercentage + player.doublePercentage) / 2;
+        if(stats.bestLeg > player.bestLeg){
+            bestLeg = player.bestLeg;
+        }else{
+            bestLeg = stats.bestLeg;
+        }
+        firebase.database().ref('users/' + userID + '/' + string).set({
+            matchAverage : matchAverage,
+            nineAverage : nineAverage,
+            tons: tons,
+            ton40s: ton40s,
+            ton80s: ton80s,
+            highestFinish: highestFinish,
+            doublePercentage: doublePercentage,
+            bestLeg: bestLeg
+        }, (error) =>{
+            if(error){
+                console.log('%c Fail', 'color: red');
+            }
+            else{
+                console.log('%c Success', 'color: green');
+            }
+        });
+    });
+}
+
+function popupWinner(){
+
 }
