@@ -1,3 +1,4 @@
+    
 body {
   margin: 0;
   padding: 0;
@@ -236,23 +237,18 @@ nav {
 .information:nth-child(1) {
   top: 103.4vh;
 }
-
 .information:nth-child(2) {
   top: 119.8vh;
 }
-
 .information:nth-child(3) {
   top: 136.4vh;
 }
-
 .information:nth-child(4) {
   top: 152.0vh;
 }
-
 .information:nth-child(5) {
   top: 169.6vh;
 }
-
 .information:nth-child(6) {
   top: 186.6vh;
 } */
