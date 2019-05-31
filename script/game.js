@@ -932,6 +932,8 @@ function saveStatsToFireBase(player, userID) {
 }
 
 function writeNewStats(player, userID, string) {
+    let daysStatsMade;
+
     firebase.database().ref('users/' + userID + '/' + string).set({
         matchAverage: player.matchAverage,
         nineAverage: player.first9Average,
@@ -950,6 +952,23 @@ function writeNewStats(player, userID, string) {
         }
 
     });
+    firebase.database().ref('users/' + userID + '/daysStatsMade').set({
+        daysStatsMade : 'helloworld'
+    }, (error) => {
+        if (error) {
+            console.log('%c Fail', 'color: red');
+        }
+        else {
+            console.log('%c Success', 'color: green');
+        }
+    });
+    // return firebase.database().ref('users/' + userID).once('value').then(function(snapshot){
+    //     let daysStatsMade = (snapshot.val() && snapshot.val().daysStatsMade) || '';
+    //     daysStatsMade += string + '|';
+    //     firebase.database().ref('users/' + userID + '/daysStatsMade').set({
+    //         daysStatsMade: daysStatsMade
+    //     }
+    // });
 }
 
 function updateStats(player, userID, string) {
