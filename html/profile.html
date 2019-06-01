@@ -62,7 +62,7 @@
     </nav>
     <div id="content" style="display: none;">
         <div id="profile">
-                <h1 id="heading" style="color: white;">.</h1>
+                <h1 id="heading" style="color: white;"></h1>
             <img src="../images/profile_picture_default.png" id="profilePicture">
             
         </div>
@@ -74,34 +74,34 @@
                     <div class="avgColumn" id="averageThreeDartInfo">
                         <h5 class="avgTitle"><strong>3 Dart </strong>Average</h5>
                         <div class="lowest">
-                            <p>0.0</p>
+                            <p id="lowestAverage"></p>
                             <span>Lowest</span>
                         </div>
                         <div class="highest">
-                            <p>0.0</p>
+                            <p id="highestAverage"></p>
                             <span>Highest</span>
                         </div>
                         <div class="placeholder">
                         </div>
                         <div class="total">
-                            <strong>0.0</strong>
+                            <strong><p id="totalAverage"></p></strong>
                             <span>Total</span>
                         </div>
                     </div>
                     <div class="avgColumn" id="averageFirstNineInfo">
                         <h5 class="avgTitle"><strong>First 9 </strong>Average</h5>
                         <div class="lowest">
-                            <p>0.0</p>
+                            <p id="lowest9Average"></p>
                             <span>Lowest</span>
                         </div>
                         <div class="highest">
-                            <p>0.0</p>
+                            <p id="highest9Average"></p>
                             <span>Highest</span>
                         </div>
                         <div class="placeholder">
                         </div>
                         <div class="total">
-                            <strong>0.0</strong>
+                            <strong><p id="total9Average"></p></strong>
                             <span>Total</span>
                         </div>
                     </div>
@@ -112,32 +112,29 @@
             <div class="checkOutInfo">
                 <div class="checkoutColumn">
                     <h5 class="checkoutTitle"><strong>100+ </strong>Total</h5>
-                    <div class="total"><strong>0</strong></div>
-                    <div class="total"><span>0.00 / leg</span></div>
+                    <div class="total"><strong><p id="tons"></p></strong></div>
                 </div>
                 <div class="checkoutColumn">
                         <h5 class="checkoutTitle"><strong>140+ </strong>Total</h5>
-                        <div class="total"><strong>0</strong></div>
-                        <div class="total"><span>0.00 / leg</span></div>
+                        <div class="total"><strong><p id="ton40s"></p></strong></div>
                 </div>
                 <div class="checkoutColumn">
                     <h5 class="checkoutTitle"><strong>180 </strong>Total</h5>
-                    <div class="total"><strong>0</strong></div>
-                    <div class="total"><span>0.00 / leg</span></div>
+                    <div class="total"><strong><p id="ton80s"></p></strong></div>
                 </div>
             </div>
             <div class="checkOutInfo">
                     <div class="checkoutColumn">
                         <h5 class="checkoutTitle">Matches <strong>Won</strong></h5>
-                        <div class="total"><strong>0</strong></div>
+                        <div class="total"><canvas id="matchesWon" height="120"></canvas></div>
                     </div>
                     <div class="checkoutColumn">
                             <h5 class="checkoutTitle">Matches <strong>Played</strong></h5>
-                            <div class="total"><strong>0</strong></div>
+                            <div class="total"><strong><p id="matchesPlayed"></p></strong></div>
                     </div>
                     <div class="checkoutColumn">
                         <h5 class="checkoutTitle">Matches <strong>Lost </strong></h5>
-                        <div class="total"><strong>0</strong></div>
+                        <div class="total"><canvas id="matchesLost" height="120"></canvas></div>
                     </div>
                 </div>
         </div>
@@ -148,18 +145,18 @@
                 <div class="checkOutInfo">
                     <div class="checkoutColumn">
                         <h5 class="checkoutTitle"><strong>Highest </strong>Finish</h5>
-                        <div class="total"><strong>0</strong></div>
+                        <div class="total"><strong><p id="highestFinish"></p></strong></div>
                     </div>
                     <div class="checkoutColumn">
                         <h5 class="checkoutTitle"><strong>Total </strong>Checkout</h5>
                         <span class="chartCheckout">
-                            <div class="total"><strong>0%</strong></div>
+                            <div class="total"><strong><p id="totalCheckout"></p></strong></div>
                         </span>
-                        <div class="total"><span>0/0</span></div>
+                        <div class="total"><span><p id="checkOuts"></p></span></div>
                     </div>
                     <div class="checkoutColumn">
                         <h5 class="checkoutTitle"><strong>Best </strong>Leg</h5>
-                        <div class="total"><strong>0</strong></div>
+                        <div class="total"><strong><p id="bestLeg"></p></strong></div>
                     </div>
                 </div>
             </div>
