@@ -942,7 +942,8 @@ function writeNewStats(player, userID, string) {
         ton80s: player.ton80s,
         highestFinish: player.highestFinish,
         doublePercentage: player.doublePercentage,
-        bestLeg: player.bestLeg
+        bestLeg: player.bestLeg,
+        matchesPlayed: 1,
     }, (error) => {
         if (error) {
             console.log('%c Fail', 'color: red');
@@ -999,7 +1000,8 @@ function updateStats(player, userID, string) {
             ton80s: ton80s,
             highestFinish: highestFinish,
             doublePercentage: doublePercentage,
-            bestLeg: bestLeg
+            bestLeg: bestLeg,
+            matchesPlayed : stats.matchesPlayed + 1
         }, (error) => {
             if (error) {
                 console.log('%c Fail', 'color: red');
