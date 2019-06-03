@@ -16,7 +16,7 @@ class DartField {
 }
 
 class Player {
-    constructor(remainingPoints, darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg, lastScore, legsWon, setsWon, totalDarts, finished, first9darts) {
+    constructor(remainingPoints, darts, legAverage, matchAverage, first9Average, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg, lastScore, legsWon, setsWon, totalDarts, finished, first9darts, checkOutAttempts, checkOuts, haveToAsk) {
         this._remainingPoints = remainingPoints;
         this._darts = darts;
         this._legAverage = legAverage;
@@ -34,6 +34,9 @@ class Player {
         this._totalDarts = totalDarts;
         this._finished = finished;
         this._first9darts = first9darts;
+        this._checkOutAttempts = checkOutAttempts;
+        this._checkOuts = checkOuts;
+        this._haveToAsk = haveToAsk;
     }
 
     gameFunction(field) {
@@ -59,6 +62,10 @@ class Player {
                 this._first9darts++;
             }
             if (this._darts % 3 === 0) {
+                if(this._haveToAsk){
+                    this.askHowManyDarts('missedDoubles');
+                    this._haveToAsk = false;
+                }
                 this._legAverage = (((this._legAverage * (this._darts - 3)) + this._lastScore - this._remainingPoints) / this._darts);
                 this._matchAverage = (((this._matchAverage * (this._totalDarts - 3)) + this._lastScore - this._remainingPoints) / this._totalDarts)
                 this.checkTon();
@@ -87,10 +94,11 @@ class Player {
             if (this._remainingPoints - field.value === 0) {
                 if (outMethod === 'd_out') {
                     if (field.data === 'double') {
-                        this.setLegWin(remainingDarts);
+                        this.askHowManyDarts('notMissedDoubles');
                     } else {
                         this._remainingPoints = this._lastScore;
                         this.setDartsHigher(remainingDarts);
+                        this._haveToAsk = true;
                     }
                 } else if (outMethod === 'm_out') {
                     if (field.data === 'double' || field.data === 'triple') {
@@ -112,6 +120,9 @@ class Player {
                 }
             }
         } else {
+            if(outMethod === 'd_out'){
+                this._haveToAsk = true;
+            }
             this.subtractScore(field.value);
         }
     }
@@ -179,10 +190,37 @@ class Player {
             this._tons++;
         }
     }
+
+    askHowManyDarts(fieldId){
+        document.getElementById(fieldId).style.display = 'block';
+        document.getElementById('game').style.display = 'none';
+
+        let interval = setInterval(()=>{
+            if(clicked){
+                for (let i = 0; i < document.getElementsByClassName('missedDoubleChoice').length; i++) {
+                    const element = document.getElementsByClassName('missedDoubleChoice')[i];
+                    if(element.data === 'clicked'){
+                        if(element.textContent != 'None'){
+                            this._checkOutAttempts += parseInt(element.textContent);
+                        }
+                        if(fieldId === 'notMissedDoubles'){
+                            this._checkOuts += 1;
+                            this.setLegWin();
+                        }
+                        element.data = '';
+                        clicked = false;
+                        clearInterval(interval);
+                        document.getElementById(fieldId).style.display = 'none';
+                        document.getElementById('game').style.display = 'block';
+                    }
+                }
+            }
+        }, 100);
+    }
+
     get legAverage() {
         return this._legAverage;
     }
-
     get matchAverage() {
         return this._matchAverage;
     }
@@ -227,6 +265,15 @@ class Player {
     }
     get first9darts() {
         return this._first9darts;
+    }
+    get checkOutAttempts(){
+        return this._checkOutAttempts;
+    }
+    get checkOuts(){
+        return this._checkOuts;
+    }
+    get haveToAsk(){
+        return this._haveToAsk;
     }
     set lastScore(lastScore) {
         this._lastScore = lastScore;
@@ -278,18 +325,27 @@ class Player {
     set first9darts(first9darts) {
         this._first9darts = first9darts;
     }
+    set checkOutAttempts(checkOutAttempts){
+        this._checkOutAttempts = checkOutAttempts;
+    }
+    set checkOuts(checkOuts){
+        this._checkOuts = checkOuts;
+    }
+    set haveToAsk(haveToAsk){
+        this._haveToAsk = haveToAsk;
+    }
 }
 
-let score, computerLevel, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '', sets, legs, opponent, inMethod, outMethod, startToThrow, nameOfOpponent, yourTurn, setStart;
+let score, computerLevel, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '', sets, legs, opponent, inMethod, outMethod, startToThrow, nameOfOpponent, yourTurn, setStart, clicked = false;
 let checkBlankStart1 = false;
 let checkBlankStart2 = false;
 let opponentNameNeedsToBeChecked = false;
 let customScoreNeedsToBeChecked = false;
 let amountLegsAndSets = 21;
 let fields = new Array;
-let you = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0, 0, false, 0);
+let you = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0, 0, false, 0, 0, 0, false);
 you.data = 'you';
-let versus = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0, 0, false, 0);
+let versus = new Player(0, 0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0, 0, false, 0, 0, 0, false);
 versus.data = 'opponent';
 
 window.addEventListener('load', start2);
@@ -308,6 +364,8 @@ function start2() {
     insertNumbers(document.getElementById('bestOfLegs'), amountLegsAndSets, false);
     // document.getElementById('drawLegs').addEventListener('click', drawLegs);
     // document.getElementById('drawSets').addEventListener('click', drawSets);
+    document.getElementById('finishLink').addEventListener('click', finishLink);
+    document.getElementById('statsLink').addEventListener('click', statsLink);
     for (let i = 0; i < document.getElementsByClassName('select').length; i++) {
         document.getElementsByClassName('select')[i].addEventListener('click', () => { removeErrorText(document.getElementsByClassName('faultText')[i]) });
     }
@@ -895,8 +953,9 @@ function writeInformation(field, content, color) {
 
 function winningFunction(playerWon) {
     console.log(playerWon);
-    saveStatsToFireBase(you, firebase.auth().currentUser.uid);
-    popupWinner();
+    saveStatsToFireBase(you, firebase.auth().currentUser.uid, playerWon);
+    popupWinner(playerWon);
+
 }
 
 function checkDoubleText() {
@@ -915,7 +974,7 @@ function makeComputerTurn() {
     // To be implemented
 }
 
-function saveStatsToFireBase(player, userID) {
+function saveStatsToFireBase(player, userID, playerWon) {
     let date = new Date();
     let string = date.getDate() + ';' + (date.getMonth() + 1) + ';' + date.getFullYear();
     console.log(string);
@@ -923,16 +982,31 @@ function saveStatsToFireBase(player, userID) {
     return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot) {
         let stats = (snapshot.val() && snapshot.val()[string]) || 'Anonymous';
         if (stats === 'Anonymous') {
-            writeNewStats(player, userID, string);
+            writeNewStats(player, userID, string, playerWon);
         }
         else {
-            updateStats(player, userID, string);
+            updateStats(player, userID, string, playerWon);
         }
     });
 }
 
-function writeNewStats(player, userID, string) {
-    let daysStatsMade;
+function writeNewStats(player, userID, string, playerWon) {
+    let daysStatsMade, matchesLost, matchesWon, doublePercentage;
+
+    if(playerWon === 'you'){
+        matchesLost = 0;
+        matchesWon = 1;
+    }else{
+        matchesLost = 1;
+        matchesWon = 0;
+    }
+
+    if(player.checkOuts != 0){
+        doublePercentage = (player.checkOuts / player.checkOutAttempts) * 100;
+    }
+    else{
+        doublePercentage = 0;
+    }
 
     firebase.database().ref('users/' + userID + '/' + string).set({
         matchAverage: player.matchAverage,
@@ -941,9 +1015,13 @@ function writeNewStats(player, userID, string) {
         ton40s: player.ton40s,
         ton80s: player.ton80s,
         highestFinish: player.highestFinish,
-        doublePercentage: player.doublePercentage,
+        checkOuts: player.checkOuts,
+        checkOutAttempts: player.checkOutAttempts,
+        doublePercentage: doublePercentage,
         bestLeg: player.bestLeg,
         matchesPlayed: 1,
+        matchesLost: matchesLost,
+        matchesWon: matchesWon
     }, (error) => {
         if (error) {
             console.log('%c Fail', 'color: red');
@@ -953,16 +1031,23 @@ function writeNewStats(player, userID, string) {
         }
 
     });
-    firebase.database().ref('users/' + userID + '/daysStatsMade').set({
-        daysStatsMade : 'helloworld'
-    }, (error) => {
-        if (error) {
-            console.log('%c Fail', 'color: red');
-        }
-        else {
-            console.log('%c Success', 'color: green');
-        }
+    firebase.database().ref('/users/' + userID + '/daysStatsMade').once('value').then(function (snapshot){
+        daysStatsMade = (snapshot.val() && snapshot.val().daysStatsMade) || '';
+        console.log(daysStatsMade);
     });
+    setTimeout(() =>{
+        firebase.database().ref('users/' + userID + '/daysStatsMade').set({
+            daysStatsMade : daysStatsMade + string + '|'
+        }, (error) => {
+            if (error) {
+                console.log('%c Fail', 'color: red');
+            }
+            else {
+                console.log('%c Success', 'color: green');
+            }
+        });
+    }, 1000);
+
     // return firebase.database().ref('users/' + userID).once('value').then(function(snapshot){
     //     let daysStatsMade = (snapshot.val() && snapshot.val().daysStatsMade) || '';
     //     daysStatsMade += string + '|';
@@ -972,36 +1057,64 @@ function writeNewStats(player, userID, string) {
     // });
 }
 
-function updateStats(player, userID, string) {
-    let matchAverage, nineAverage, tons, ton40s, ton80s, highestFinish, doublePercentage, bestLeg;
+function updateStats(player, userID, string, playerWon) {
+
+    let matchAverage, nineAverage, tons, ton40s, ton80s, doublePercentage, highestFinish, bestLeg, matchesLost, matchesWon, checkOutAttempts, checkOuts;
+    
+
     return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot) {
         let stats = (snapshot.val() && snapshot.val()[string]) || 'Anonymous';
         matchAverage = (parseInt(stats.matchAverage) + player.matchAverage) / 2;
         nineAverage = (parseInt(stats.nineAverage) + player.first9Average) / 2;
-        tons = stats.tons + player.tons;
-        ton40s = stats.ton40s + player.ton40s;
-        ton80s = stats.ton80s + player.ton80s;
+        tons = parseInt(stats.tons) + player.tons;
+        ton40s = parseInt(stats.ton40s) + player.ton40s;
+        ton80s = parseInt(stats.ton80s) + player.ton80s;
+        matchesLost = parseInt(stats.matchesLost);
+        matchesWon = parseInt(stats.matchesWon);
+        checkOutAttempts = parseInt(stats.checkOutAttempts) + player.checkOutAttempts;
+        checkOuts = parseInt(stats.checkOuts) + player.checkOuts;
+        console.log(checkOuts);
+        console.log(checkOutAttempts);
+
+        if(playerWon === 'you'){
+            matchesWon += 1;
+        }else{
+            matchesLost += 1;
+        }
+
         if (stats.highestFinish < player.highestFinish) {
             highestFinish = player.highestFinish;
         } else {
             highestFinish = stats.highestFinish;
         }
-        doublePercentage = (stats.doublePercentage + player.doublePercentage) / 2;
         if (stats.bestLeg > player.bestLeg) {
             bestLeg = player.bestLeg;
         } else {
             bestLeg = stats.bestLeg;
         }
+        if(parseInt(stats.checkOuts) != 0){
+            doublePercentage = (parseInt(stats.checkOuts) / parseInt(stats.checkOutAttempts)) * 100;
+        }
+        else{
+            doublePercentage = 0;
+        }
+        
+
         firebase.database().ref('users/' + userID + '/' + string).set({
+            
             matchAverage: matchAverage,
             nineAverage: nineAverage,
             tons: tons,
             ton40s: ton40s,
             ton80s: ton80s,
             highestFinish: highestFinish,
-            doublePercentage: doublePercentage,
             bestLeg: bestLeg,
-            matchesPlayed : stats.matchesPlayed + 1
+            matchesPlayed : stats.matchesPlayed + 1,
+            matchesLost: matchesLost,
+            matchesWon: matchesWon,
+            checkOuts: checkOuts,
+            checkOutAttempts: checkOutAttempts,
+            doublePercentage: doublePercentage
         }, (error) => {
             if (error) {
                 console.log('%c Fail', 'color: red');
@@ -1013,6 +1126,45 @@ function updateStats(player, userID, string) {
     });
 }
 
-function popupWinner() {
+function popupWinner(playerWon) {
+    if(playerWon === 'you'){
+        document.getElementById('wonIcon').style.display = 'block';
+        document.getElementById('cheer').textContent = 'Congratulation';
+        document.getElementById('winningText').textContent = 'You won the match';
+    }
+    else{
+        document.getElementById('lostIcon').style.display = 'block';
+        document.getElementById('cheer').textContent = 'What a pity';
+        document.getElementById('winningText').textContent = 'You lost the match';
+    }
 
+    document.getElementById('game').style.display = 'none';
+    document.getElementById('popUpWinner').style.display = 'block';
 }
+
+function finishLink(){
+    window.open('../html/game.html', '_self');
+}
+
+function statsLink(){
+    document.getElementById('stats').style.display = 'block';
+    document.getElementById('game').style.display = 'none';
+    document.getElementById('popUpWinner').style.display = 'none';
+
+    document.getElementById('tons').textContent = you.tons;
+    document.getElementById('ton40s').textContent = you.ton40s;
+    document.getElementById('ton80s').textContent = you.ton80s;
+
+    document.getElementById('bestLeg').textContent = you.bestLeg;
+    document.getElementById('totalCheckout').textContent = you.doublePercentage;
+    document.getElementById('highestFinish').textContent = you.highestFinish;
+    document.getElementById('checkOuts').textContent = you.checkOuts + ' / ' + you.checkOutAttempts;
+
+    document.getElementById('threeDartAverage').textContent = parseInt(you.matchAverage * 300) / 100;
+    document.getElementById('nineDartAverage').textContent = parseInt(you.first9Average * 300) / 100;
+}
+
+function changeDataDouble(field){
+    field.data = 'clicked';
+    clicked = true;
+}   

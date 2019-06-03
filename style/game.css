@@ -77,19 +77,18 @@ nav.nav1 ul li a:hover:after {
   height: 100%;
 }
 
-nav{
+nav {
   position: absolute;
   top: 0;
 }
 
-#heading{
+#heading {
   font-size: 6vh;
   text-align: center;
   margin-top: 10vh;
 }
 
-
-#dropdown-button{
+#dropdown-button {
   margin: 0.5vw;
   float: right;
   display: block;
@@ -102,35 +101,37 @@ nav{
   font-size: 1.8vh;
 }
 
-#dropdown-menu{
+#dropdown-menu {
   background-color: black;
   position: absolute;
   top: 6.8vh;
   font-size: 1.8vh;
 }
-#content, #notLoggedInContent{
+
+#content, #notLoggedInContent {
   margin-top: 10vh;
 }
 
-#notLoggedInContent{
+#notLoggedInContent {
   text-align: center;
 }
 
-#dartboard{
+#dartboard {
   position: relative;
   top: 20vh;
   left: 20vw;
 }
-svg{
+
+svg {
   height: 60vh;
   width: 60vw;
 }
 
-#single4{
+#single4 {
   fill: #111;
 }
 
-.player{
+.player {
   width: 20vw;
   height: 80vh;
   position: absolute;
@@ -140,14 +141,16 @@ svg{
   padding: 1%;
   text-align: center;
 }
-#player1{
+
+#player1 {
   left: 2vw;
 }
-#player2{
+
+#player2 {
   right: 2vw;
 }
 
-#score{
+#score {
   width: 20vw;
   position: absolute;
   top: 10vh;
@@ -158,22 +161,23 @@ svg{
   left: 40vw;
 }
 
-#headerNotLoggedIn{
+#headerNotLoggedIn {
   font-size: 5vh;
   text-align: center;
   margin-top: 45vh;
 }
 
-#options p{
+#options p {
   display: inline;
 }
 
-.select{
+.select {
   position: relative;
   border: 2px solid black;
   width: 20vw;
 }
-.select select{
+
+.select select {
   display: none;
 }
 
@@ -197,14 +201,15 @@ svg{
   top: 7px;
 }
 
-.select-items div,.select-selected {
+.select-items div, .select-selected {
   padding: 8px 16px;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
   cursor: pointer;
   user-select: none;
 }
-.select-items div{
+
+.select-items div {
   color: white;
 }
 
@@ -225,18 +230,18 @@ svg{
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-#options{
+#options {
   width: 20vw;
   position: absolute;
   left: 40vw;
   top: 25vh;
 }
 
-.option{
+.option {
   margin-top: 2vh;
 }
 
-#submitButton, #cart{
+#submitButton, #cart {
   background-color: white;
   border: 2px black solid;
   color: black;
@@ -246,19 +251,21 @@ svg{
   display: inline-block;
   font-size: 20px;
   margin: 4px 2px;
-  -webkit-transition-duration: 0.4s; /* Safari */
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
   font-family: 'Noto Sans KR', sans-serif;
   width: 10vw;
   margin-left: 5vw;
 }
-#submitButton:hover{
+
+#submitButton:hover {
   background-color: black;
   color: white;
 }
 
-.dart, .optionsDart{
+.dart, .optionsDart {
   position: absolute;
   height: 80vh;
   background-color: white;
@@ -269,26 +276,30 @@ svg{
   top: 10vh;
   padding-top: 30vh;
 }
-.flight img, .shaft img, .barrel img, .point img{
+
+.flight img, .shaft img, .barrel img, .point img {
   width: 10vw;
   position: absolute;
 }
+
 .flight {
   margin-left: 2vw;
 }
-.shaft{
+
+.shaft {
   margin-left: 14vw;
   margin-top: 7vh;
 }
 
-.barrel{
+.barrel {
   margin-left: 26vw;
 }
-.point{
+
+.point {
   margin-left: 38vw;
 }
 
-.contentBox{
+.contentBox {
   background-color: #ebebeb;
   position: absolute;
   height: 100vh;
@@ -296,13 +307,14 @@ svg{
   z-index: -100;
 }
 
-.dart h5{
+.dart h5 {
   font-size: 7vh;
   position: absolute;
   right: 2vw;
-  bottom: 2vh; 
+  bottom: 2vh;
 }
-#cart{
+
+#cart {
   background-color: green;
   color: white;
   border: none;
@@ -313,43 +325,44 @@ svg{
   width: 10vw;
 }
 
-.fa-shopping-cart{
+.fa-shopping-cart {
   position: absolute;
   right: 2vw;
   font-size: 5vh;
   color: black;
 }
 
-.optionsDart{
+.optionsDart {
   left: 2vw;
   width: 30vw;
   padding: 0.1%;
   padding-left: 2%;
 }
 
-.optionsDart h5{
+.optionsDart h5 {
   font-size: 4vh;
-
 }
 
-.optionsDart .select{
+.optionsDart .select {
   margin-bottom: 2vh;
 }
-.dartZone{
+
+.dartZone {
   position: absolute;
   height: 6vh;
 }
 
-.optionsDart::after{
-    content: "";
-    clear: both;
-    display: table;
+.optionsDart::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
-.faultText, .faultRadio, #faultOpponentName, #faultAmount{
+.faultText, .faultRadio, #faultOpponentName, #faultAmount {
   color: red;
 }
-input[type=text]{
+
+input[type=text] {
   width: 18vw;
   padding: 1%;
   border: none;
@@ -360,11 +373,11 @@ input[type=text]{
   margin-bottom: 1vh;
 }
 
-input[type=text]:focus{
-    outline: none;
+input[type=text]:focus {
+  outline: none;
 }
 
-#customPoints{
+#customPoints {
   margin-top: 1vh;
 }
 
@@ -382,34 +395,36 @@ input[type=text]:focus{
 
 ::-webkit-scrollbar-thumb:hover {
   background: black;
-} 
+}
 
-.gameoptionsRow{
+.gameoptionsRow {
   margin: 0;
   overflow: hidden;
   margin-top: 1vh;
 }
 
-.classgameoptionThree{
+.classgameoptionThree {
   width: 33%;
   float: left;
   text-align: center;
 }
+
 input[type=radio] {
   -webkit-appearance: radio;
   box-sizing: border-box;
   margin: 3px 3px 0px 5px;
 }
 
-#gameoptions, #computerDifficulty, #localPlayer{
-    padding: 20px;
-    background: #f7f7f7;
-    border-radius: 4px;
-    -moz-border-radius: 4px;
-    -khtml-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    margin-top: 20px;
+#gameoptions, #computerDifficulty, #localPlayer {
+  padding: 20px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  margin-top: 20px;
 }
+
 .clear {
   clear: both;
   display: block;
@@ -418,19 +433,21 @@ input[type=radio] {
   line-height: 0;
   width: 100%;
 }
+
 .separator {
   width: 100%;
   height: 1px;
   background: #e5e5e5;
   margin: 20px 0 0 0;
 }
+
 .classgameoptionTwo {
   width: 50%;
   float: left;
   text-align: center;
 }
 
-#difficulty{
+#difficulty {
   margin-top: 1vh;
 }
 
@@ -439,9 +456,11 @@ input[type=range] {
   width: 100%;
   margin: 11.8px 0;
 }
+
 input[type=range]:focus {
   outline: none;
 }
+
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 8.4px;
@@ -451,6 +470,7 @@ input[type=range]::-webkit-slider-runnable-track {
   border-radius: 1.3px;
   border: 0.2px solid #000101;
 }
+
 input[type=range]::-webkit-slider-thumb {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   border: 1.2px solid #000000;
@@ -462,9 +482,11 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: -12px;
 }
+
 input[type=range]:focus::-webkit-slider-runnable-track {
   background: #030303;
 }
+
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 8.4px;
@@ -474,6 +496,7 @@ input[type=range]::-moz-range-track {
   border-radius: 1.3px;
   border: 0.2px solid #000101;
 }
+
 input[type=range]::-moz-range-thumb {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   border: 1.2px solid #000000;
@@ -483,6 +506,7 @@ input[type=range]::-moz-range-thumb {
   background: #ffffff;
   cursor: pointer;
 }
+
 input[type=range]::-ms-track {
   width: 100%;
   height: 8.4px;
@@ -491,18 +515,21 @@ input[type=range]::-ms-track {
   border-color: transparent;
   color: transparent;
 }
+
 input[type=range]::-ms-fill-lower {
   background: #000000;
   border: 0.2px solid #000101;
   border-radius: 2.6px;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
+
 input[type=range]::-ms-fill-upper {
   background: #000000;
   border: 0.2px solid #000101;
   border-radius: 2.6px;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
+
 input[type=range]::-ms-thumb {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   border: 1.2px solid #000000;
@@ -513,9 +540,265 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
   height: 8.4px;
 }
+
 input[type=range]:focus::-ms-fill-lower {
   background: #000000;
 }
+
 input[type=range]:focus::-ms-fill-upper {
   background: #030303;
+}
+
+.popUpWinner {
+  text-align: center;
+  height: 300px;
+  width: 260px;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  margin-top: -130px;
+  left: 50%;
+  margin-left: -130px;
+  background: #f8f5f5;
+  z-index: 1000;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+
+.winnerTitle {
+  padding: 15px;
+  background: #dad6d6;
+  border-radius: 6px 6px 0 0;
+  -moz-border-radius: 6px 6px 0 0;
+  -khtml-border-radius: 6px 6px 0 0;
+  -webkit-border-radius: 6px 6px 0 0;
+}
+
+.fa-check {
+  color: #23cb96;
+  font-size: 50px;
+  line-height: 50px;
+}
+
+.fa-times {
+  color: rgb(224, 57, 57);
+  font-size: 50px;
+  line-height: 50px;
+}
+
+h6 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.winningOptions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+}
+
+.optionLink {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 22px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.1em;
+  width: 180px;
+  display: inline-block;
+  color: #ffffff;
+  background: #46484d;
+  padding: 6px 0;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.optionLink:hover, .missedDoubleChoice:hover {
+  background: black;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.winningOptions li {
+  margin-top: 6px;
+}
+
+.missedDoubles, .notMissedDoubles {
+  text-align: center;
+  height: 300px;
+  width: 260px;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  margin-top: -130px;
+  left: 50%;
+  margin-left: -130px;
+  background: #f8f5f5;
+  z-index: 11;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+
+.missedDoublesTitle {
+  padding: 15px;
+  background: #ebebeb;
+  border-radius: 6px 6px 0 0;
+  -moz-border-radius: 6px 6px 0 0;
+  -khtml-border-radius: 6px 6px 0 0;
+  -webkit-border-radius: 6px 6px 0 0;
+}
+
+.doublesChoice {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+}
+
+.missedDoubleChoice{
+  font-weight: 600;
+    font-size: 13px;
+    line-height: 22px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.1em;
+    width: 180px;
+    display: inline-block;
+    color: #ffffff;
+    background: #46484d;
+    padding: 6px 0;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px;
+}
+
+.averageChart, #profile {
+  width: 60vw;
+  margin-left: 20vw;
+  margin-top: 10vh;
+  padding: 2%;
+  background-color: white;
+}
+
+#averageThreeDartInfo {
+  background-color: #000000;
+  border-radius: 4px 0 0 4px;
+}
+
+#averageFirstNineInfo {
+  background-color: black;
+  border-radius: 0 4px 4px 0;
+}
+
+.avgColumn {
+  width: 100%;
+  float: left;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.avgTitle {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: 17px;
+}
+
+#averageThreeDartInfo .lowest {
+  width: 49%;
+  border-right: 1px solid #323436;
+}
+
+#averageFirstNineInfo .lowest{
+  width: 49%;
+  border-right: 1px solid #84898f;
+}
+
+.avgColumn .highest, .avgColumn .lowest {
+  float: left;
+  width: 50%;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 60px;
+}
+
+.placeholder {
+  clear: both;
+  display: block;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  width: 100%;
+}
+
+.avgColumn .total {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+span {
+  display: block;
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+.averageChart::after{
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.checkoutColumn{
+  min-height: 224px;
+  width: 20vw;
+  width: calc(33.3% - 1px);
+  float: left;
+  border-right: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.checkoutTitle{
+  margin-bottom: 20px;
+}
+
+.checkoutColumn .total{
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 70px;
+  color: #0d0d0d;
+  padding-top: 30px;
+}
+.chartcheckout {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  font-size: 38px;
+  color: #0d0d0d;
+  font-weight: 700;
+}
+
+.percent {
+  display: inline-block;
+  line-height: 150px;
+  z-index: 2;
 }
