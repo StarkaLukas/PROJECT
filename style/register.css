@@ -64,6 +64,7 @@ button:hover{
 #form{
     width: 20vw;
     margin: auto;
+    margin-top: 10vh;
 }
 .inline{
     display: inline;
