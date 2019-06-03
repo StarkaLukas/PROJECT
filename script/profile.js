@@ -30,26 +30,18 @@ let total9Average = 0.0;
 let bestAverage = 0.0;
 let worstAverage = 0.0;
 let totalAverage = 0.0;
+let total9AveragesArray = new Array;
+let totalAveragesArray = new Array;
+let checkOutArray = new Array;
 
 function start() {
-    let ctx1 = document.getElementById('chart1').getContext('2d');
-    let myChart1 = new Chart(ctx1, {
-        type: 'bar',
-        data: {},
-        options: {}
-    });
-
-    let ctx2 = document.getElementById('chart2').getContext('2d');
-    let myChart2 = new Chart(ctx2, {
-        type: 'bar',
-        data: {},
-        options: {}
-    });
-
     setTimeout(() => {
         getEveryDate();
         writeWelcomeBack();
     }, 2000);
+    setTimeout(()=>{
+        redoLoader();
+    }, 4000);
 
     checkLoggedIn();
 }
@@ -131,92 +123,97 @@ function getStats() {
     for (let i = 0; i < dates.length; i++) {
         firebase.database().ref('/users/' + firebase.auth().currentUser.uid).once('value').then(function (snapshot) {
             let stats = (snapshot.val() && snapshot.val()[dates[i]]) || 'Anonymous';
+            totalAveragesArray[i] = (parseInt(stats.matchAverage * 300) / 100);
+            total9AveragesArray[i] = (parseInt(stats.nineAverage * 300) / 100);
+            checkOutArray[i] = (stats.doublePercentage);
             tons += parseInt(stats.tons);
             ton40s += parseInt(stats.ton40s);
             ton80s += parseInt(stats.ton80s);
             won += parseInt(stats.matchesWon);
             lost += parseInt(stats.matchesLost);
             total += parseInt(stats.matchesPlayed);
-            if(highestFinish < parseInt(stats.highestFinish) || highestFinish === 0){
+            if (highestFinish < parseInt(stats.highestFinish) || highestFinish === 0) {
                 highestFinish = parseInt(stats.highestFinish);
             }
-            if(bestLeg > parseInt(stats.bestLeg) || bestLeg === 0){
+            if (bestLeg > parseInt(stats.bestLeg) || bestLeg === 0) {
                 bestLeg = parseInt(stats.bestLeg);
             }
-            if(checkOut != 0){
-                checkOut = checkOut + parseFloat(stats.doublePercentage) / 2;
+            if (checkOut != 0) {
+                checkOut = (checkOut + parseFloat(stats.doublePercentage)) / 2;
             }
-            else{
+            else {
                 checkOut = parseFloat(stats.doublePercentage);
             }
             checkOuts += parseInt(stats.checkOuts);
             checkOutAttempts += parseInt(stats.checkOutAttempts);
 
-            if(bestAverage < parseFloat(stats.matchAverage) || bestAverage === 0){
+            if (bestAverage < parseFloat(stats.matchAverage) || bestAverage === 0) {
                 bestAverage = parseFloat(stats.matchAverage);
             }
-            if(worstAverage > parseFloat(stats.matchAverage) || worstAverage === 0){
+            if (worstAverage > parseFloat(stats.matchAverage) || worstAverage === 0) {
                 worstAverage = parseFloat(stats.matchAverage);
             }
-            if(totalAverage != 0){
+            if (totalAverage != 0) {
                 totalAverage = (totalAverage + parseFloat(stats.matchAverage)) / 2;
-            }else{
+            } else {
                 totalAverage = parseFloat(stats.matchAverage);
+                
             }
-            
-            if(bestFirst9Average < parseFloat(stats.nineAverage) || bestFirst9Average === 0){
+
+            if (bestFirst9Average < parseFloat(stats.nineAverage) || bestFirst9Average === 0) {
                 bestFirst9Average = parseFloat(stats.nineAverage);
             }
-            if(worstFirst9Average > parseFloat(stats.nineAverage) || worstFirst9Average === 0){
+            if (worstFirst9Average > parseFloat(stats.nineAverage) || worstFirst9Average === 0) {
                 worstFirst9Average = parseFloat(stats.nineAverage);
             }
-            if(total9Average != 0){
+            if (total9Average != 0) {
                 total9Average = (total9Average + parseFloat(stats.nineAverage)) / 2;
-            }else{
+            } else {
                 total9Average = parseFloat(stats.nineAverage);
             }
             
         });
+        
     }
 }
 
-function writeTons(){
-    setTimeout(() =>{
+function writeTons() {
+    setTimeout(() => {
         document.getElementById('tons').textContent = tons;
         document.getElementById('ton40s').textContent = ton40s;
         document.getElementById('ton80s').textContent = ton80s;
     }, 1000);
 }
 
-function writeMatches(){
-    setTimeout(() =>{
+function writeMatches() {
+    setTimeout(() => {
         document.getElementById('matchesPlayed').textContent = total;
         pieChart('matchesWon', ['Matches won', 'Matches lost'], [won, lost], ['rgba(105, 232, 12, 0.2)']);
         pieChart('matchesLost', ['Matches lost', 'Matches won'], [lost, won], ['rgba(255, 99, 132, 0.2)']);
     }, 1000);
 }
 
-function pieChart(chartID, labels, data, backgroundColorArray){
+function pieChart(chartID, labels, data, backgroundColorArray) {
     let chart = document.getElementById(chartID).getContext('2d');
     let myChart = new Chart(chart, {
-    type: 'pie',
-    data: {
-        labels: labels,
-        datasets: [{
-            data: data,
-            backgroundColor: backgroundColorArray
-        }]
-    },
-    options: {
-        legend: {
-            display: false
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColorArray
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            }
         }
-    }
-});
+    });
 }
 
-function writeBestLegHighestFinishAndCheckout(){
-    setTimeout(() =>{
+function writeBestLegHighestFinishAndCheckout() {
+    setTimeout(() => {
         document.getElementById('highestFinish').textContent = highestFinish;
         document.getElementById('bestLeg').textContent = bestLeg;
         document.getElementById('totalCheckout').textContent = checkOut + '%';
@@ -224,13 +221,66 @@ function writeBestLegHighestFinishAndCheckout(){
     }, 1000);
 }
 
-function writeAverages(){
-    setTimeout(() =>{
+function writeAverages() {
+
+    setTimeout(() => {
         document.getElementById('lowestAverage').textContent = parseInt(worstAverage * 300) / 100;
         document.getElementById('highestAverage').textContent = parseInt(bestAverage * 300) / 100;
         document.getElementById('totalAverage').textContent = parseInt(totalAverage * 300) / 100;
         document.getElementById('lowest9Average').textContent = parseInt(worstFirst9Average * 300) / 100;
         document.getElementById('highest9Average').textContent = parseInt(bestFirst9Average * 300) / 100;
         document.getElementById('total9Average').textContent = parseInt(total9Average * 300) / 100;
+        lineChartAverages('chartAverages', dates);
+        lineChartCheckouts('chartCheckout', dates);
     }, 1000);
+}
+
+function lineChartAverages(chartID, labels) {
+    let chart = document.getElementById(chartID).getContext('2d');
+    let myChart = new Chart(chart, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: totalAveragesArray,
+                fill: false,
+                borderColor: 'rgba(0,0,255,0.2)'
+            }, {
+                data: total9AveragesArray,
+                fill: false,
+                borderColor: 'rgba(0,0,0,0.8)'
+            }]
+        },
+        options: {
+
+            legend: {
+                display: false
+            }
+        }
+    });
+}
+
+function lineChartCheckouts(chartID, labels){
+    let chart = document.getElementById(chartID).getContext('2d');
+    let myChart = new Chart(chart, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: checkOutArray,
+                fill: false,
+                borderColor: 'rgba(0,0,0,0.8)'
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            }
+        }
+    });
+}
+
+function redoLoader(){
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('all').style.display = 'block';
 }

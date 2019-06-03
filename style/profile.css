@@ -252,3 +252,8 @@ span {
     position: absolute;
     height: 6vh;
 }
+#loader{
+    position: absolute;
+    left: 42.5vw;
+    top: 41.05vh;
+}
