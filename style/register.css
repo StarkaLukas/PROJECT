@@ -109,3 +109,9 @@ a{
 .visibility:hover{
     color: black;
 }
+
+#loader{
+    position: absolute;
+    left: 42.5vw;
+    top: 41.05vh;
+}

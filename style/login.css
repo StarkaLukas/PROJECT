@@ -100,3 +100,8 @@ a{
 .visibility:hover{
     color: black;
 }
+
+#loader{
+    margin-left: 42.5vw;
+    margin-top: 41.05vh;
+}

@@ -1,0 +1,357 @@
+
+.d-spinner {
+  -webkit-animation-duration: 2.4s;
+          animation-duration: 2.4s;
+  -webkit-animation-timing-function: cubic-bezier(0, 1, 0.3, 1);
+          animation-timing-function: cubic-bezier(0, 1, 0.3, 1);
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-transform-origin: left bottom;
+          transform-origin: left bottom;
+}
+.d-spinner.d-spinner__one {
+  -webkit-animation-name: dSpinnerOne;
+          animation-name: dSpinnerOne;
+  fill: #7B75AF;
+}
+.d-spinner.d-spinner__two {
+  -webkit-animation-name: dSpinnerTwo;
+          animation-name: dSpinnerTwo;
+  fill: #A8A3CB;
+}
+.d-spinner.d-spinner__three {
+  -webkit-animation-name: dSpinnerThree;
+          animation-name: dSpinnerThree;
+  fill: #D2D0E4;
+}
+.d-spinner.d-spinner__four {
+  -webkit-animation-name: dSpinnerFour;
+          animation-name: dSpinnerFour;
+  fill: rgb(238, 216, 216);
+}
+@-webkit-keyframes dSpinnerOne {
+  0% {
+    opacity: 0;
+    fill: #b9b6d4;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  7% {
+    opacity: 1;
+    fill: #b9b6d4;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+  }
+  57% {
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0, 1);
+    fill: #7B75AF;
+  }
+  74% {
+    opacity: 1;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 0);
+            animation-timing-function: cubic-bezier(0, 0, 1, 0);
+  }
+  83% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+}
+@keyframes dSpinnerOne {
+  0% {
+    opacity: 0;
+    fill: #b9b6d4;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  7% {
+    opacity: 1;
+    fill: #b9b6d4;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+  }
+  57% {
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0, 1);
+    fill: #7B75AF;
+  }
+  74% {
+    opacity: 1;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 0);
+            animation-timing-function: cubic-bezier(0, 0, 1, 0);
+  }
+  83% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+}
+@-webkit-keyframes dSpinnerTwo {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  3% {
+    opacity: 0;
+    fill: #e6e4f0;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  10% {
+    opacity: 1;
+    fill: #e6e4f0;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+  }
+  60% {
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0, 1);
+    fill: #A8A3CB;
+  }
+  71% {
+    opacity: 1;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 0);
+            animation-timing-function: cubic-bezier(0, 0, 1, 0);
+  }
+  79% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+}
+@keyframes dSpinnerTwo {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  3% {
+    opacity: 0;
+    fill: #e6e4f0;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  10% {
+    opacity: 1;
+    fill: #e6e4f0;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+  }
+  60% {
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0, 1);
+    fill: #A8A3CB;
+  }
+  71% {
+    opacity: 1;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 0);
+            animation-timing-function: cubic-bezier(0, 0, 1, 0);
+  }
+  79% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+}
+@-webkit-keyframes dSpinnerThree {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  6% {
+    opacity: 0;
+    fill: white;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  13% {
+    opacity: 1;
+    fill: white;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+  }
+  63% {
+    fill: #D2D0E4;
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0, 1);
+  }
+  68% {
+    opacity: 1;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 0);
+            animation-timing-function: cubic-bezier(0, 0, 1, 0);
+  }
+  76% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+}
+@keyframes dSpinnerThree {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  6% {
+    opacity: 0;
+    fill: white;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  13% {
+    opacity: 1;
+    fill: white;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+  }
+  63% {
+    fill: #D2D0E4;
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0, 1);
+  }
+  68% {
+    opacity: 1;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 0);
+            animation-timing-function: cubic-bezier(0, 0, 1, 0);
+  }
+  76% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+}
+@-webkit-keyframes dSpinnerFour {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  9% {
+    opacity: 0;
+    fill: rgb(238, 216, 216);
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  16% {
+    opacity: 1;
+    fill: rgb(238, 216, 216);
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+  }
+  64% {
+    fill: rgb(238, 216, 216);
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0, 1);
+  }
+  65% {
+    opacity: 1;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 0);
+            animation-timing-function: cubic-bezier(0, 0, 1, 0);
+  }
+  73% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+}
+@keyframes dSpinnerFour {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  9% {
+    opacity: 0;
+    fill: rgb(226, 208, 228);
+    -webkit-transform: rotateZ(-65deg) scale(0.6);
+            transform: rotateZ(-65deg) scale(0.6);
+  }
+  16% {
+    opacity: 1;
+    fill: rgb(226, 208, 228);
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+  }
+  64% {
+    fill: rgb(226, 208, 228);
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0, 1);
+            animation-timing-function: cubic-bezier(0, 0, 0, 1);
+  }
+  65% {
+    opacity: 1;
+    -webkit-transform: rotateZ(0) scale(1);
+            transform: rotateZ(0) scale(1);
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 0);
+            animation-timing-function: cubic-bezier(0, 0, 1, 0);
+  }
+  73% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: rotateZ(45deg) scale(0.61);
+            transform: rotateZ(45deg) scale(0.61);
+  }
+}
+.gradient-primary {
+  background-color: #3B2F63;
+  background-image: radial-gradient(at 0% bottom, rgba(118, 72, 160, 0.7) 0%, rgba(118, 72, 160, 0) 60%), radial-gradient(at 90% bottom, #523f8c 0%, rgba(82, 63, 140, 0) 40%), radial-gradient(at 50% top, rgba(84, 90, 182, 0.6) 0%, rgba(84, 90, 182, 0) 75%), radial-gradient(at right top, #794aa2 0%, rgba(121, 74, 162, 0) 57%);
+  background-size: auto, auto, 100% 1000px, 100% 1000px;
+  background-repeat: no-repeat;
+}

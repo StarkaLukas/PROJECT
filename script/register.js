@@ -113,7 +113,7 @@ function start() {
     document.getElementById('birthYear').addEventListener('change', () => {
         checkDateOfBirth(document.getElementById('birthDay'), document.getElementById('birthMonth'), document.getElementById('birthYear'));
     });
-    document.getElementById('home').addEventListener('click', ()=>{
+    document.getElementById('home').addEventListener('click', () => {
         window.open('../index.html', '_self');
     });
     // document.getElementById('hidden1').addEventListener('click', () =>{
@@ -131,11 +131,11 @@ function start() {
 
     document.onkeydown = keyListener;
 }
-function keyListener(key){
-    if(!key){
+function keyListener(key) {
+    if (!key) {
         key = window.event;
     }
-    if(key.keyCode == 13){
+    if (key.keyCode == 13) {
         check();
     }
 }
@@ -447,7 +447,7 @@ function checkDateOfBirth(day, month, year) {
     if (day.selectedIndex == 0) {
         if (faultDay !== '') {
             faultDay += "Day can't be blank!\n";
-            
+
         }
         else {
             faultDay = "Day can't be blank!\n";
@@ -497,7 +497,7 @@ function checkDateOfBirth(day, month, year) {
         document.getElementById('faultbirthyear').innerHTML = '';
     }
 
-    if(day.selectedIndex !== 0){
+    if (day.selectedIndex !== 0) {
         switch (month.selectedIndex) {
             case 4:
             case 6:
@@ -513,7 +513,7 @@ function checkDateOfBirth(day, month, year) {
                     else {
                         faultDay += 'This day is invalid!\n';
                     }
-    
+
                 }
                 else {
                     faultDay = '';
@@ -564,7 +564,7 @@ function checkDateOfBirth(day, month, year) {
                             }
                         }
                     }
-    
+
                 }
                 else {
                     if (day.selectedIndex > 28) {
@@ -586,8 +586,8 @@ function checkDateOfBirth(day, month, year) {
                     }
                 }
                 break;
-    }
-    
+        }
+
     }
     checkIfDayHasAlreadyBeen(day, month, year);
 }
@@ -640,12 +640,13 @@ function checkFaults() {
         //     usersStored = JSON.parse(localStorage.getItem('user'));
         //     window.open('../html/home.html', '_self');
         // }
-        createUser(document.getElementById('email').value, document.getElementById('password').value);  
-        setTimeout(() =>{
+        loader();
+        createUser(document.getElementById('email').value, document.getElementById('password').value);
+        setTimeout(() => {
             signInUser(document.getElementById('email').value, document.getElementById('password').value);
             saveUser(document.getElementById('firstName').value, document.getElementById('email').value, document.getElementById('birthDay').value, document.getElementById('birthMonth').value, document.getElementById('birthYear').value, document.getElementById('password').value);
         }, 2000);
-        setTimeout(() =>{
+        setTimeout(() => {
             window.open('./profile.html', '_self');
         }, 3000);
     }
@@ -676,10 +677,10 @@ function createUser(email, password) {
     });
 }
 function signInUser(email, password) {
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
         let errorCode = error.code;
         let errorMessage = error.message;
-      });
+    });
 }
 function checkIfDayHasAlreadyBeen(day, month, year) {
     let date = new Date();
@@ -725,13 +726,18 @@ function checkIfDayHasAlreadyBeen(day, month, year) {
     }
 }
 
-function passwordVisibility(inputField, elementShown, elementHidden, visible){
-    if(visible){
+function passwordVisibility(inputField, elementShown, elementHidden, visible) {
+    if (visible) {
         inputField.type = 'text';
     }
-    else{
+    else {
         inputField.type = 'password';
     }
     elementShown.style.display = 'none';
     elementHidden.style.display = 'block';
+}
+
+function loader() {
+    document.getElementById('loader').style.display = 'block';
+    document.getElementById('form').style.display = 'none';
 }

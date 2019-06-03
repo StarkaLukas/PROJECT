@@ -48,7 +48,7 @@ function check() {
     document.getElementById('home').addEventListener('click', () => {
         window.open('../index.html', '_self');
     });
-    
+
     // document.getElementById('hidden').addEventListener('click', () =>{
     //     passwordVisibility(document.getElementById('password'), document.getElementById('hidden'), document.getElementById('visible'), false);
     // });
@@ -126,6 +126,7 @@ function checkBlank(field, fieldString) {
 function checkFaults() {
     if (faultPassword === '' && faultEmail == '') {
         signInUser(document.getElementById('email').value, document.getElementById('password').value);
+        loader();
         setTimeout(() => {
             openFunction();
         }, 3000);
@@ -143,15 +144,20 @@ function signInUser(email, password) {
             case 'auth/user-not-found':
                 document.getElementById('faultemail').innerHTML = 'Wrong email!';
                 document.getElementById('email').style.borderBottomColor = errorColor;
+                redoLoad();
                 break;
             case 'auth/wrong-password':
                 document.getElementById('faultpassword').innerHTML = 'Wrong password!';
                 document.getElementById('password').style.borderBottomColor = errorColor;
+                redoLoad();
                 break;
             case 'auth/invalid-email':
                 document.getElementById('faultemail').innerHTML = 'Please enter a valid email';
                 email.style.borderBottomColor = errorColor;
+                redoLoad();
                 break;
+            default:
+                redoLoad();
         }
     });
 }
@@ -173,18 +179,28 @@ function keyListener(key) {
 }
 
 function openFunction() {
-    if(firebase.auth().currentUser !== null){
+    if (firebase.auth().currentUser !== null) {
         window.open('./profile.html', '_self');
     }
 }
 
-function passwordVisibility(inputField, elementShown, elementHidden, visible){
-    if(visible){
+function passwordVisibility(inputField, elementShown, elementHidden, visible) {
+    if (visible) {
         inputField.type = 'text';
     }
-    else{
+    else {
         inputField.type = 'password';
     }
     elementShown.style.display = 'none';
     elementHidden.style.display = 'block';
+}
+
+function loader() {
+    document.getElementById('loader').style.display = 'block';
+    document.getElementById('form').style.display = 'none';
+}
+
+function redoLoad(){
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('form').style.display = 'block';
 }
