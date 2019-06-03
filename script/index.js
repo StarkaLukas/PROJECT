@@ -5,9 +5,6 @@ let frame = 0;
 window.addEventListener('load', startIndex);
 
 function startIndex() {
-    setTimeout(() =>{
-        redoLoader()
-    }, 3000);
     slide(actualSlide);
     setInterval(()=>{
         if(frame === 75){
@@ -49,6 +46,7 @@ function startIndex() {
         actualSlide++;
         slide(actualSlide);
     });
+    document.getElementById('btn').addEventListener('click', openRegister);
 }
 
 
@@ -126,7 +124,6 @@ function hoverArrowOut(elementToChange){
     document.getElementById(elementToChange).style.color = 'white';
 }
 
-function redoLoader(){
-    document.getElementById('fullpage').style.display = 'block';
-    document.getElementById('loader').style.display = 'none';
+function openRegister(){
+    window.open('./html/register.html', '_self');
 }
