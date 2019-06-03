@@ -33,9 +33,6 @@ function startIndex() {
     document.getElementById('scrollStats').addEventListener('click', () =>{
         scroll('#stats');
     });
-    document.getElementById('scrollDart').addEventListener('click', () =>{
-        scroll('#dart');
-    });
     document.getElementById('scrollTimeline').addEventListener('click', () =>{
         scroll('#timeline');
     });
