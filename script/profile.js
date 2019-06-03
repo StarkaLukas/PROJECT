@@ -11,8 +11,9 @@ let config = {
 
 firebase.initializeApp(config);
 
-let dateFrom = '1;6;2019';
+let dateFrom = '1;1;2019';
 let dates = new Array;
+let datesStrings = new Array;
 let tons = 0;
 let ton40s = 0;
 let ton80s = 0;
@@ -35,15 +36,11 @@ let totalAveragesArray = new Array;
 let checkOutArray = new Array;
 
 function start() {
-    setTimeout(() => {
-        getEveryDate();
-        writeWelcomeBack();
-    }, 2000);
-    setTimeout(()=>{
-        redoLoader();
-    }, 4000);
 
+    prepareOptions();
     checkLoggedIn();
+    createStats();
+    document.getElementsByClassName('select')[0].addEventListener('click', redoStats);
 }
 
 function writeWelcomeBack() {
@@ -90,15 +87,19 @@ function getEveryDate() {
             let day = parseInt(dayMonthYear[0]);
             let month = parseInt(dayMonthYear[1]);
             let year = parseInt(dayMonthYear[2]);
+            let dateString = day + '.' + month + '.' + year;
 
             if (year > parseInt(dateFrom.split(';')[2])) {
                 dates.push(part);
+                datesStrings.push(dateString);
             } else if (year === parseInt(dateFrom.split(';')[2])) {
                 if (month > parseInt(dateFrom.split(';')[1])) {
                     dates.push(part);
+                    datesStrings.push(dateString);
                 } else if (month === parseInt(dateFrom.split(';')[1])) {
                     if (day >= parseInt(dateFrom.split(';')[0])) {
                         dates.push(part);
+                        datesStrings.push(dateString);
                     }
                 }
             }
@@ -157,7 +158,7 @@ function getStats() {
                 totalAverage = (totalAverage + parseFloat(stats.matchAverage)) / 2;
             } else {
                 totalAverage = parseFloat(stats.matchAverage);
-                
+
             }
 
             if (bestFirst9Average < parseFloat(stats.nineAverage) || bestFirst9Average === 0) {
@@ -171,9 +172,9 @@ function getStats() {
             } else {
                 total9Average = parseFloat(stats.nineAverage);
             }
-            
+
         });
-        
+
     }
 }
 
@@ -216,7 +217,7 @@ function writeBestLegHighestFinishAndCheckout() {
     setTimeout(() => {
         document.getElementById('highestFinish').textContent = highestFinish;
         document.getElementById('bestLeg').textContent = bestLeg;
-        document.getElementById('totalCheckout').textContent = checkOut + '%';
+        document.getElementById('totalCheckout').textContent = parseInt(checkOut * 100) / 100 + '%';
         document.getElementById('checkOuts').textContent = checkOuts + ' / ' + checkOutAttempts;
     }, 1000);
 }
@@ -230,8 +231,8 @@ function writeAverages() {
         document.getElementById('lowest9Average').textContent = parseInt(worstFirst9Average * 300) / 100;
         document.getElementById('highest9Average').textContent = parseInt(bestFirst9Average * 300) / 100;
         document.getElementById('total9Average').textContent = parseInt(total9Average * 300) / 100;
-        lineChartAverages('chartAverages', dates);
-        lineChartCheckouts('chartCheckout', dates);
+        lineChartAverages('chartAverages', datesStrings);
+        lineChartCheckouts('chartCheckout', datesStrings);
     }, 1000);
 }
 
@@ -260,7 +261,7 @@ function lineChartAverages(chartID, labels) {
     });
 }
 
-function lineChartCheckouts(chartID, labels){
+function lineChartCheckouts(chartID, labels) {
     let chart = document.getElementById(chartID).getContext('2d');
     let myChart = new Chart(chart, {
         type: 'line',
@@ -280,7 +281,165 @@ function lineChartCheckouts(chartID, labels){
     });
 }
 
-function redoLoader(){
+function redoLoader() {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('all').style.display = 'block';
+}
+
+function prepareOptions() {
+    let select, i, j, selElmnt, a, b, c;
+
+    select = document.getElementsByClassName("select");
+    for (i = 0; i < select.length; i++) {
+        selElmnt = select[i].getElementsByTagName("select")[0];
+
+        a = document.createElement("DIV");
+        a.setAttribute("class", "select-selected");
+        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+        select[i].appendChild(a);
+
+        b = document.createElement("DIV");
+        b.setAttribute("class", "select-items select-hide");
+        for (j = 1; j < selElmnt.length; j++) {
+
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.addEventListener("click", function (e) {
+
+                var y, i, k, s, h;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < s.length; i++) {
+                    if (s.options[i].innerHTML == this.innerHTML) {
+                        s.selectedIndex = i;
+                        h.innerHTML = this.innerHTML;
+                        y = this.parentNode.getElementsByClassName("same-as-selected");
+                        for (k = 0; k < y.length; k++) {
+                            y[k].removeAttribute("class");
+                        }
+                        this.setAttribute("class", "same-as-selected");
+                        break;
+                    }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+        }
+        select[i].appendChild(b);
+        a.addEventListener("click", function (e) {
+
+            e.stopPropagation();
+            closeAllSelect(this);
+            this.nextSibling.classList.toggle("select-hide");
+            this.classList.toggle("select-arrow-active");
+        });
+    }
+    function closeAllSelect(elmnt) {
+
+        var x, y, i, arrNo = [];
+        x = document.getElementsByClassName("select-items");
+        y = document.getElementsByClassName("select-selected");
+        for (i = 0; i < y.length; i++) {
+            if (elmnt == y[i]) {
+                arrNo.push(i)
+            } else {
+                y[i].classList.remove("select-arrow-active");
+            }
+        }
+        for (i = 0; i < x.length; i++) {
+            if (arrNo.indexOf(i)) {
+                x[i].classList.add("select-hide");
+            }
+        }
+    }
+
+    document.addEventListener("click", closeAllSelect);
+}
+
+function createStats() {
+    setTimeout(() => {
+        getEveryDate();
+        writeWelcomeBack();
+    }, 2000);
+    setTimeout(() => {
+        redoLoader();
+    }, 4000);
+}
+
+
+function redoStats() {
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    console.log(day + ' ' + month + ' ' + year);
+    switch (document.getElementById('statsPeriod').selectedIndex) {
+        case 1:
+            dateFrom = day + ';' + month + ';' + year;
+            break;
+        case 2:
+            if (day - 7 < 1) {
+                month--;
+                switch (month) {
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        day = 30 + day - 7;
+                        break;
+                    case 2:
+                        day = 28 + day - 7;
+                        break;
+                    default:
+                        day = 31 + day - 7;
+                        break;
+                }
+                dateFrom = day + ';' + month + ';' + year;
+            } else {
+                dateFrom = day - 7 + ';' + month + ';' + year;
+            }
+            break;
+        case 3:
+            if (date.getMonth === 0) {
+                month = 12;
+            } else {
+                month = month - 1;
+            }
+            dateFrom = day + ';' + month + ';' + year;
+            break;
+        case 4:
+            dateFrom = '1;1;2019';
+            break;
+    }
+    dates = new Array;
+    datesStrings = new Array;
+    tons = 0;
+    ton40s = 0;
+    ton80s = 0;
+    lost = 0;
+    won = 0;
+    total = 0;
+    highestFinish = 0;
+    bestLeg = 0;
+    checkOut = 0;
+    checkOuts = 0;
+    checkOutAttempts = 0;
+    bestFirst9Average = 0.0;
+    worstFirst9Average = 0.0;
+    total9Average = 0.0;
+    bestAverage = 0.0;
+    worstAverage = 0.0;
+    totalAverage = 0.0;
+    total9AveragesArray = new Array;
+    totalAveragesArray = new Array;
+    checkOutArray = new Array;
+    doLoader();
+    createStats();
+
+}
+
+function doLoader() {
+    document.getElementById('loader').style.display = 'block';
+    document.getElementById('all').style.display = 'none';
 }
