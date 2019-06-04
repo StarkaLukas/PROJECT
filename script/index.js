@@ -15,27 +15,6 @@ function startIndex() {
         frame++;
     }, 100);
     checkLoggedIn();
-    document.getElementById('dart_icon').addEventListener('click', () => {
-        scroll('#navigation');
-    });
-    document.getElementById('scrollAbout').addEventListener('click', () =>{
-        scroll('#about');
-    });
-    document.getElementById('scrollFeatures').addEventListener('click', () =>{
-        scroll('#features');
-    });
-    document.getElementById('scrollPractice').addEventListener('click', () =>{
-        scroll('#practice');
-    });
-    document.getElementById('scrollStats').addEventListener('click', () =>{
-        scroll('#stats');
-    });
-    document.getElementById('scrollTimeline').addEventListener('click', () =>{
-        scroll('#timeline');
-    });
-    document.getElementById('linkBox1').addEventListener('click', ()=>{
-        scroll('#navigation');
-    });
     document.getElementById('left').addEventListener('click', () =>{
         frame = 0;
         actualSlide--;
@@ -87,7 +66,6 @@ function changeColor(slide){
         case 4:
         case 5:
         case 6:
-        document.getElementById('dart_icon').src = './images/dart_icon_white.svg';
         document.getElementById('right').style.color = 'white';
             document.getElementById('left').style.color = 'white';
         break;

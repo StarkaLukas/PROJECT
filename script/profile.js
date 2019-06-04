@@ -87,6 +87,12 @@ function writeWelcomeBack() {
         document.getElementById('heading').innerHTML = `${username}`;
         document.getElementById('name').innerHTML = username;
         document.getElementById('name').style.color = 'white';
+        let day = (snapshot.val() && snapshot.val().day) || 'Anonymous';
+        let month = (snapshot.val() && snapshot.val().month) || 'Anonymous';
+        let year = (snapshot.val() && snapshot.val().year) || 'Anonymous';
+        document.getElementById('pds').innerHTML = `<i class="fas fa-calendar-alt"></i> ${day}.${month}.${year}`;
+        let email = (snapshot.val() && snapshot.val().email) || 'Anonymous';
+        document.getElementById('email').innerHTML = `<i class="fas fa-envelope"></i> ${email}`;
         console.log(username);
     });
 }

@@ -58,18 +58,21 @@ class Player {
         if (!this._finished) {
             this._darts++;
             this._totalDarts++;
-            if(this._darts <= 9){
+            if (this._darts <= 9) {
                 this._first9darts++;
             }
             if (this._darts % 3 === 0) {
-                if(this._haveToAsk){
+                if (this._haveToAsk && (opponent !== 'Trainer (computer)')) {
                     this.askHowManyDarts('missedDoubles');
                     this._haveToAsk = false;
                 }
                 this._legAverage = (((this._legAverage * (this._darts - 3)) + this._lastScore - this._remainingPoints) / this._darts);
                 this._matchAverage = (((this._matchAverage * (this._totalDarts - 3)) + this._lastScore - this._remainingPoints) / this._totalDarts)
                 this.checkTon();
-                this.turnMethod();
+                if (this.data === 'you') {
+                    this.turnMethod();
+                    changeBackgroundColor(yourTurn);
+                }
                 if (this._darts <= 9) {
                     this._first9Average = (((this._first9Average * (this._first9darts - 3)) + this._lastScore - this._remainingPoints) / this._first9darts);
                 }
@@ -94,11 +97,17 @@ class Player {
             if (this._remainingPoints - field.value === 0) {
                 if (outMethod === 'd_out') {
                     if (field.data === 'double') {
-                        this.askHowManyDarts('notMissedDoubles');
+                        if(opponent !== 'Trainer (computer)'){
+                            this.askHowManyDarts('notMissedDoubles');
+                        }
                     } else {
                         this._remainingPoints = this._lastScore;
                         this.setDartsHigher(remainingDarts);
                         this._haveToAsk = true;
+                        if (this.data === 'you') {
+                            this.turnMethod();
+                            changeBackgroundColor(yourTurn);
+                        }
                     }
                 } else if (outMethod === 'm_out') {
                     if (field.data === 'double' || field.data === 'triple') {
@@ -106,6 +115,10 @@ class Player {
                     } else {
                         this._remainingPoints = this._lastScore;
                         this.setDartsHigher(remainingDarts);
+                        if (this.data === 'you') {
+                            this.turnMethod();
+                            changeBackgroundColor(yourTurn);
+                        }
                     }
                 } else {
                     this.setLegWin(remainingDarts);
@@ -117,10 +130,14 @@ class Player {
                 else {
                     this._remainingPoints = this._lastScore;
                     this.setDartsHigher(remainingDarts);
+                    if (this.data === 'you') {
+                        this.turnMethod();
+                        changeBackgroundColor(yourTurn);
+                    }
                 }
             }
         } else {
-            if(outMethod === 'd_out'){
+            if (outMethod === 'd_out') {
                 this._haveToAsk = true;
             }
             this.subtractScore(field.value);
@@ -175,6 +192,7 @@ class Player {
 
     turnMethod() {
         if (opponent === 'Trainer (computer)') {
+            computerTurn = true;
             makeComputerTurn();
         } else if (opponent === 'Guest (local opponent)') {
             yourTurn = !yourTurn;
@@ -193,19 +211,19 @@ class Player {
         }
     }
 
-    askHowManyDarts(fieldId){
+    askHowManyDarts(fieldId) {
         document.getElementById(fieldId).style.display = 'block';
         document.getElementById('game').style.display = 'none';
 
-        let interval = setInterval(()=>{
-            if(clicked){
+        let interval = setInterval(() => {
+            if (clicked) {
                 for (let i = 0; i < document.getElementsByClassName('missedDoubleChoice').length; i++) {
                     const element = document.getElementsByClassName('missedDoubleChoice')[i];
-                    if(element.data === 'clicked'){
-                        if(element.textContent != 'None'){
+                    if (element.data === 'clicked') {
+                        if (element.textContent != 'None') {
                             this._checkOutAttempts += parseInt(element.textContent);
                         }
-                        if(fieldId === 'notMissedDoubles'){
+                        if (fieldId === 'notMissedDoubles') {
                             this._checkOuts += 1;
                             this.setLegWin();
                         }
@@ -248,6 +266,9 @@ class Player {
         return this._bestLeg;
     }
     get remainingPoints() {
+        if (this._darts === 0) {
+            return score;
+        }
         return this._remainingPoints;
     }
     get legsWon() {
@@ -268,13 +289,13 @@ class Player {
     get first9darts() {
         return this._first9darts;
     }
-    get checkOutAttempts(){
+    get checkOutAttempts() {
         return this._checkOutAttempts;
     }
-    get checkOuts(){
+    get checkOuts() {
         return this._checkOuts;
     }
-    get haveToAsk(){
+    get haveToAsk() {
         return this._haveToAsk;
     }
     set lastScore(lastScore) {
@@ -327,18 +348,18 @@ class Player {
     set first9darts(first9darts) {
         this._first9darts = first9darts;
     }
-    set checkOutAttempts(checkOutAttempts){
+    set checkOutAttempts(checkOutAttempts) {
         this._checkOutAttempts = checkOutAttempts;
     }
-    set checkOuts(checkOuts){
+    set checkOuts(checkOuts) {
         this._checkOuts = checkOuts;
     }
-    set haveToAsk(haveToAsk){
+    set haveToAsk(haveToAsk) {
         this._haveToAsk = haveToAsk;
     }
 }
 
-let score, computerLevel, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '', sets, legs, opponent, inMethod, outMethod, startToThrow, nameOfOpponent, yourTurn, setStart, clicked = false;
+let score, computerLevel, computerTurn, faults, faultsRadio1 = '', faultsRadio2 = '', faultsRadio3 = '', faultsRadio4 = '', faultsAmount = '', faultsOpponent = '', sets, legs, opponent, inMethod, outMethod, startToThrow, nameOfOpponent, yourTurn, setStart, clicked = false;
 let checkBlankStart1 = false;
 let checkBlankStart2 = false;
 let opponentNameNeedsToBeChecked = false;
@@ -585,6 +606,10 @@ function checkSettings() {
         switchOpponent();
         checkDoubleText();
         switchGameMode();
+        if (opponent === 'Trainer (computer)' && !yourTurn) {
+            makeComputerTurn();
+        }
+        changeBackgroundColor(yourTurn);
     }
 }
 
@@ -898,10 +923,12 @@ function radioCheckBlank(classNames, faultField) {
 }
 
 function gameMethod(field) {
-    if (yourTurn) {
-        makeTurn(you, field, '1');
-    } else {
-        makeTurn(versus, field, '2');
+    if (!computerTurn) {
+        if (yourTurn) {
+            makeTurn(you, field, '1');
+        } else {
+            makeTurn(versus, field, '2');
+        }
     }
 }
 
@@ -973,7 +1000,512 @@ function checkDoubleText() {
 }
 
 function makeComputerTurn() {
-    // To be implemented
+    setInterval(() => {
+        if (computerTurn) {
+            changeBackgroundColor(false);
+
+            if (versus.remainingPoints <= 170) {
+                computerFinishFunction();
+
+            } else {
+                computerNormalFunction();
+            }
+            writeInformation(document.getElementById('remainingPoints2'), versus._remainingPoints, 'black');
+            writeInformation(document.getElementById('legAverage2'), parseInt(versus.legAverage * 300) / 100, 'black');
+            writeInformation(document.getElementById('matchAverage2'), parseInt(versus.matchAverage * 300) / 100, 'black');
+            writeInformation(document.getElementById('first9Average2'), parseInt(versus.first9Average * 300) / 100, 'black');
+            writeInformation(document.getElementById('tons2'), versus.tons, 'black');
+            writeInformation(document.getElementById('ton40s2'), versus.ton40s, 'black');
+            writeInformation(document.getElementById('ton80s2'), versus.ton80s, 'black');
+            if (versus.highestFinish !== 0) writeInformation(document.getElementById('highestFinish2'), versus.highestFinish, 'black');
+            if (outMethod === 'd_out') {
+                writeInformation(document.getElementById('doubles2'), versus.doublePercentage, 'black');
+            }
+            if (versus.bestLeg !== 0) writeInformation(document.getElementById('bestLeg2'), versus.bestLeg, 'black');
+            if (versus._darts % 3 === 0) {
+                computerTurn = false;
+                changeBackgroundColor(true);
+            }
+        }
+    }, 1500);
+}
+
+function computerFinishFunction() {
+    switch (computerLevel) {
+        case '1':
+            computerGetFinish(10);
+            break;
+        case '2':
+            computerGetFinish(15);
+            break;
+        case '3':
+            computerGetFinish(20);
+            break;
+        case '4':
+            computerGetFinish(25);
+            break;
+        case '5':
+            computerGetFinish(30);
+            break;
+        case '6':
+                computerGetFinish(35);
+            break;
+        case '7':
+                computerGetFinish(40);
+            break;
+        case '8':
+            computerGetFinish(45);
+            break;
+        case '9':
+                computerGetFinish(50);
+            break;
+        case '10':
+            computerGetFinish(60);
+            break;
+    }
+}
+
+function computerGetFinish(percentage){
+    let number = Math.floor(Math.random() * 100) + 1;
+
+    if(parseInt(versus.remainingPoints) >= 100){
+        switch (computerLevel) {
+            case '1':
+                computerGetPoints(5, 16, 5, 14, 5, 10, 1, 3, 5, 3, 14, 4, 15, 3);
+                break;
+            case '2':
+                computerGetPoints(4, 14, 7, 13, 5, 10, 2, 5, 5, 11, 7, 13, 4);
+                break;
+            case '3':
+                computerGetPoints(3, 15, 10, 12, 8, 8, 2, 3, 5, 5, 12, 8, 9, 5);
+                break;
+            case '4':
+                computerGetPoints(3, 13, 10, 10, 10, 6, 6, 5, 5, 5, 11, 9, 7, 7);
+                break;
+            case '5':
+                computerGetPoints(2, 13, 15, 8, 12, 6, 5, 4, 5, 8, 9, 10, 3, 9);
+                break;
+            case '6':
+                computerGetPoints(2, 10, 20, 7, 16, 3, 3, 3, 3, 10, 7, 14, 2, 13);
+                break;
+            case '7':
+                computerGetPoints(1, 7, 26, 7, 16, 2, 1, 1, 2, 12, 5, 17, 3, 17);
+                break;
+            case '8':
+                computerGetPoints(0, 7, 33, 6, 18, 1, 1, 1, 1, 6, 3, 18, 5, 24);
+                break;
+            case '9':
+                computerGetPoints(0, 5, 37, 5, 12, 2, 1, 3, 2, 7, 3, 22, 1, 31);
+                break;
+            case '10':
+                computerGetPoints(0, 3, 40, 3, 15, 1, 0, 3, 1, 7, 2, 25, 0, 40);
+                break;
+        }
+    }
+    else if(parseInt(versus.remainingPoints) >= 40){
+        versus.gameFunction(new DartField(null, 20, 'red', 'yellow'));
+    }else{
+        switch(parseInt(versus.remainingPoints)){
+            case 40:
+                if(number <= percentage){
+                    let field = new DartField(null, 40, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 39:
+                if(number <= percentage){
+                    let field = new DartField(null, 19, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 38:
+                if(number <= percentage){
+                    let field = new DartField(null, 38, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 37:
+                if(number <= percentage){
+                    let field = new DartField(null, 17, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 36:
+                if(number <= percentage){
+                    let field = new DartField(null, 36, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 35:
+                if(number <= percentage){
+                    let field = new DartField(null, 15, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 34:
+                if(number <= percentage){
+                    let field = new DartField(null, 34, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 33:
+                if(number <= percentage){
+                    let field = new DartField(null, 1, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 32:
+                if(number <= percentage){
+                    let field = new DartField(null, 32, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 31:
+                if(number <= percentage){
+                    let field = new DartField(null, 7, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 30:
+                if(number <= percentage){
+                    let field = new DartField(null, 30, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 29:
+                if(number <= percentage){
+                    let field = new DartField(null, 5, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 28:
+                if(number <= percentage){
+                    let field = new DartField(null, 28, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 27:
+                if(number <= percentage){
+                    let field = new DartField(null, 3, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 26:
+                if(number <= percentage){
+                    let field = new DartField(null, 26, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 25:
+                if(number <= percentage){
+                    let field = new DartField(null, 9, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 24:
+                if(number <= percentage){
+                    let field = new DartField(null, 24, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                case 23:
+                if(number <= percentage){
+                    let field = new DartField(null, 7, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 22:
+                if(number <= percentage){
+                    let field = new DartField(null, 22, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 21:
+                if(number <= percentage){
+                    let field = new DartField(null, 5, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 20:
+                if(number <= percentage){
+                    let field = new DartField(null, 20, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 19:
+                if(number <= percentage){
+                    let field = new DartField(null, 3, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 18:
+                if(number <= percentage){
+                    let field = new DartField(null, 18, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 17:
+                if(number <= percentage){
+                    let field = new DartField(null, 1, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 16:
+                if(number <= percentage){
+                    let field = new DartField(null, 16, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 15:
+                if(number <= percentage){
+                    let field = new DartField(null, 7, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 14:
+                if(number <= percentage){
+                    let field = new DartField(null, 14, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 13:
+                if(number <= percentage){
+                    let field = new DartField(null, 5, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 12:
+                if(number <= percentage){
+                    let field = new DartField(null, 12, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 11:
+                if(number <= percentage){
+                    let field = new DartField(null, 3, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 10:
+                if(number <= percentage){
+                    let field = new DartField(null, 10, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 9:
+                if(number <= percentage){
+                    let field = new DartField(null, 1, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 8:
+                if(number <= percentage){
+                    let field = new DartField(null, 8, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 7:
+                if(number <= percentage){
+                    let field = new DartField(null, 3, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 6:
+                if(number <= percentage){
+                    let field = new DartField(null, 6, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 5:
+                if(number <= percentage){
+                    let field = new DartField(null, 1, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 4:
+                if(number <= percentage){
+                    let field = new DartField(null, 4, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 3:
+                if(number <= percentage){
+                    let field = new DartField(null, 1, 'red', 'yellow');
+                    field.data = 'single';
+                    versus.gameFunction(field);
+                }
+                break;
+                case 2:
+                if(number <= percentage){
+                    let field = new DartField(null, 2, 'red', 'yellow');
+                    field.data = 'double';
+                    versus.gameFunction(field);
+                }
+                break;
+        }
+    }
+}
+
+function computerNormalFunction() {
+    switch (computerLevel) {
+        case '1':
+            computerGetPoints(5, 16, 5, 14, 5, 10, 1, 3, 5, 3, 14, 4, 15, 3);
+            break;
+        case '2':
+            computerGetPoints(4, 14, 7, 13, 5, 10, 2, 5, 5, 11, 7, 13, 4);
+            break;
+        case '3':
+            computerGetPoints(3, 15, 10, 12, 8, 8, 2, 3, 5, 5, 12, 8, 9, 5);
+            break;
+        case '4':
+            computerGetPoints(3, 13, 10, 10, 10, 6, 6, 5, 5, 5, 11, 9, 7, 7);
+            break;
+        case '5':
+            computerGetPoints(2, 13, 15, 8, 12, 6, 5, 4, 5, 8, 9, 10, 3, 9);
+            break;
+        case '6':
+            computerGetPoints(2, 10, 20, 7, 16, 3, 3, 3, 3, 10, 7, 14, 2, 13);
+            break;
+        case '7':
+            computerGetPoints(1, 7, 26, 7, 16, 2, 1, 1, 2, 12, 5, 17, 3, 17);
+            break;
+        case '8':
+            computerGetPoints(0, 7, 33, 6, 18, 1, 1, 1, 1, 6, 3, 18, 5, 24);
+            break;
+        case '9':
+            computerGetPoints(0, 5, 37, 5, 12, 2, 1, 3, 2, 7, 3, 22, 1, 31);
+            break;
+        case '10':
+            computerGetPoints(0, 3, 40, 3, 15, 1, 0, 3, 1, 7, 2, 25, 0, 40);
+            break;
+    }
+}
+
+function computerGetPoints(twelveChance, fiveChance, twentyChance, oneChance, eighteenChance, fourChance, thirteenChance, fifteenChance, twoChance, seventeenChance, threeChance, nineTeenChance, sevenChance, tripleChance) {
+    if (twelveChance + fiveChance + twentyChance + oneChance + eighteenChance + fourChance + thirteenChance + fifteenChance + twoChance + seventeenChance + threeChance + nineTeenChance + sevenChance === 100) {
+        console.log('Success');
+        let number = Math.floor(Math.random() * 100) + 1;
+        let tripleNumber = Math.floor(Math.random() * 100) + 1;
+        if (number <= twelveChance) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 12 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 12, 'red', 'yellow'));
+            }
+        } else if (number <= (twelveChance + fiveChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 5 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 5, 'red', 'yellow'));
+            }
+        }
+        else if (number <= (twelveChance + fiveChance + twentyChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 20 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 20, 'red', 'yellow'));
+            }
+        } else if (number <= (twelveChance + fiveChance + twelveChance + oneChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 1 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 1, 'red', 'yellow'));
+            }
+        } else if (number <= (twelveChance + fiveChance + twelveChance + oneChance + eighteenChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 18 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 18, 'red', 'yellow'));
+            }
+        } else if (number <= (twelveChance + fiveChance + twelveChance + oneChance + eighteenChance + fourChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 4 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 4, 'red', 'yellow'));
+            }
+        } else if (number <= (twelveChance + fiveChance + twelveChance + oneChance + eighteenChance + fourChance + thirteenChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 13 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 13, 'red', 'yellow'));
+            }
+        } else if (number <= (twelveChance + fiveChance + twelveChance + oneChance + eighteenChance + fourChance + thirteenChance + fifteenChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 15 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 15, 'red', 'yellow'));
+            }
+        } else if (number <= (twelveChance + fiveChance + twelveChance + oneChance + eighteenChance + fourChance + thirteenChance + fifteenChance + twoChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 2 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 2, 'red', 'yellow'));
+            }
+        } else if (number <= (twelveChance + fiveChance + twelveChance + oneChance + eighteenChance + fourChance + thirteenChance + fifteenChance + twoChance + seventeenChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 7 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 7, 'red', 'yellow'));
+            }
+        } else if (number <= (twelveChance + fiveChance + twelveChance + oneChance + eighteenChance + fourChance + thirteenChance + fifteenChance + twoChance + seventeenChance + threeChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 3 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 3, 'red', 'yellow'));
+            }
+        } else if (number <= (twelveChance + fiveChance + twelveChance + oneChance + eighteenChance + fourChance + thirteenChance + fifteenChance + twoChance + seventeenChance + threeChance + nineTeenChance)) {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 19 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 19, 'red', 'yellow'));
+            }
+        } else {
+            if (tripleNumber <= tripleChance) {
+                versus.gameFunction(new DartField(null, 7 * 3, 'red', 'yellow'));
+            } else {
+                versus.gameFunction(new DartField(null, 7, 'red', 'yellow'));
+            }
+        }
+
+    } else {
+        console.log(twelveChance + fiveChance + twentyChance + oneChance + eighteenChance + fourChance + thirteenChance + fifteenChance + twoChance + seventeenChance + threeChance + nineTeenChance + sevenChance);
+    }
 }
 
 function saveStatsToFireBase(player, userID, playerWon) {
@@ -995,18 +1527,18 @@ function saveStatsToFireBase(player, userID, playerWon) {
 function writeNewStats(player, userID, string, playerWon) {
     let daysStatsMade, matchesLost, matchesWon, doublePercentage;
 
-    if(playerWon === 'you'){
+    if (playerWon === 'you') {
         matchesLost = 0;
         matchesWon = 1;
-    }else{
+    } else {
         matchesLost = 1;
         matchesWon = 0;
     }
 
-    if(player.checkOuts != 0){
+    if (player.checkOuts != 0) {
         doublePercentage = (player.checkOuts / player.checkOutAttempts) * 100;
     }
-    else{
+    else {
         doublePercentage = 0;
     }
 
@@ -1033,13 +1565,13 @@ function writeNewStats(player, userID, string, playerWon) {
         }
 
     });
-    firebase.database().ref('/users/' + userID + '/daysStatsMade').once('value').then(function (snapshot){
+    firebase.database().ref('/users/' + userID + '/daysStatsMade').once('value').then(function (snapshot) {
         daysStatsMade = (snapshot.val() && snapshot.val().daysStatsMade) || '';
         console.log(daysStatsMade);
     });
-    setTimeout(() =>{
+    setTimeout(() => {
         firebase.database().ref('users/' + userID + '/daysStatsMade').set({
-            daysStatsMade : daysStatsMade + string + '|'
+            daysStatsMade: daysStatsMade + string + '|'
         }, (error) => {
             if (error) {
                 console.log('%c Fail', 'color: red');
@@ -1062,7 +1594,7 @@ function writeNewStats(player, userID, string, playerWon) {
 function updateStats(player, userID, string, playerWon) {
 
     let matchAverage, nineAverage, tons, ton40s, ton80s, doublePercentage, highestFinish, bestLeg, matchesLost, matchesWon, checkOutAttempts, checkOuts;
-    
+
 
     return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot) {
         let stats = (snapshot.val() && snapshot.val()[string]) || 'Anonymous';
@@ -1078,9 +1610,9 @@ function updateStats(player, userID, string, playerWon) {
         console.log(checkOuts);
         console.log(checkOutAttempts);
 
-        if(playerWon === 'you'){
+        if (playerWon === 'you') {
             matchesWon += 1;
-        }else{
+        } else {
             matchesLost += 1;
         }
 
@@ -1094,16 +1626,16 @@ function updateStats(player, userID, string, playerWon) {
         } else {
             bestLeg = stats.bestLeg;
         }
-        if(parseInt(stats.checkOuts) != 0){
+        if (parseInt(stats.checkOuts) != 0) {
             doublePercentage = (parseInt(stats.checkOuts) / parseInt(stats.checkOutAttempts)) * 100;
         }
-        else{
+        else {
             doublePercentage = 0;
         }
-        
+
 
         firebase.database().ref('users/' + userID + '/' + string).set({
-            
+
             matchAverage: matchAverage,
             nineAverage: nineAverage,
             tons: tons,
@@ -1111,7 +1643,7 @@ function updateStats(player, userID, string, playerWon) {
             ton80s: ton80s,
             highestFinish: highestFinish,
             bestLeg: bestLeg,
-            matchesPlayed : stats.matchesPlayed + 1,
+            matchesPlayed: stats.matchesPlayed + 1,
             matchesLost: matchesLost,
             matchesWon: matchesWon,
             checkOuts: checkOuts,
@@ -1129,12 +1661,12 @@ function updateStats(player, userID, string, playerWon) {
 }
 
 function popupWinner(playerWon) {
-    if(playerWon === 'you'){
+    if (playerWon === 'you') {
         document.getElementById('wonIcon').style.display = 'block';
         document.getElementById('cheer').textContent = 'Congratulation';
         document.getElementById('winningText').textContent = 'You won the match';
     }
-    else{
+    else {
         document.getElementById('lostIcon').style.display = 'block';
         document.getElementById('cheer').textContent = 'What a pity';
         document.getElementById('winningText').textContent = 'You lost the match';
@@ -1144,11 +1676,11 @@ function popupWinner(playerWon) {
     document.getElementById('popUpWinner').style.display = 'block';
 }
 
-function finishLink(){
+function finishLink() {
     window.open('../html/game.html', '_self');
 }
 
-function statsLink(){
+function statsLink() {
     document.getElementById('stats').style.display = 'block';
     document.getElementById('game').style.display = 'none';
     document.getElementById('popUpWinner').style.display = 'none';
@@ -1166,24 +1698,33 @@ function statsLink(){
     document.getElementById('nineDartAverage').textContent = parseInt(you.first9Average * 300) / 100;
 }
 
-function changeDataDouble(field){
+function changeDataDouble(field) {
     field.data = 'clicked';
     clicked = true;
-}   
+}
 
-function writeLegWinToScoreboard(player){
-    if(player.data === 'you'){
+function writeLegWinToScoreboard(player) {
+    if (player.data === 'you') {
         document.getElementsByClassName('legs')[0].textContent = player.legsWon;
-    }else{
+    } else {
         document.getElementsByClassName('legs')[1].textContent = player.legsWon;
     }
 }
 
-function writeSetWinToScoreboard(player){
-    if(player.data === 'you'){
+function writeSetWinToScoreboard(player) {
+    if (player.data === 'you') {
         document.getElementsByClassName('sets')[0].textContent = player.setsWon;
-    }else{
+    } else {
         document.getElementsByClassName('sets')[1].textContent = player.setsWon;
     }
 }
 
+function changeBackgroundColor(turn) {
+    if (turn) {
+        document.getElementById('playerInfo1').style.backgroundColor = 'black';
+        document.getElementById('playerInfo2').style.backgroundColor = '#e5e5e5';
+    } else {
+        document.getElementById('playerInfo2').style.backgroundColor = 'black';
+        document.getElementById('playerInfo1').style.backgroundColor = '#e5e5e5';
+    }
+}

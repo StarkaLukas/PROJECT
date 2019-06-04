@@ -147,6 +147,9 @@ nav {
     padding: 2%;
     background-color: white;
 }
+#profile{
+    height: 40vh;
+}
 
 #averageThreeDartInfo {
     background-color: #4da5f5;
@@ -326,6 +329,17 @@ span {
   }
 
   #timePeriodSelect{
+      position: relative;
       margin-top: 5vh;
       margin-left: 60vw;
+  }
+
+  .information{
+      position: absolute;
+      margin-left: 15vw;
+      top: 25vh;
+  }
+
+  .email{
+      top: 30vh;
   }

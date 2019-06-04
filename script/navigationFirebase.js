@@ -12,9 +12,11 @@ let config = {
 firebase.initializeApp(config);
 
 function start() {
-    setTimeout(()=>{
-        writeWelcomeBack();
-    }, 2000);
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            writeWelcomeBack();
+        }
+    });
     checkLoggedIn();
 }
 

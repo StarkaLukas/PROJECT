@@ -1,0 +1,150 @@
+{
+  "users" : {
+    "8Yzjs1dzKdaun6B0QIuvZrna08S2" : {
+      "day" : "19",
+      "email" : "tobisaasss@gmail.com",
+      "month" : "April",
+      "password" : "Tobiisahortgayername1",
+      "username" : "tobisaaaaas",
+      "year" : "1982"
+    },
+    "CT2yeYQMAuUzKba8lOeK0e92Ylh2" : {
+      "day" : "2",
+      "email" : "jakofax1@gmail.com",
+      "month" : "August",
+      "password" : "BossJarkey2002",
+      "username" : "Totoro",
+      "year" : "2014"
+    },
+    "FZNzxJlP1VPbEIy8vUu9d1tWsdg2" : {
+      "day" : "3",
+      "email" : "testt@gmail.com",
+      "month" : "May",
+      "password" : "Password1",
+      "username" : "Lukas",
+      "year" : "1970"
+    },
+    "JfQv8lrOUOeyY0rCbTdlrMqXl0M2" : {
+      "day" : "1",
+      "email" : "jakobocko@rocko.como",
+      "month" : "July",
+      "password" : "Password1",
+      "username" : "jaki",
+      "year" : "1967"
+    },
+    "Qqwd4ruALYSkrMRL4pytwaEn0ei2" : {
+      "day" : "12",
+      "email" : "klausnerflo@gmail.com",
+      "month" : "April",
+      "username" : "floklausner",
+      "year" : "2003"
+    },
+    "V2CpmLPFgHhOijtYLQZQlHtUJoG2" : {
+      "day" : "11",
+      "email" : "philippedlinger@github.io",
+      "month" : "October",
+      "password" : "DenPanda1",
+      "username" : "edlinger",
+      "year" : "1976"
+    },
+    "aHcyu1UHeLWlezwd7Sp86O9RjIn2" : {
+      "day" : "2",
+      "email" : "felixdumf@hotmail.com",
+      "month" : "November",
+      "password" : "Password1",
+      "username" : "Felix",
+      "year" : "2002"
+    },
+    "jVfmkRWAiWRbDlqLcXPyQw6jSKI2" : {
+      "1;6;2019" : {
+        "bestLeg" : 3,
+        "checkOutAttempts" : 20,
+        "checkOuts" : 2,
+        "doublePercentage" : 10,
+        "highestFinish" : 170,
+        "matchAverage" : 23.83333333333333,
+        "matchesLost" : 0,
+        "matchesPlayed" : 1,
+        "matchesWon" : 1,
+        "nineAverage" : 32.5,
+        "ton40s" : 1,
+        "ton80s" : 0,
+        "tons" : 2
+      },
+      "2;6;2019" : {
+        "bestLeg" : 19,
+        "checkOutAttempts" : 20,
+        "checkOuts" : 3,
+        "doublePercentage" : 13,
+        "highestFinish" : 36,
+        "matchAverage" : 13.938725490196079,
+        "matchesLost" : 0,
+        "matchesPlayed" : 1,
+        "matchesWon" : 1,
+        "nineAverage" : 19.444444444444443,
+        "ton40s" : 0,
+        "ton80s" : 0,
+        "tons" : 1
+      },
+      "3;6;2019" : {
+        "bestLeg" : 0,
+        "checkOutAttempts" : 8,
+        "checkOuts" : 2,
+        "doublePercentage" : 25,
+        "highestFinish" : 94,
+        "matchAverage" : 13.583333333333332,
+        "matchesLost" : 3,
+        "matchesPlayed" : 14,
+        "matchesWon" : 11,
+        "nineAverage" : 13.055555555555555,
+        "ton40s" : 0,
+        "ton80s" : 0,
+        "tons" : 3
+      },
+      "4;6;2019" : {
+        "bestLeg" : 0,
+        "checkOutAttempts" : 0,
+        "checkOuts" : 0,
+        "doublePercentage" : 0,
+        "highestFinish" : 51,
+        "matchAverage" : 10.186868686868689,
+        "matchesLost" : 7,
+        "matchesPlayed" : 10,
+        "matchesWon" : 3,
+        "nineAverage" : 15.604166666666668,
+        "ton40s" : 0,
+        "ton80s" : 0,
+        "tons" : 1
+      },
+      "day" : "2",
+      "daysStatsMade" : {
+        "daysStatsMade" : "1;6;2019|2;6;2019|3;6;2019|4;6;2019|"
+      },
+      "email" : "testemail@gmail.com",
+      "month" : "March",
+      "username" : "Lukas",
+      "year" : "1969"
+    },
+    "jk1cGrVdvTPDo2igDDfE0UWWFJx1" : {
+      "day" : "2",
+      "email" : "big.boy@gmail.com",
+      "month" : "February",
+      "username" : "BigBoy",
+      "year" : "1968"
+    },
+    "rAfrJitnWCRODfE9rHX6fUkwEx43" : {
+      "day" : "3",
+      "email" : "musterfrau@gmail.com",
+      "month" : "March",
+      "username" : "Musterfrau",
+      "year" : "1968"
+    },
+    "wvlWi4AolNTjxSF8AlqGQ2SQ47w2" : {
+      "day" : "24",
+      "email" : "mustermann@gmail.com",
+      "month" : "December",
+      "username" : "Mustermann",
+      "year" : "1976"
+    }
+  }
+}
