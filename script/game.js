@@ -907,24 +907,24 @@ function gameMethod(field) {
 
 function makeTurn(player, field, playerString) {
     player.gameFunction(field);
-    writeInformation(document.getElementById('remainingPoints' + playerString), player.remainingPoints, 'white');
-    writeInformation(document.getElementById('legAverage' + playerString), parseInt(player.legAverage * 300) / 100, 'white');
-    writeInformation(document.getElementById('matchAverage' + playerString), parseInt(player.matchAverage * 300) / 100, 'white');
-    writeInformation(document.getElementById('first9Average' + playerString), parseInt(player.first9Average * 300) / 100, 'white');
-    writeInformation(document.getElementById('tons' + playerString), player.tons, 'white');
-    writeInformation(document.getElementById('ton40s' + playerString), player.ton40s, 'white');
-    writeInformation(document.getElementById('ton80s' + playerString), player.ton80s, 'white');
-    if (player.highestFinish !== 0) writeInformation(document.getElementById('highestFinish' + playerString), player.highestFinish, 'white');
+    writeInformation(document.getElementById('remainingPoints' + playerString), player.remainingPoints, 'black');
+    writeInformation(document.getElementById('legAverage' + playerString), parseInt(player.legAverage * 300) / 100, 'black');
+    writeInformation(document.getElementById('matchAverage' + playerString), parseInt(player.matchAverage * 300) / 100, 'black');
+    writeInformation(document.getElementById('first9Average' + playerString), parseInt(player.first9Average * 300) / 100, 'black');
+    writeInformation(document.getElementById('tons' + playerString), player.tons, 'black');
+    writeInformation(document.getElementById('ton40s' + playerString), player.ton40s, 'black');
+    writeInformation(document.getElementById('ton80s' + playerString), player.ton80s, 'black');
+    if (player.highestFinish !== 0) writeInformation(document.getElementById('highestFinish' + playerString), player.highestFinish, 'black');
     if (outMethod === 'd_out') {
-        writeInformation(document.getElementById('doubles' + playerString), player.doublePercentage, 'white');
+        writeInformation(document.getElementById('doubles' + playerString), player.doublePercentage, 'black');
     }
-    if (player.bestLeg !== 0) writeInformation(document.getElementById('bestLeg' + playerString), player.bestLeg, 'white');
+    if (player.bestLeg !== 0) writeInformation(document.getElementById('bestLeg' + playerString), player.bestLeg, 'black');
 }
 
 function switchOpponent() {
     if (opponent === 'Single (no opponent)') {
         hideOpponent();
-        writeInformation(document.getElementById('remainingPoints1'), score, 'white');
+        writeInformation(document.getElementById('remainingPoints1'), score, 'black');
     }
     else {
         if (opponent === 'Trainer (computer)') {
@@ -933,8 +933,8 @@ function switchOpponent() {
         } else {
             showOpponent(nameOfOpponent);
         }
-        writeInformation(document.getElementById('remainingPoints1'), score, 'white');
-        writeInformation(document.getElementById('remainingPoints2'), score, 'white');
+        writeInformation(document.getElementById('remainingPoints1'), score, 'black');
+        writeInformation(document.getElementById('remainingPoints2'), score, 'black');
     }
 }
 
