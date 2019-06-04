@@ -67,8 +67,9 @@ function start() {
                 xhr.responseType = 'blob';
                 xhr.addEventListener('load', () => {
                     let canvas = document.createElement('canvas');
-    
-                    canvas.drawImage(xhr.response, 0, 0);
+                    let ctx = canvas.getContext('2d');
+
+                    ctx.drawImage(xhr.response, 0, 0);
                     document.getElementById('profilePicture').src = canvas.toDataURL();
                 });
                 xhr.open('GET', url);
