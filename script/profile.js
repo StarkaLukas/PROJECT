@@ -40,7 +40,38 @@ function start() {
     prepareOptions();
     checkLoggedIn();
     createStats();
+    showProfilePicture();
     document.getElementsByClassName('select')[0].addEventListener('click', redoStats);
+    document.getElementById('file').addEventListener('change', (event) => {
+        let user = firebase.auth().currentUser;
+
+        firebase.storage().ref(`users/${user.uid}`).put(event.target.files[0]).then((snapshot) => {
+            user.updateProfile({
+                photoURL: `users/${user.uid}/${event.target.value}`
+              }).catch((error) => {
+                console.log('%c ' + error, 'color: red');
+              });
+              
+        });
+    });
+
+    firebase.onAuthStateChanged((user) => {
+        if (user) {
+            firebase.storage().ref(user.photoURL).getDownloadURL().then(() => {
+                let xhr = new XMLHttpRequest();
+    
+                xhr.responseType = 'blob';
+                xhr.addEventListener('load', () => {
+                    let canvas = document.createElement('canvas');
+    
+                    canvas.drawImage(xhr.response, 0, 0);
+                    document.getElementById('profilePicture').src = canvas.toDataURL();
+                });
+                xhr.open('GET', url);
+                xhr.send();
+            });
+        }
+    });
 }
 
 function writeWelcomeBack() {

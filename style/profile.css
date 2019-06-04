@@ -126,11 +126,18 @@ nav {
     text-align: center;
 }
 
-#profilePicture {
+#profilePicture, #file {
     border-radius: 50%;
     vertical-align: middle;
     height: 20vh;
     width: 20vh;
+}
+
+#file {
+    position: relative;
+    top: -20vh;
+    left: 0;
+    opacity: 0;
 }
 
 .averageChart, #profile {
