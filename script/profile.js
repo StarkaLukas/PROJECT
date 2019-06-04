@@ -40,24 +40,28 @@ function start() {
     prepareOptions();
     checkLoggedIn();
     createStats();
-    showProfilePicture();
     document.getElementsByClassName('select')[0].addEventListener('click', redoStats);
     document.getElementById('file').addEventListener('change', (event) => {
         let user = firebase.auth().currentUser;
+        let path = `users/${user.uid}/${event.target.files[0].name}`
 
-        firebase.storage().ref(`users/${user.uid}`).put(event.target.files[0]).then((snapshot) => {
+        firebase.storage().ref(path).put(event.target.files[0]).then(() => {
             user.updateProfile({
-                photoURL: `users/${user.uid}/${event.target.value}`
+                photoURL: path
+              }).then(() => {
+                  console.log('updated');
               }).catch((error) => {
                 console.log('%c ' + error, 'color: red');
               });
               
+        }).then(() => {
+            console.log('uploaded');
         });
     });
 
-    firebase.onAuthStateChanged((user) => {
-        if (user) {
-            firebase.storage().ref(user.photoURL).getDownloadURL().then(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user.photoURL) {
+            firebase.storage().ref(user.photoURL).getDownloadURL().then((url) => {
                 let xhr = new XMLHttpRequest();
     
                 xhr.responseType = 'blob';

@@ -15,6 +15,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-storage.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -68,7 +69,7 @@
                 <img src="../images/profile_picture_default.png" id="profilePicture">
                 <input id="file" type="file" accept="image/*">
             </div>
-            <!-- <div id="timePeriodSelect">
+            <div id="timePeriodSelect">
                 <div class="select">
                     <select name="gameType" id="statsPeriod" class="selectField">
                         <option value="platzhalter" disabled selected hidden>Default (All time)</option>
@@ -194,13 +195,13 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
         <div id="notLoggedInContent" style="display: none">
             <h1>This site is only available when you're logged in! :(</h1>
         </div>
     </div>
-    <!-- <div id="loader" style="display: block">
+    <div id="loader" style="display: block">
         <svg width='15vw' height='17.9vh' version='1.1' xmlns='http://www.w3.org/2000/svg'>
             <path class='d-spinner d-spinner__four' style="fill: rgb(238, 216, 216);"
                 d='M144.421372,121.923755 C143.963266,123.384111 143.471366,124.821563 142.945674,126.236112 C138.856723,137.238783 133.098899,146.60351 125.672029,154.330576 C118.245158,162.057643 109.358082,167.978838 99.0105324,172.094341 C89.2149248,175.990321 78.4098994,178.04219 66.5951642,178.25 L0,178.25 L144.421372,121.923755 L144.421372,121.923755 Z' />
@@ -211,7 +212,7 @@
             <path class='d-spinner d-spinner__one'
                 d='M32.2942065,0 L64.5884131,0 C70.0451992,0 75.290683,0.385899921 80.3248924,1.15770478 L0,178.25 L0,0 L32.2942065,0 L32.2942065,0 Z' />
         </svg>
-    </div> -->
+    </div>
     <script src="../script/profile.js"></script>
 </body>
 
