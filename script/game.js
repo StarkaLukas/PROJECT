@@ -151,6 +151,7 @@ class Player {
         }
         this._darts = 0;
         this._legAverage = 0;
+        writeLegWinToScoreboard(this);
         this.checkWon();
     }
 
@@ -165,6 +166,7 @@ class Player {
             startToThrow = !setStart;
             setStart = !setStart;
             this._legsWon = 0;
+            writeSetWinToScoreboard(this);
         }
         if (this._setsWon === parseInt(sets / 2) + 1) {
             winningFunction(this.data);
@@ -1168,3 +1170,20 @@ function changeDataDouble(field){
     field.data = 'clicked';
     clicked = true;
 }   
+
+function writeLegWinToScoreboard(player){
+    if(player.data === 'you'){
+        document.getElementsByClassName('legs')[0].textContent = player.legsWon;
+    }else{
+        document.getElementsByClassName('legs')[1].textContent = player.legsWon;
+    }
+}
+
+function writeSetWinToScoreboard(player){
+    if(player.data === 'you'){
+        document.getElementsByClassName('sets')[0].textContent = player.setsWon;
+    }else{
+        document.getElementsByClassName('sets')[1].textContent = player.setsWon;
+    }
+}
+
