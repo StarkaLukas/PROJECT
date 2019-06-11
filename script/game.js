@@ -69,10 +69,8 @@ class Player {
                 this._legAverage = (((this._legAverage * (this._darts - 3)) + this._lastScore - this._remainingPoints) / this._darts);
                 this._matchAverage = (((this._matchAverage * (this._totalDarts - 3)) + this._lastScore - this._remainingPoints) / this._totalDarts)
                 this.checkTon();
-                if (this.data === 'you') {
-                    this.turnMethod();
-                    changeBackgroundColor(yourTurn);
-                }
+                this.turnMethod();
+                changeBackgroundColor(yourTurn);
                 if (this._darts <= 9) {
                     this._first9Average = (((this._first9Average * (this._first9darts - 3)) + this._lastScore - this._remainingPoints) / this._first9darts);
                 }
@@ -97,7 +95,7 @@ class Player {
             if (this._remainingPoints - field.value === 0) {
                 if (outMethod === 'd_out') {
                     if (field.data === 'double') {
-                        if(opponent !== 'Trainer (computer)'){
+                        if (opponent !== 'Trainer (computer)') {
                             this.askHowManyDarts('notMissedDoubles');
                         }
                     } else {
@@ -160,7 +158,7 @@ class Player {
         this._legsWon++;
         this._darts++;
         this._totalDarts++;
-        if (this._darts < this._bestLeg || this._bestLeg === 0) {
+        if (this._darts < this._bestLeg || this._bestLeg == 0) {
             this._bestLeg = this._darts;
         }
         if (this._lastScore > this._highestFinish || this._highestFinish === 0) {
@@ -1048,16 +1046,16 @@ function computerFinishFunction() {
             computerGetFinish(30);
             break;
         case '6':
-                computerGetFinish(35);
+            computerGetFinish(35);
             break;
         case '7':
-                computerGetFinish(40);
+            computerGetFinish(40);
             break;
         case '8':
             computerGetFinish(45);
             break;
         case '9':
-                computerGetFinish(50);
+            computerGetFinish(50);
             break;
         case '10':
             computerGetFinish(60);
@@ -1065,10 +1063,10 @@ function computerFinishFunction() {
     }
 }
 
-function computerGetFinish(percentage){
+function computerGetFinish(percentage) {
     let number = Math.floor(Math.random() * 100) + 1;
 
-    if(parseInt(versus.remainingPoints) >= 100){
+    if (parseInt(versus.remainingPoints) >= 100) {
         switch (computerLevel) {
             case '1':
                 computerGetPoints(5, 16, 5, 14, 5, 10, 1, 3, 5, 3, 14, 4, 15, 3);
@@ -1102,277 +1100,277 @@ function computerGetFinish(percentage){
                 break;
         }
     }
-    else if(parseInt(versus.remainingPoints) >= 40){
+    else if (parseInt(versus.remainingPoints) >= 40) {
         versus.gameFunction(new DartField(null, 20, 'red', 'yellow'));
-    }else{
-        switch(parseInt(versus.remainingPoints)){
+    } else {
+        switch (parseInt(versus.remainingPoints)) {
             case 40:
-                if(number <= percentage){
+                if (number <= percentage) {
                     let field = new DartField(null, 40, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 39:
-                if(number <= percentage){
+            case 39:
+                if (number <= percentage) {
                     let field = new DartField(null, 19, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 38:
-                if(number <= percentage){
+            case 38:
+                if (number <= percentage) {
                     let field = new DartField(null, 38, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 37:
-                if(number <= percentage){
+            case 37:
+                if (number <= percentage) {
                     let field = new DartField(null, 17, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 36:
-                if(number <= percentage){
+            case 36:
+                if (number <= percentage) {
                     let field = new DartField(null, 36, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 35:
-                if(number <= percentage){
+            case 35:
+                if (number <= percentage) {
                     let field = new DartField(null, 15, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 34:
-                if(number <= percentage){
+            case 34:
+                if (number <= percentage) {
                     let field = new DartField(null, 34, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 33:
-                if(number <= percentage){
+            case 33:
+                if (number <= percentage) {
                     let field = new DartField(null, 1, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 32:
-                if(number <= percentage){
+            case 32:
+                if (number <= percentage) {
                     let field = new DartField(null, 32, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 31:
-                if(number <= percentage){
+            case 31:
+                if (number <= percentage) {
                     let field = new DartField(null, 7, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 30:
-                if(number <= percentage){
+            case 30:
+                if (number <= percentage) {
                     let field = new DartField(null, 30, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 29:
-                if(number <= percentage){
+            case 29:
+                if (number <= percentage) {
                     let field = new DartField(null, 5, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 28:
-                if(number <= percentage){
+            case 28:
+                if (number <= percentage) {
                     let field = new DartField(null, 28, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 27:
-                if(number <= percentage){
+            case 27:
+                if (number <= percentage) {
                     let field = new DartField(null, 3, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 26:
-                if(number <= percentage){
+            case 26:
+                if (number <= percentage) {
                     let field = new DartField(null, 26, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 25:
-                if(number <= percentage){
+            case 25:
+                if (number <= percentage) {
                     let field = new DartField(null, 9, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 24:
-                if(number <= percentage){
+            case 24:
+                if (number <= percentage) {
                     let field = new DartField(null, 24, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
-                case 23:
-                if(number <= percentage){
+            case 23:
+                if (number <= percentage) {
                     let field = new DartField(null, 7, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 22:
-                if(number <= percentage){
+            case 22:
+                if (number <= percentage) {
                     let field = new DartField(null, 22, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 21:
-                if(number <= percentage){
+            case 21:
+                if (number <= percentage) {
                     let field = new DartField(null, 5, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 20:
-                if(number <= percentage){
+            case 20:
+                if (number <= percentage) {
                     let field = new DartField(null, 20, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 19:
-                if(number <= percentage){
+            case 19:
+                if (number <= percentage) {
                     let field = new DartField(null, 3, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 18:
-                if(number <= percentage){
+            case 18:
+                if (number <= percentage) {
                     let field = new DartField(null, 18, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 17:
-                if(number <= percentage){
+            case 17:
+                if (number <= percentage) {
                     let field = new DartField(null, 1, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 16:
-                if(number <= percentage){
+            case 16:
+                if (number <= percentage) {
                     let field = new DartField(null, 16, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 15:
-                if(number <= percentage){
+            case 15:
+                if (number <= percentage) {
                     let field = new DartField(null, 7, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 14:
-                if(number <= percentage){
+            case 14:
+                if (number <= percentage) {
                     let field = new DartField(null, 14, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 13:
-                if(number <= percentage){
+            case 13:
+                if (number <= percentage) {
                     let field = new DartField(null, 5, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 12:
-                if(number <= percentage){
+            case 12:
+                if (number <= percentage) {
                     let field = new DartField(null, 12, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 11:
-                if(number <= percentage){
+            case 11:
+                if (number <= percentage) {
                     let field = new DartField(null, 3, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 10:
-                if(number <= percentage){
+            case 10:
+                if (number <= percentage) {
                     let field = new DartField(null, 10, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 9:
-                if(number <= percentage){
+            case 9:
+                if (number <= percentage) {
                     let field = new DartField(null, 1, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 8:
-                if(number <= percentage){
+            case 8:
+                if (number <= percentage) {
                     let field = new DartField(null, 8, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 7:
-                if(number <= percentage){
+            case 7:
+                if (number <= percentage) {
                     let field = new DartField(null, 3, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 6:
-                if(number <= percentage){
+            case 6:
+                if (number <= percentage) {
                     let field = new DartField(null, 6, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 5:
-                if(number <= percentage){
+            case 5:
+                if (number <= percentage) {
                     let field = new DartField(null, 1, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 4:
-                if(number <= percentage){
+            case 4:
+                if (number <= percentage) {
                     let field = new DartField(null, 4, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
                 }
                 break;
-                case 3:
-                if(number <= percentage){
+            case 3:
+                if (number <= percentage) {
                     let field = new DartField(null, 1, 'red', 'yellow');
                     field.data = 'single';
                     versus.gameFunction(field);
                 }
                 break;
-                case 2:
-                if(number <= percentage){
+            case 2:
+                if (number <= percentage) {
                     let field = new DartField(null, 2, 'red', 'yellow');
                     field.data = 'double';
                     versus.gameFunction(field);
@@ -1552,7 +1550,7 @@ function writeNewStats(player, userID, string, playerWon) {
         checkOuts: player.checkOuts,
         checkOutAttempts: player.checkOutAttempts,
         doublePercentage: doublePercentage,
-        bestLeg: player.bestLeg,
+        bestLeg: you.bestLeg,
         matchesPlayed: 1,
         matchesLost: matchesLost,
         matchesWon: matchesWon
@@ -1690,7 +1688,7 @@ function statsLink() {
     document.getElementById('ton80s').textContent = you.ton80s;
 
     document.getElementById('bestLeg').textContent = you.bestLeg;
-    document.getElementById('totalCheckout').textContent = you.doublePercentage;
+    document.getElementById('totalCheckout').textContent = parseInt((you.checkOuts / you.checkOutAttempts) * 100) + '%';
     document.getElementById('highestFinish').textContent = you.highestFinish;
     document.getElementById('checkOuts').textContent = you.checkOuts + ' / ' + you.checkOutAttempts;
 
