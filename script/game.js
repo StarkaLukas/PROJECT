@@ -1688,7 +1688,9 @@ function statsLink() {
     document.getElementById('ton80s').textContent = you.ton80s;
 
     document.getElementById('bestLeg').textContent = you.bestLeg;
-    document.getElementById('totalCheckout').textContent = parseInt((you.checkOuts / you.checkOutAttempts) * 100) + '%';
+    if(outMethod === 'd_out'){
+        document.getElementById('totalCheckout').textContent = parseInt((you.checkOuts / you.checkOutAttempts) * 100) + '%';
+    }
     document.getElementById('highestFinish').textContent = you.highestFinish;
     document.getElementById('checkOuts').textContent = you.checkOuts + ' / ' + you.checkOutAttempts;
 
