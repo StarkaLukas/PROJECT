@@ -43,7 +43,7 @@ function start() {
     document.getElementsByClassName('select')[0].addEventListener('click', redoStats);
     document.getElementById('file').addEventListener('change', (event) => {
         let user = firebase.auth().currentUser;
-        let path = `users/${user.uid}/${event.target.files[0].name}`
+        let path = `users/${user.uid}/profilePicture`;
 
         firebase.storage().ref(path).put(event.target.files[0]).then(() => {
             user.updateProfile({
