@@ -1596,8 +1596,9 @@ function updateStats(player, userID, string, playerWon) {
 
     return firebase.database().ref('/users/' + userID).once('value').then(function (snapshot) {
         let stats = (snapshot.val() && snapshot.val()[string]) || 'Anonymous';
-        matchAverage = (parseInt(stats.matchAverage) + player.matchAverage) / 2;
-        nineAverage = (parseInt(stats.nineAverage) + player.first9Average) / 2;
+        let matchesPlayed = stats.matchesLost + stats.matchesWon;
+        matchAverage = ((parseInt(stats.matchAverage) * matchesPlayed - 1) + player.matchAverage) / matchesPlayed;
+        nineAverage = ((parseInt(stats.nineAverage) * matchesPlayed - 1) + player.first9Average) / matchesPlayed;
         tons = parseInt(stats.tons) + player.tons;
         ton40s = parseInt(stats.ton40s) + player.ton40s;
         ton80s = parseInt(stats.ton80s) + player.ton80s;
